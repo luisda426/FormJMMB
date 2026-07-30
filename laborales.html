@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro de Clientes</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body data-step="1">
+
+    <div class="background">
+
+        <div class="container">
+
+            <div class="header">
+
+                <h1>Registro de Clientes</h1>
+
+                <p>
+                    Complete la siguiente información.
+                </p>
+
+            </div>
+
+            <form id="formRegistro" data-seccion="datosLaborales">
+
+                <!-- ========================================= -->
+
+                <section class="card">
+
+                    <h2>Datos Laborales</h2>
+
+                    <div class="grid-2">
+
+                        <div class="form-group">
+
+                            <label>Empresa</label>
+
+                            <input type="text" placeholder="Nombre de la empresa" data-field="empresa">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Calle - Edificio - Número - Interior</label>
+
+                            <input type="text" placeholder="Dirección de la empresa" data-field="direccionEmpresa">
+
+                        </div>
+
+                    </div>
+
+                    <!-- ========================================================= -->
+
+                    <div class="grid-3">
+
+                        <div class="form-group">
+
+                            <label>Sector</label>
+
+                            <select data-field="sector">
+
+                                <option>Seleccione...</option>
+                                <option value="pruebasector">Prueba</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Ciudad</label>
+
+                            <select data-field="ciudad">
+
+                                <option>Seleccione...</option>
+                                <option value="pruebaCiudad">Prueba</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>País</label>
+
+                            <select data-field="pais">
+                                <option value="">Seleccione...</option>
+                                <option value="Alemania">Alemania</option>
+                                <option value="Argentina">Argentina</option>
+                                <option value="Brasil">Brasil</option>
+                                <option value="Canadá">Canadá</option>
+                                <option value="Chile">Chile</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Costa Rica">Costa Rica</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="El Salvador">El Salvador</option>
+                                <option value="España">España</option>
+                                <option value="Estados Unidos">Estados Unidos</option>
+                                <option value="Francia">Francia</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Haití">Haití</option>
+                                <option value="Honduras">Honduras</option>
+                                <option value="Italia">Italia</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="México">México</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                                <option value="Panamá">Panamá</option>
+                                <option value="Perú">Perú</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="Reino Unido">Reino Unido</option>
+                                <option value="República Dominicana">República Dominicana</option>
+                                <option value="Venezuela">Venezuela</option>
+                                <option value="Otro">Otro</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ========================================================= -->
+
+                    <div class="grid-3">
+
+                        <div class="form-group">
+
+                            <label>Cargo que ocupa</label>
+
+                            <input type="text" placeholder="Ej. Gerente Comercial"  data-field="cargo">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Fecha de ingreso</label>
+
+                            <input type="date"  data-field="ingreso">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Teléfono del trabajo</label>
+
+                            <input type="text" placeholder="(809) 555-5555"  data-field="telefono">
+
+                        </div>
+
+                    </div>
+
+                    <!-- ========================================================= -->
+
+                    <div class="grid-2">
+
+                        <div class="form-group">
+
+                            <label>Email de la empresa</label>
+
+                            <input type="email" placeholder="correo@empresa.com"  data-field="email">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Comentarios</label>
+
+                            <textarea rows="5" placeholder="Escriba cualquier información adicional..."  data-field="comentarios"></textarea>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ========================================= -->
+
+                    <div class="button-group">
+
+                        <button type="button" class="btn-secondary" id="btnAnterior">
+
+                            ← Anterior
+
+                        </button>
+
+                        <button type="button" class="btn-primary" id="btnSiguiente">
+
+                            Siguiente →
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="app/app.js"></script>
+
+</html>
