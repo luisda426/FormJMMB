@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Perfil del Inversionista</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-step="6">
+    <div class="background">
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
+        </div>
+
+        <form id="formRegistro" data-seccion="datosCuestionario">
+          <section class="card">
+            <div class="section-heading">
+              <div class="section-heading-top">
+                <span class="section-label">
+                  CUESTIONARIO PERFIL DEL CLIENTE
+                </span>
+              </div>
+
+              <h2>Parte 2</h2>
+
+              <h3>Capacidad financiera</h3>
+
+              <div class="section-line"></div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- Ingresos Anuales -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Ingresos Anuales </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="ingresosAnuales"
+                    value="Menos de RD$2 Millones"
+                    data-field="ingresosAnuales"
+                  />
+
+                  <span> Menos de RD$2 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="ingresosAnuales"
+                    value="Entre RD$2.0 y RD$5.7 Millones"
+                    data-field="ingresosAnuales"
+                  />
+
+                  <span> Entre RD$2.0 y RD$5.7 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="ingresosAnuales"
+                    value="Entre RD$7.0 y RD$20 Millones"
+                    data-field="ingresosAnuales"
+                  />
+
+                  <span> Entre RD$7.0 y RD$20 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="ingresosAnuales"
+                    value="Más de RD$25.0 Millones"
+                    data-field="ingresosAnuales"
+                  />
+
+                  <span> Más de RD$25.0 Millones </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- Total Activos Líquidos -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Total Activos Líquidos </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="totalActivosLiquidos"
+                    value="Menos de RD$2 Millones"
+                    data-field="totalActivosLiquidos"
+                  />
+
+                  <span> Menos de RD$2 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="totalActivosLiquidos"
+                    value="Entre RD$2.0 y RD$7 Millones"
+                    data-field="totalActivosLiquidos"
+                  />
+
+                  <span> Entre RD$2.0 y RD$7 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="totalActivosLiquidos"
+                    value="Entre RD$10.0 y RD$20 Millones"
+                    data-field="totalActivosLiquidos"
+                  />
+
+                  <span> Entre RD$10.0 y RD$25 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="totalActivosLiquidos"
+                    value="Más de RD$20.0 Millones"
+                    data-field="totalActivosLiquidos"
+                  />
+
+                  <span> Más de RD$20.0 Millones </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- Patrimonio Total -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Patrimonio Total </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="patrimonioTotal"
+                    value="Menos de RD$2 Millones"
+                    data-field="patrimonioTotal"
+                  />
+
+                  <span> Menos de RD$2 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="patrimonioTotal"
+                    value="Entre RD$2.0 y RD$7 Millones"
+                    data-field="patrimonioTotal"
+                  />
+
+                  <span> Entre RD$2.0 y RD$7 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="patrimonioTotal"
+                    value="Entre RD$10.0 y RD$20 Millones"
+                    data-field="patrimonioTotal"
+                  />
+
+                  <span> Entre RD$10.0 y RD$15 Millones </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="patrimonioTotal"
+                    value="Más de RD$20.0 Millones"
+                    data-field="patrimonioTotal"
+                  />
+
+                  <span> Más de RD$20.0 Millones </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- =========================================
+     REFERENCIAS BANCARIAS
+========================================= -->
+
+            <div class="form-group">
+              <label> Referencias bancarias </label>
+            </div>
+
+            <!-- REFERENCIA BANCARIA 1 -->
+
+            <div class="reference-card">
+              <div class="reference-card-header">
+                <span>01</span>
+                <strong>Referencia bancaria</strong>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="banco1"> Banco </label>
+
+                  <input
+                    type="text"
+                    id="banco1"
+                    data-field="banco1"
+                    placeholder="Nombre del banco"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="tipoCuenta1"> Tipo de cuenta </label>
+
+                  <input
+                    type="text"
+                    id="tipoCuenta1"
+                    data-field="tipoCuenta1"
+                    placeholder="Ej. Ahorros, corriente..."
+                  />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="telefonoBanco1"> Teléfono </label>
+
+                  <input
+                    type="text"
+                    id="telefonoBanco1"
+                    data-field="telefonoBanco1"
+                    placeholder="Teléfono del banco"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="oficialBanco1"> Oficial </label>
+
+                  <input
+                    type="text"
+                    id="oficialBanco1"
+                    data-field="oficialBanco1"
+                    placeholder="Nombre del oficial"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- REFERENCIA BANCARIA 2 -->
+
+            <div class="reference-card">
+              <div class="reference-card-header">
+                <span>02</span>
+                <strong>Referencia bancaria</strong>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="banco2"> Banco </label>
+
+                  <input
+                    type="text"
+                    id="banco2"
+                    data-field="banco2"
+                    placeholder="Nombre del banco"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="tipoCuenta2"> Tipo de cuenta </label>
+
+                  <input
+                    type="text"
+                    id="tipoCuenta2"
+                    data-field="tipoCuenta2"
+                    placeholder="Ej. Ahorros, corriente..."
+                  />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="telefonoBanco2"> Teléfono </label>
+
+                  <input
+                    type="text"
+                    id="telefonoBanco2"
+                    data-field="telefonoBanco2"
+                    placeholder="Teléfono del banco"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="oficialBanco2"> Oficial </label>
+
+                  <input
+                    type="text"
+                    id="oficialBanco2"
+                    data-field="oficialBanco2"
+                    placeholder="Nombre del oficial"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- =========================================
+             PARTE 3 - ANÁLISIS DE PATRIMONIO
+            ========================================= -->
+
+            <div class="section-divider"></div>
+
+            <div class="section-heading">
+              <h2>Parte 3</h2>
+
+              <h3>Análisis de patrimonio</h3>
+
+              <div class="section-line"></div>
+            </div>
+
+            <!-- =========================================
+            TABLA DE PATRIMONIO
+            ========================================= -->
+
+            <div class="form-group">
+              <label> Análisis de patrimonio </label>
+
+              <div class="patrimony-table-container">
+                <table class="patrimony-table">
+                  <thead>
+                    <tr>
+                      <th>Años o períodos fiscales</th>
+
+                      <th>20</th>
+
+                      <th>20</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Total Patrimonio RD$</td>
+
+                      <td>
+                        <input
+                          type="text"
+                          id="patrimonioPeriodo1"
+                          data-field="patrimonioPeriodo1"
+                          placeholder="RD$"
+                        />
+                      </td>
+
+                      <td>
+                        <input
+                          type="text"
+                          id="patrimonioPeriodo2"
+                          data-field="patrimonioPeriodo2"
+                          placeholder="RD$"
+                        />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Total Pasivos RD$</td>
+
+                      <td>
+                        <input
+                          type="text"
+                          id="pasivosPeriodo1"
+                          data-field="pasivosPeriodo1"
+                          placeholder="RD$"
+                        />
+                      </td>
+
+                      <td>
+                        <input
+                          type="text"
+                          id="pasivosPeriodo2"
+                          data-field="pasivosPeriodo2"
+                          placeholder="RD$"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- BOTONES -->
+            <!-- ========================================= -->
+
+            <div class="button-group">
+              <button type="button" class="btn-secondary" id="btnAnterior">
+                ← Anterior
+              </button>
+
+              <button type="button" class="btn-primary" id="btnSiguiente">
+                Siguiente →
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+
+    <script src="app/app.js"></script>
+  </body>
+</html>

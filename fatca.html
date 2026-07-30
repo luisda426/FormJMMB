@@ -1,425 +1,410 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Registro de Clientes</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-
-</head>
-
-<body data-step="2">
-
+  <body data-step="2">
     <div class="background">
-
-        <div class="container">
-
-            <div class="header">
-
-                <h1>Registro de Clientes</h1>
-
-                <p>
-                    Complete la siguiente información.
-                </p>
-
-            </div>
-
-            <form id="formRegistro" data-seccion="datosFatca">
-
-                <!-- ========================================= -->
-
-                <section class="card">
-
-                    <h2>Fatca</h2>
-
-                    <!-- Ciudadanía en otros países -->
-
-                    <div class="form-group">
-
-                        <label>¿Tiene ciudadanía en otros países?</label>
-
-                        <div class="radio-group">
-
-                            <label class="radio">
-
-                                <input value="Si" type="radio" name="otrasCiudadanias" data-field="otrasCiudadanias">
-
-                                <span>Sí</span>
-
-                            </label>
-
-                            <label class="radio">
-
-                                <input value="No" type="radio" name="otrasCiudadanias" data-field="otrasCiudadanias">
-
-                                <span>No</span>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div id="divCiudadanias" class="hidden">
-
-                        <div class="form-group">
-
-                            <label>Indique las ciudadanías</label>
-
-                            <input type="text" data-field="ciudadanias">
-
-                        </div>
-
-                    </div>
-
-                    <!-- ============================================== -->
-
-                    <div class="form-group">
-
-                        <label>¿Es Estados Unidos su país de residencia física?</label>
-
-                        <div class="radio-group">
-
-                            <label class="radio">
-
-                                <input value="Si" type="radio" name="residenciaFisicaUSA"
-                                    data-field="residenciaFisicaUSA">
-
-                                <span>Sí</span>
-
-                            </label>
-
-                            <label class="radio">
-
-                                <input value="No" type="radio" name="residenciaFisicaUSA"
-                                    data-field="residenciaFisicaUSA">
-
-                                <span>No</span>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div id="divTIN" class="hidden">
-
-                        <div class="form-group">
-
-                            <label>Número de Identificación Fiscal (TIN)</label>
-
-                            <input type="text" data-field="tin">
-
-                        </div>
-
-                    </div>
-
-                    <!-- ============================================== -->
-
-                    <div class="form-group">
-
-                        <label>¿Tiene más de un país de residencia fiscal?</label>
-
-                        <div class="radio-group">
-
-                            <label class="radio">
-
-                                <input value="Si" type="radio" name="masResidenciaFiscal"
-                                    data-field="masResidenciaFiscal">
-
-                                <span>Sí</span>
-
-                            </label>
-
-                            <label class="radio">
-
-                                <input value="No" type="radio" name="masResidenciaFiscal"
-                                    data-field="masResidenciaFiscal">
-
-                                <span>No</span>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div id="divResidenciaFiscal" class="hidden">
-
-                        <div class="form-group">
-
-                            <label>Indique los países con residencia fiscal</label>
-
-                            <textarea rows="3" data-field="paisesResidenciaFiscal"></textarea>
-
-                        </div>
-
-                    </div>
-
-                    <!-- ============================================== -->
-
-                    <div class="form-group">
-
-                        <label>Comentarios</label>
-
-                        <textarea rows="4" data-field="comentarios"></textarea>
-
-                        <small>
-                            Si se encuentra en proceso de adquirir una residencia o ciudadanía en otro país, indíquelo
-                            aquí.
-                        </small>
-
-                    </div>
-
-                    <!-- ============================================== -->
-
-                    <div class="form-group">
-
-                        <label>¿Qué condición posee en los Estados Unidos?</label>
-
-                        <div class="radio-group">
-
-                            <label class="radio-option">
-
-                                <input type="radio" name="condicionUSA" value="Ciudadania" data-field="condicionUSA">
-
-                                Ciudadanía
-
-                            </label>
-
-                            <label class="radio-option">
-
-                                <input type="radio" name="condicionUSA" value="Residencia Permanente"
-                                    data-field="condicionUSA" data-target="divResidenciaUSA">
-
-                                Residencia Permanente
-
-                            </label>
-
-                            <label class="radio-option">
-
-                                <input type="radio" name="condicionUSA" value="Residencia Fiscal"
-                                    data-field="condicionUSA">
-
-                                Residencia Fiscal
-
-                            </label>
-
-                            <label class="radio-option">
-
-                                <input type="radio" name="condicionUSA" value="Ninguna" data-field="condicionUSA">
-
-                                Ninguna
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                    <div id="divResidenciaUSA" class="hidden">
-
-                        <div class="form-group">
-
-                            <label>Indique la residencia permanente</label>
-
-                            <input type="text" data-field="detalleResidenciaUSA">
-
-                        </div>
-
-                    </div>
-
-                    <!-- ============================================== -->
-
-                    <div class="grid-2">
-
-                        <div class="form-group">
-
-                            <label>¿Tiene Green Card?</label>
-
-                            <div class="radio-group">
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="greenCard" value="Si" data-field="greenCard">
-
-                                    Sí
-
-                                </label>
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="greenCard" value="No" data-field="greenCard">
-
-                                    No
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label>¿Tiene dirección de envío en Estados Unidos?</label>
-
-                            <div class="radio-group">
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="direccionEnvioUSA" value="Si"
-                                        data-field="direccionEnvioUSA" data-target="divDireccionEnvio">
-
-                                    Sí
-
-                                </label>
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="direccionEnvioUSA" value="No"
-                                        data-field="direccionEnvioUSA" data-target="divDireccionEnvio">
-
-                                    No
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div id="divDireccionEnvio" class="hidden">
-
-                        <div class="form-group">
-
-                            <label>Dirección de envío</label>
-
-                            <input type="text" data-field="direccionEnvio">
-
-                        </div>
-
-                    </div>
-
-                    <!-- ============================================== -->
-
-                    <div class="grid-2">
-
-                        <div class="form-group">
-
-                            <label>¿Tiene dirección de residencia en Estados Unidos?</label>
-
-                            <div class="radio-group">
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="direccionResidenciaUSA" value="Si"
-                                        data-field="direccionResidenciaUSA" data-target="divDireccionResidencia">
-
-                                    Sí
-
-                                </label>
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="direccionResidenciaUSA" value="No"
-                                        data-field="direccionResidenciaUSA" data-target="divDireccionResidencia">
-
-                                    No
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label>¿Tiene número telefónico fuera del país?</label>
-
-                            <div class="radio-group">
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="telefonoExtranjero" value="Si"
-                                        data-field="telefonoExtranjero" data-target="divTelefonoExtranjero">
-
-                                    Sí
-
-                                </label>
-
-                                <label class="radio-option">
-
-                                    <input type="radio" name="telefonoExtranjero" value="No"
-                                        data-field="telefonoExtranjero" data-target="divTelefonoExtranjero">
-
-                                    No
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div id="divDireccionResidencia" class="hidden">
-
-                        <div class="form-group">
-
-                            <label>Dirección de residencia</label>
-
-                            <input type="text" data-field="direccionResidencia">
-
-                        </div>
-
-                    </div>
-
-                    <div id="divTelefonoExtranjero" class="hidden">
-
-                        <div class="form-group">
-
-                            <label>Número telefónico</label>
-
-                            <input type="text" data-field="telefonoExtranjeroNumero">
-
-                        </div>
-
-                    </div>
-
-                    <!-- ========================================= -->
-
-                    <div class="button-group">
-
-                        <button type="button" class="btn-secondary" id="btnAnterior">
-
-                            ← Anterior
-
-                        </button>
-
-                        <button type="button" class="btn-primary" id="btnSiguiente">
-
-                            Siguiente →
-
-                        </button>
-
-                    </div>
-
-                </section>
-
-            </form>
-
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
         </div>
 
+        <form id="formRegistro" data-seccion="datosFatca">
+          <!-- ========================================= -->
+
+          <section class="card">
+            <h2>Fatca</h2>
+
+            <!-- Ciudadanía en otros países -->
+
+            <div class="form-group">
+              <label>¿Tiene ciudadanía en otros países?</label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    value="Si"
+                    type="radio"
+                    name="otrasCiudadanias"
+                    data-field="otrasCiudadanias"
+                    data-target="divCiudadanias"
+                    data-show-value="Si"
+                  />
+
+                  <span>Sí</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    value="No"
+                    type="radio"
+                    name="otrasCiudadanias"
+                    data-field="otrasCiudadanias"
+                    data-target="divCiudadanias"
+                    data-show-value="Si"
+                  />
+
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div id="divCiudadanias" class="hidden">
+              <div class="form-group">
+                <label>Indique las ciudadanías</label>
+
+                <input type="text" data-field="ciudadanias" />
+              </div>
+            </div>
+
+            <!-- ============================================== -->
+
+            <div class="form-group">
+              <label>¿Es Estados Unidos su país de residencia física?</label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    value="Si"
+                    type="radio"
+                    name="residenciaFisicaUSA"
+                    data-field="residenciaFisicaUSA"
+                    data-target="divTIN"
+                    data-show-value="Si"
+                  />
+
+                  <span>Sí</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    value="No"
+                    type="radio"
+                    name="residenciaFisicaUSA"
+                    data-field="residenciaFisicaUSA"
+                    data-target="divTIN"
+                    data-show-value="Si"
+                  />
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div id="divTIN" class="hidden">
+              <div class="form-group">
+                <label>Número de Identificación Fiscal (TIN)</label>
+
+                <input type="text" data-field="tin" />
+              </div>
+            </div>
+
+            <!-- ============================================== -->
+
+            <div class="form-group">
+              <label>¿Tiene más de un país de residencia fiscal?</label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    value="Si"
+                    type="radio"
+                    name="masResidenciaFiscal"
+                    data-field="masResidenciaFiscal"
+                    data-target="divResidenciaFiscal"
+                    data-show-value="Si"
+                  />
+
+                  <span>Sí</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    value="No"
+                    type="radio"
+                    name="masResidenciaFiscal"
+                    data-field="masResidenciaFiscal"
+                    data-target="divResidenciaFiscal"
+                    data-show-value="Si"
+                  />
+
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div id="divResidenciaFiscal" class="hidden">
+              <div class="form-group">
+                <label>Indique los países con residencia fiscal</label>
+
+                <textarea
+                  rows="3"
+                  data-field="paisesResidenciaFiscal"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- ============================================== -->
+
+            <div class="form-group">
+              <label
+                >Comentarios
+                <small>
+                  (Si se encuentra en proceso de adquirir una residencia o
+                  ciudadanía en otro país, indíquelo aquí.)
+                </small>
+              </label>
+
+              <textarea rows="4" data-field="comentarios"></textarea>
+            </div>
+
+            <!-- ============================================== -->
+
+            <div class="form-group">
+              <label>¿Qué condición posee en los Estados Unidos?</label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="condicionUSA"
+                    value="Ciudadania"
+                    data-field="condicionUSA"
+                    data-target="divResidenciaUSA"
+                    data-show-value="Residencia Permanente"
+                  />
+
+                  <span>Ciudadanía</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="condicionUSA"
+                    value="Residencia Permanente"
+                    data-field="condicionUSA"
+                    data-target="divResidenciaUSA"
+                    data-show-value="Residencia Permanente"
+                  />
+
+                  <span>Residencia Permanente</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="condicionUSA"
+                    value="Residencia Fiscal"
+                    data-field="condicionUSA"
+                    data-target="divResidenciaUSA"
+                    data-show-value="Residencia Permanente"
+                  />
+
+                  <span>Residencia Fiscal</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="condicionUSA"
+                    value="Ninguna"
+                    data-field="condicionUSA"
+                    data-target="divResidenciaUSA"
+                    data-show-value="Residencia Permanente"
+                  />
+
+                  <span>Ninguna</span>
+                </label>
+              </div>
+            </div>
+
+            <div id="divResidenciaUSA" class="hidden">
+              <div class="form-group">
+                <label>Indique la residencia permanente</label>
+
+                <input type="text" data-field="detalleResidenciaUSA" />
+              </div>
+            </div>
+
+            <!-- ============================================== -->
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label>¿Tiene Green Card?</label>
+
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      value="Si"
+                      type="radio"
+                      name="greenCard"
+                      data-field="greenCard"
+                    />
+
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      value="No"
+                      type="radio"
+                      name="greenCard"
+                      data-field="greenCard"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>¿Tiene dirección de envío en Estados Unidos?</label>
+
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      value="Si"
+                      type="radio"
+                      name="direccionEnvioUSA"
+                      data-field="direccionEnvioUSA"
+                      data-target="divDireccionEnvio"
+                      data-show-value="Si"
+                    />
+
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      value="No"
+                      type="radio"
+                      name="direccionEnvioUSA"
+                      data-field="direccionEnvioUSA"
+                      data-target="divDireccionEnvio"
+                      data-show-value="Si"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="divDireccionEnvio" class="hidden">
+              <div class="form-group">
+                <label>Dirección de envío</label>
+
+                <input type="text" data-field="direccionEnvio" />
+              </div>
+            </div>
+
+            <!-- ============================================== -->
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label>¿Tiene dirección de residencia en Estados Unidos?</label>
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      value="Si"
+                      type="radio"
+                      name="direccionResidenciaUSA"
+                      data-field="direccionResidenciaUSA"
+                      data-target="divDireccionResidencia"
+                      data-show-value="Si"
+                    />
+
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      value="No"
+                      type="radio"
+                      name="direccionResidenciaUSA"
+                      data-field="direccionResidenciaUSA"
+                      data-target="divDireccionResidencia"
+                      data-show-value="Si"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>¿Tiene número telefónico fuera del país?</label>
+
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      value="Si"
+                      type="radio"
+                      name="telefonoExtranjero"
+                      data-field="telefonoExtranjero"
+                      data-target="divTelefonoExtranjero"
+                      data-show-value="Si"
+                    />
+
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      value="No"
+                      type="radio"
+                      name="telefonoExtranjero"
+                      data-field="telefonoExtranjero"
+                      data-target="divTelefonoExtranjero"
+                      data-show-value="Si"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="divDireccionResidencia" class="hidden">
+              <div class="form-group">
+                <label>Dirección de residencia</label>
+
+                <input type="text" data-field="direccionResidencia" />
+              </div>
+            </div>
+
+            <div id="divTelefonoExtranjero" class="hidden">
+              <div class="form-group">
+                <label>Número telefónico</label>
+
+                <input type="text" data-field="telefonoExtranjeroNumero" />
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+
+            <div class="button-group">
+              <button type="button" class="btn-secondary" id="btnAnterior">
+                ← Anterior
+              </button>
+
+              <button type="button" class="btn-primary" id="btnSiguiente">
+                Siguiente →
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
     </div>
+  </body>
 
-</body>
-
-<script src="app/app.js"></script>
-
+  <script src="app/app.js"></script>
 </html>

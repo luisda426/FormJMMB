@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Registro de Clientes</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-step="3">
+    <div class="background">
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
+        </div>
+
+        <form id="formRegistro" data-seccion="datosPep">
+          <!-- ========================================= -->
+          <!-- INFORMACIÓN PEP -->
+          <!-- ========================================= -->
+
+          <section class="card">
+            <h2>Declaración jurada personas políticamente expuestas</h2>
+            <div class="legal-info">
+              <p>
+                Cualquier individuo que desempeña o ha desempeñado, durante los
+                últimos tres (3) años, altas funciones públicas, por elección o
+                nombramientos ejecutivos, en un país extranjero o en territorio
+                nacional, incluyendo altos funcionarios de organizaciones
+                internacionales.
+              </p>
+
+              <p>
+                Incluye pero no se limita a jefe de estado o de gobierno,
+                funcionarios gubernamentales, judiciales o militares de alta
+                jerarquía, altos ejecutivos de empresas estatales o
+                funcionarios, y los representantes de organizaciones religiosas.
+              </p>
+
+              <p>
+                Los cargos considerados PEP serán todos aquellos funcionarios
+                obligados a presentar declaración jurada de bienes, salvo que
+                expresamente la normativa refiera cargos PEP no pasibles de
+                presentación de la referida declaración.
+              </p>
+
+              <p>
+                Se asimilan todas aquellas personas que hayan desempeñado o
+                desempeñen estas funciones o su equivalente para gobiernos
+                extranjeros.
+              </p>
+
+              <p>
+                Se asimilan como PEP al cónyuge, pareja en unión libre o
+                concubinato y personas con las que mantenga parentesco por
+                consanguinidad o afinidad hasta el segundo grado, asociados
+                cercanos o quien realice operaciones en su nombre.
+              </p>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- PREGUNTA 1 -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label>
+                ¿Es usted o ha sido una persona expuesta políticamente (PEP)
+                conforme a la definición en la Ley 155-17 contra el Lavado de
+                Activos y su reglamento de aplicación?
+              </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="esPEP"
+                    value="Si"
+                    data-field="esPEP"
+                    data-target="divDatosPEP"
+                    data-show-value="Si"
+                  />
+
+                  <span>Sí</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="esPEP"
+                    value="No"
+                    data-field="esPEP"
+                    data-target="divDatosPEP"
+                    data-show-value="Si"
+                  />
+
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- DATOS DE LA PERSONA PEP -->
+            <!-- ========================================= -->
+
+            <div id="divDatosPEP" class="hidden">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="cargoPEP"> Cargo </label>
+
+                  <input type="text" id="cargoPEP" data-field="cargoPEP" />
+                </div>
+
+                <div class="form-group">
+                  <label for="paisPEP"> País </label>
+
+                  <select id="paisPEP" data-field="paisPEP" data-paises>
+                    <option value="">Seleccione un país</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="fechaDesignacionPEP">
+                    Fecha de designación
+                  </label>
+
+                  <input
+                    type="date"
+                    id="fechaDesignacionPEP"
+                    data-field="fechaDesignacionPEP"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="fechaRemocionPEP"> Fecha de remoción </label>
+
+                  <input
+                    type="date"
+                    id="fechaRemocionPEP"
+                    data-field="fechaRemocionPEP"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- PREGUNTA 2 -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label>
+                ¿Tiene usted algún parentesco, es un asociado cercano o realiza
+                una operación en nombre de una persona expuesta políticamente
+                (PEP) conforme a la definición en la Ley 155-17 contra el Lavado
+                de Activos y su reglamento de aplicación?
+              </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="relacionPEP"
+                    value="Si"
+                    data-field="relacionPEP"
+                    data-target="divRelacionPEP"
+                    data-show-value="Si"
+                  />
+
+                  <span>Sí</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="relacionPEP"
+                    value="No"
+                    data-field="relacionPEP"
+                    data-target="divRelacionPEP"
+                    data-show-value="Si"
+                  />
+
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- DATOS DEL PEP RELACIONADO -->
+            <!-- ========================================= -->
+
+            <div id="divRelacionPEP" class="hidden">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="nombrePEP"> Nombre del PEP </label>
+
+                  <input type="text" id="nombrePEP" data-field="nombrePEP" />
+                </div>
+
+                <div class="form-group">
+                  <label for="paisPEPRelacionado"> País </label>
+
+                  <select
+                    id="paisPEPRelacionado"
+                    data-field="paisPEPRelacionado"
+                    data-paises
+                  >
+                    <option value="">Seleccione un país</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="parentescoPEP"> Parentesco o Afinidad </label>
+
+                  <input
+                    type="text"
+                    id="parentescoPEP"
+                    data-field="parentescoPEP"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="cargoPEPRelacionado"> Cargo del PEP </label>
+
+                  <input
+                    type="text"
+                    id="cargoPEPRelacionado"
+                    data-field="cargoPEPRelacionado"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="fechaDesignacionPEPRelacionado">
+                    Fecha de designación
+                  </label>
+
+                  <input
+                    type="date"
+                    id="fechaDesignacionPEPRelacionado"
+                    data-field="fechaDesignacionPEPRelacionado"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="fechaRemocionPEPRelacionado">
+                    Fecha de remoción
+                  </label>
+
+                  <input
+                    type="date"
+                    id="fechaRemocionPEPRelacionado"
+                    data-field="fechaRemocionPEPRelacionado"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- BOTONES -->
+            <!-- ========================================= -->
+
+            <div class="button-group">
+              <button type="button" class="btn-secondary" id="btnAnterior">
+                ← Anterior
+              </button>
+
+              <button type="button" class="btn-primary" id="btnSiguiente">
+                Siguiente →
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+
+    <script src="app/app.js"></script>
+  </body>
+</html>

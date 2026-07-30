@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Perfil del Inversionista</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-step="5">
+    <div class="background">
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
+        </div>
+
+        <form id="formRegistro" data-seccion="datosCuestionario">
+          <section class="card">
+            <div class="section-heading">
+              <div class="section-heading-top">
+                <span class="section-label">
+                  CUESTIONARIO PERFIL DEL CLIENTE
+                </span>
+              </div>
+
+              <h2>Parte 1</h2>
+
+              <h3>Perfil del inversionista</h3>
+
+              <div class="section-line"></div>
+            </div>
+
+            <div class="legal-info">
+              <h3>Riesgo de productos y servicios</h3>
+
+              <p>
+                El propósito del siguiente cuestionario es informar a JMMB los
+                objetivos del Cliente. Sus inversiones con JMMB deberán ser
+                acorde a su perfil de cliente, siguiendo las instrucciones de
+                los organismos reguladores.
+              </p>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- EDAD -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Edad </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="edadInversionista"
+                    value="Mayor de 55 años"
+                    data-field="edadInversionista"
+                  />
+
+                  <span> Mayor de 55 años </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="edadInversionista"
+                    value="De 35 a 55 años"
+                    data-field="edadInversionista"
+                  />
+
+                  <span> De 35 a 55 años </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="edadInversionista"
+                    value="De 25 a 34 años"
+                    data-field="edadInversionista"
+                  />
+
+                  <span> De 25 a 34 años </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="edadInversionista"
+                    value="Menor de 25 años"
+                    data-field="edadInversionista"
+                  />
+
+                  <span> Menor de 25 años </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- OBJETIVO PRINCIPAL -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Objetivo principal de su capital de inversión </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="objetivoCapital"
+                    value="Rentabilidad"
+                    data-field="objetivoCapital"
+                  />
+
+                  <span> Rentabilidad </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="objetivoCapital"
+                    value="Seguridad"
+                    data-field="objetivoCapital"
+                  />
+
+                  <span> Seguridad </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="objetivoCapital"
+                    value="Apreciacion de capital"
+                    data-field="objetivoCapital"
+                  />
+
+                  <span> Apreciación de capital </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- CRITERIO DE RIESGO -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label>
+                Criterio que se ajusta mejor a sus ideas de rentabilidad /
+                Riesgo
+                <span class="optional"> (Opcional) </span>
+              </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="criterioRiesgo"
+                    value="Conservador"
+                    data-field="criterioRiesgo"
+                  />
+
+                  <span> Conservador (Bajo Riesgo) </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="criterioRiesgo"
+                    value="Moderado"
+                    data-field="criterioRiesgo"
+                  />
+
+                  <span> Moderado (Riesgo Medio) </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="criterioRiesgo"
+                    value="Agresivo"
+                    data-field="criterioRiesgo"
+                  />
+
+                  <span> Agresivo (Alto Riesgo) </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- EXPLICACIÓN DE RIESGO -->
+            <!-- ========================================= -->
+
+            <div class="risk-info">
+              <div class="risk-info-header">
+                <span class="risk-info-label"> PERFIL DE RIESGO </span>
+
+                <p>
+                  Estas referencias le ayudarán a identificar el nivel de riesgo
+                  asociado a cada perfil de inversión.
+                </p>
+              </div>
+
+              <div class="risk-cards">
+                <div class="risk-card">
+                  <div class="risk-card-header">
+                    <span class="risk-number"> 01 </span>
+
+                    <div>
+                      <h4>Conservador</h4>
+
+                      <span class="risk-level"> Bajo riesgo </span>
+                    </div>
+                  </div>
+
+                  <p>
+                    Conservar su capital con la menor volatilidad y riesgo
+                    posible, buscando preservar el capital.
+                  </p>
+                </div>
+
+                <div class="risk-card">
+                  <div class="risk-card-header">
+                    <span class="risk-number"> 02 </span>
+
+                    <div>
+                      <h4>Moderado</h4>
+
+                      <span class="risk-level"> Riesgo medio </span>
+                    </div>
+                  </div>
+
+                  <p>
+                    Crecimiento sostenido de su patrimonio, aceptando un nivel
+                    de riesgo moderado con el fin de obtener un mayor
+                    rendimiento.
+                  </p>
+                </div>
+
+                <div class="risk-card">
+                  <div class="risk-card-header">
+                    <span class="risk-number"> 03 </span>
+
+                    <div>
+                      <h4>Agresivo</h4>
+
+                      <span class="risk-level"> Alto riesgo </span>
+                    </div>
+                  </div>
+
+                  <p>
+                    Busca rendimiento a largo plazo mediante una combinación de
+                    instrumentos, aceptando un mayor nivel de riesgo.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- NIVEL ACADÉMICO -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Nivel Académico </label>
+
+              <div class="radio-options-list">
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="nivelAcademico"
+                    value="Doctorado"
+                    data-field="nivelAcademico"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Doctorado </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="nivelAcademico"
+                    value="Postgrado"
+                    data-field="nivelAcademico"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Postgrado </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="nivelAcademico"
+                    value="Carrera Tecnica"
+                    data-field="nivelAcademico"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Carrera Técnica </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="nivelAcademico"
+                    value="Primaria"
+                    data-field="nivelAcademico"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Primaria </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="nivelAcademico"
+                    value="Maestria"
+                    data-field="nivelAcademico"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Maestría </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="nivelAcademico"
+                    value="Universitario"
+                    data-field="nivelAcademico"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Universitario </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="nivelAcademico"
+                    value="Bachillerato"
+                    data-field="nivelAcademico"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Bachillerato </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- OPERACIONES FINANCIERAS -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Operaciones financieras que ha negociado </label>
+
+              <div class="radio-options-list">
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="operacionesFinancieras"
+                    value="Certificados Financieros"
+                    data-field="operacionesFinancieras"
+                    data-target="divOtrosDerivados"
+                    data-show-value="Otros derivados"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title">
+                      Inversión en Certificados Financieros
+                    </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="operacionesFinancieras"
+                    value="Bonos soberanos"
+                    data-field="operacionesFinancieras"
+                    data-target="divOtrosDerivados"
+                    data-show-value="Otros derivados"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title">
+                      Bonos soberanos y libres de riesgos
+                    </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="operacionesFinancieras"
+                    value="Bonos Corporativos"
+                    data-field="operacionesFinancieras"
+                    data-target="divOtrosDerivados"
+                    data-show-value="Otros derivados"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Bonos Corporativos </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="operacionesFinancieras"
+                    value="Fondos mutuos opciones futuros"
+                    data-field="operacionesFinancieras"
+                    data-target="divOtrosDerivados"
+                    data-show-value="Otros derivados"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title">
+                      Fondos de inversiones mutuos, opciones y futuros
+                    </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="operacionesFinancieras"
+                    value="Fondos Cerrados"
+                    data-field="operacionesFinancieras"
+                    data-target="divOtrosDerivados"
+                    data-show-value="Otros derivados"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title">
+                      Fondos Cerrados, Préstamos de Margen, Operaciones de
+                      Préstamos de Títulos valores, Compra-Venta de Operaciones
+                      a Plazo (Forwards) y Acciones
+                    </span>
+                  </span>
+                </label>
+
+                <label class="radio-option">
+                  <input
+                    type="radio"
+                    name="operacionesFinancieras"
+                    value="Otros derivados"
+                    data-field="operacionesFinancieras"
+                    data-target="divOtrosDerivados"
+                    data-show-value="Otros derivados"
+                  />
+
+                  <span class="radio-option-content">
+                    <span class="radio-option-title"> Otros derivados </span>
+                  </span>
+                </label>
+              </div>
+
+              <!-- OTROS DERIVADOS -->
+
+              <div id="divOtrosDerivados" class="hidden">
+                <div class="form-group">
+                  <label for="otrosDerivados"> Indicar </label>
+
+                  <input
+                    type="text"
+                    id="otrosDerivados"
+                    data-field="otrosDerivados"
+                    placeholder="Indique los derivados"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- PLAZO OBJETIVOS -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Plazo en que desea cumplir sus objetivos </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="plazoObjetivos"
+                    value="Menos de 1 año"
+                    data-field="plazoObjetivos"
+                  />
+
+                  <span> Menos de 1 año </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="plazoObjetivos"
+                    value="Entre 1 año y 3 años"
+                    data-field="plazoObjetivos"
+                  />
+
+                  <span> Entre 1 año y 3 años </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="plazoObjetivos"
+                    value="Más de 3 años"
+                    data-field="plazoObjetivos"
+                  />
+
+                  <span> Más de 3 años </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- PLAZO NECESIDAD DE INVERSIÓN -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label>
+                Plazo que anticipa podría necesitar parcial o totalmente sus
+                inversiones
+              </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="plazoNecesidadInversion"
+                    value="Menos de 1 año"
+                    data-field="plazoNecesidadInversion"
+                  />
+
+                  <span> Menos de 1 año </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="plazoNecesidadInversion"
+                    value="Entre 1 año y 3 años"
+                    data-field="plazoNecesidadInversion"
+                  />
+
+                  <span> Entre 1 año y 3 años </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="plazoNecesidadInversion"
+                    value="Más de 3 años"
+                    data-field="plazoNecesidadInversion"
+                  />
+
+                  <span> Más de 3 años </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- CAPACIDAD PARA ABSORBER PÉRDIDAS -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Capacidad para absorber pérdidas </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="capacidadPerdidas"
+                    value="0%"
+                    data-field="capacidadPerdidas"
+                  />
+
+                  <span> 0% </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="capacidadPerdidas"
+                    value="1% a 15%"
+                    data-field="capacidadPerdidas"
+                  />
+
+                  <span> De 1% a 15% </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="capacidadPerdidas"
+                    value="Mayor a 15%"
+                    data-field="capacidadPerdidas"
+                  />
+
+                  <span> Mayor a 15% </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- BOTONES -->
+            <!-- ========================================= -->
+
+            <div class="button-group">
+              <button type="button" class="btn-secondary" id="btnAnterior">
+                ← Anterior
+              </button>
+
+              <button type="button" class="btn-primary" id="btnSiguiente">
+                Siguiente →
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+
+    <script src="app/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Información de la Inversión</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-step="4">
+    <div class="background">
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
+        </div>
+
+        <form id="formRegistro" data-seccion="datosAdicionales">
+          <section class="card">
+            <h2>Otra información relevante</h2>
+            <div class="grid-2">
+              <!-- Monto de inversión -->
+
+              <div class="form-group">
+                <label for="montoInversion">
+                  Monto de la inversión inicial
+                </label>
+
+                <input
+                  type="text"
+                  id="montoInversion"
+                  data-field="montoInversion"
+                  placeholder="Ingrese el monto"
+                />
+              </div>
+
+              <!-- Origen / Destino -->
+
+              <div class="form-group">
+                <label for="origenDestinoFondos">
+                  Origen / Destino de los Fondos (Incluye préstamos)
+                </label>
+
+                <input
+                  type="text"
+                  id="origenDestinoFondos"
+                  data-field="origenDestinoFondos"
+                  placeholder="Indique el origen o destino"
+                />
+              </div>
+            </div>
+
+            <!-- Propósito -->
+            <div class="grid-1">
+              <div class="form-group">
+                <label for="propositoRelacion">
+                  Propósito de la Relación (Producto(s) solicitado(s))
+                </label>
+
+                <input
+                  type="text"
+                  id="propositoRelacion"
+                  data-field="propositoRelacion"
+                  placeholder="Indique el propósito de la relación"
+                />
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- CUENTA DE AHORRO BÁSICA -->
+            <!-- ========================================= -->
+            <div class="grid-2">
+              <div class="form-group">
+                <label> ¿Es una cuenta de Ahorro Básica? </label>
+
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="cuentaAhorroBasica"
+                      value="Si"
+                      data-field="cuentaAhorroBasica"
+                    />
+
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="cuentaAhorroBasica"
+                      value="No"
+                      data-field="cuentaAhorroBasica"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- ========================================= -->
+              <!-- UNICA CUENTA ? -->
+              <!-- ========================================= -->
+
+              <div class="form-group">
+                <label> ¿Fue verificado que solo mantiene esta cuenta? </label>
+
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="unicaCuenta"
+                      value="Si"
+                      data-field="unicaCuenta"
+                    />
+
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="unicaCuenta"
+                      value="No"
+                      data-field="unicaCuenta"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- CANTIDAD DE OPERACIONES -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label> Cantidad de Operaciones esperadas </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="cantidadOperaciones"
+                    value="0-5"
+                    data-field="cantidadOperaciones"
+                    data-target="divOtraCantidadOperaciones"
+                    data-show-value="Otro"
+                  />
+
+                  <span> De 0 a 5 </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="cantidadOperaciones"
+                    value="5-10"
+                    data-field="cantidadOperaciones"
+                    data-target="divOtraCantidadOperaciones"
+                    data-show-value="Otro"
+                  />
+
+                  <span> De 5 a 10 </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="cantidadOperaciones"
+                    value="Mas de 10"
+                    data-field="cantidadOperaciones"
+                    data-target="divOtraCantidadOperaciones"
+                    data-show-value="Otro"
+                  />
+
+                  <span> Más de 10 </span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="cantidadOperaciones"
+                    value="Otro"
+                    data-field="cantidadOperaciones"
+                    data-target="divOtraCantidadOperaciones"
+                    data-show-value="Otro"
+                  />
+
+                  <span> Otro </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Otro -->
+            <div class="form-group">
+              <div id="divOtraCantidadOperaciones" class="hidden">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="otraCantidadOperaciones"
+                    data-field="otraCantidadOperaciones"
+                    placeholder="Indique la cantidad"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- FORMA DE LAS TRANSACCIONES -->
+            <!-- ========================================= -->
+            <div class="grid-2">
+              <div class="form-group">
+                <label> Forma de las transacciones </label>
+
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="formaTransacciones"
+                      value="Efectivo"
+                      data-field="formaTransacciones"
+                      data-target="divTipoTransferencia"
+                      data-show-value="Transferencias"
+                    />
+
+                    <span> Efectivo </span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="formaTransacciones"
+                      value="Cheque"
+                      data-field="formaTransacciones"
+                      data-target="divTipoTransferencia"
+                      data-show-value="Transferencias"
+                    />
+
+                    <span> Cheque </span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="formaTransacciones"
+                      value="Transferencias"
+                      data-field="formaTransacciones"
+                      data-target="divTipoTransferencia"
+                      data-show-value="Transferencias"
+                    />
+
+                    <span> Transferencias </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- ========================================= -->
+              <!-- TIPO DE TRANSFERENCIA -->
+              <!-- ========================================= -->
+              <div id="divTipoTransferencia" class="hidden">
+                <div class="form-group">
+                  <label> Tipo de transferencia </label>
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="tipoTransferencia"
+                        value="Nacional"
+                        data-field="tipoTransferencia"
+                      />
+
+                      <span> Nacional </span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="tipoTransferencia"
+                        value="Internacional"
+                        data-field="tipoTransferencia"
+                      />
+
+                      <span> Internacional </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- BENEFICIARIOS -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label for="beneficiariosTransaccion">
+                Beneficiarios Directos e Indirectos de la Transacción diferentes
+                a usted
+              </label>
+
+              <input
+                type="text"
+                id="beneficiariosTransaccion"
+                data-field="beneficiariosTransaccion"
+                placeholder="Indique los beneficiarios"
+              />
+            </div>
+
+            <!-- ========================================= -->
+            <!-- BENEFICIARIO FINAL -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label for="identificacionBeneficiarioFinal">
+                Identificación de beneficiario final de la operación (si aplica)
+              </label>
+
+              <input
+                type="text"
+                id="identificacionBeneficiarioFinal"
+                data-field="identificacionBeneficiarioFinal"
+                placeholder="Indique la identificación"
+              />
+            </div>
+
+            <!-- ========================================= -->
+            <!-- PERSONAS RELACIONADAS -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label for="personasRelacionadas">
+                Declaración de Personas Relacionadas
+              </label>
+
+              <input
+                type="text"
+                id="personasRelacionadas"
+                data-field="personasRelacionadas"
+                placeholder="Indique las personas relacionadas"
+              />
+            </div>
+
+            <!-- ========================================= -->
+            <!-- VINCULADO A JMMB -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label for="vinculadoJMMB"> ¿Es Vinculado a JMMB? </label>
+
+              <input
+                type="text"
+                id="vinculadoJMMB"
+                data-field="vinculadoJMMB"
+                placeholder="Indique la empresa"
+              />
+            </div>
+
+            <!-- ========================================= -->
+            <!-- BOTONES -->
+            <!-- ========================================= -->
+
+            <div class="button-group">
+              <button type="button" class="btn-secondary" id="btnAnterior">
+                ← Anterior
+              </button>
+
+              <button type="button" class="btn-primary" id="btnSiguiente">
+                Siguiente →
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+
+    <script src="app/app.js"></script>
+  </body>
+</html>
