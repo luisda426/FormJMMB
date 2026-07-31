@@ -1,117 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Bienvenido</title>
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-</head>
-
-<body class="welcome-page">
-
+  <body class="welcome-page">
     <div class="welcome-container">
+      <div class="welcome-card">
+        <img src="assets/LogoJMMB.png" class="logo" alt="Logo" />
 
-        <div class="welcome-card">
+        <h1>Bienvenido</h1>
 
-            <img
-                src="assets/LogoJMMB.png"
-                class="logo"
-                alt="Logo">
+        <h2>Solicitud de Vinculación de Cliente</h2>
 
-            <h1>
+        <p class="intro">
+          Gracias por elegirnos. Para completar su solicitud necesitaremos
+          algunos datos personales y laborales. El proceso toma aproximadamente
+          <strong>8 a 10 minutos.</strong>
+        </p>
 
-                Bienvenido
+        <div class="features">
+          <div class="feature">🔒 Información protegida</div>
 
-            </h1>
+          <div class="feature">🛡️ Datos cifrados</div>
 
-            <h2>
-
-                Solicitud de Vinculación de Cliente
-
-            </h2>
-
-            <p class="intro">
-
-                Gracias por elegirnos.
-
-                Para completar su solicitud necesitaremos
-                algunos datos personales y laborales.
-
-                El proceso toma aproximadamente
-                <strong>8 a 10 minutos.</strong>
-
-            </p>
-
-            <div class="features">
-
-                <div class="feature">
-
-                    🔒 Información protegida
-
-                </div>
-
-                <div class="feature">
-
-                    🛡️ Datos cifrados
-
-                </div>
-
-                <div class="feature">
-
-                    ↩ Puede regresar al paso anterior en cualquier momento
-
-                </div>
-
-            </div>
-
-            <div class="progress-info">
-
-                Formulario compuesto por 8 pasos.
-
-            </div>
-
-            <button
-                class="btn-primary"
-                id="btnComenzar">
-
-                Comenzar Solicitud
-
-            </button>
-
-            <div class="footer-help">
-
-                ¿Necesita ayuda?
-
-                <br>
-
-                contacto@empresa.com
-
-            </div>
-
+          <div class="feature">
+            ↩ Puede regresar al paso anterior en cualquier momento
+          </div>
         </div>
 
+        <div class="progress-info">Formulario compuesto por 8 pasos.</div>
+
+        <button class="btn-primary" id="btnComenzar">Comenzar Solicitud</button>
+
+        <div class="footer-help">
+          ¿Necesita ayuda?
+
+          <br />
+
+          contacto@empresa.com
+        </div>
+      </div>
     </div>
 
     <script>
-
-        document
-            .getElementById("btnComenzar")
-            .addEventListener("click", () => {
-
-                window.location.href = "cliente.html";
-
-            });
-
+      document.getElementById("btnComenzar").addEventListener("click", () => {
+        window.location.href = "cliente.html";
+      });
     </script>
-
-</body>
-
+  </body>
 </html>

@@ -5,7 +5,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Perfil del Inversionista</title>
+    <title>Registro de Clientes</title>
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -147,7 +149,7 @@
             <!-- CRITERIO DE RIESGO -->
             <!-- ========================================= -->
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>
                 Criterio que se ajusta mejor a sus ideas de rentabilidad /
                 Riesgo
@@ -188,13 +190,13 @@
                   <span> Agresivo (Alto Riesgo) </span>
                 </label>
               </div>
-            </div>
+            </div> -->
 
             <!-- ========================================= -->
             <!-- EXPLICACIÓN DE RIESGO -->
             <!-- ========================================= -->
 
-            <div class="risk-info">
+            <!-- <div class="risk-info">
               <div class="risk-info-header">
                 <span class="risk-info-label"> PERFIL DE RIESGO </span>
 
@@ -257,13 +259,27 @@
                   </p>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- ========================================= -->
             <!-- NIVEL ACADÉMICO -->
             <!-- ========================================= -->
 
             <div class="form-group">
+              <label>Nivel Académico</label>
+
+              <select id="civil" data-field="nivelAcademico">
+                <option>Seleccione...</option>
+                <option>Doctorado</option>
+                <option>Postgrado</option>
+                <option>Carrera Técnica</option>
+                <option>Primaria</option>
+                <option>Maestría</option>
+                <option>Universitario</option>
+                <option>Bachillerato</option>
+              </select>
+            </div>
+            <!-- <div class="form-group">
               <label> Nivel Académico </label>
 
               <div class="radio-options-list">
@@ -358,13 +374,35 @@
                   </span>
                 </label>
               </div>
-            </div>
+            </div> -->
 
             <!-- ========================================= -->
             <!-- OPERACIONES FINANCIERAS -->
             <!-- ========================================= -->
-
             <div class="form-group">
+              <label>Operaciones financieras que ha negociado </label>
+
+              <select
+                data-field="operacionesFinancieras"
+                data-target="divOtrosDerivados"
+                data-show-value="Otros derivados"
+              >
+                <option>Seleccione...</option>
+                <option value="Certificados Financieros">Inversión en Certificados Financieros</option>
+                <option value="Bonos soberanos">Bonos soberanos y libres de riesgos</option>
+                <option value="Bonos Corporativos">Bonos Corporativos</option>
+                <option value="Fondos mutuos opciones futuros">
+                  Fondos de inversiones mutuos, opciones y futuros
+                </option>
+                <option data-field="operacionesFinancieras">
+                  Fondos Cerrados, Préstamos de Margen, Operaciones de Préstamos
+                  de Títulos valores, Compra-Venta de Operaciones a Plazo
+                  (Forwards) y Acciones
+                </option>
+                <option value="Otros derivados">Otros derivados</option>
+              </select>
+            </div>
+            <!-- <div class="form-group">
               <label> Operaciones financieras que ha negociado </label>
 
               <div class="radio-options-list">
@@ -469,7 +507,7 @@
                 </label>
               </div>
 
-              <!-- OTROS DERIVADOS -->
+              //OTROS DERIVADOS
 
               <div id="divOtrosDerivados" class="hidden">
                 <div class="form-group">
@@ -483,7 +521,7 @@
                   />
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- ========================================= -->
             <!-- PLAZO OBJETIVOS -->

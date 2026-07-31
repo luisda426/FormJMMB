@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Registro de Clientes</title>
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-step="7">
+    <div class="background">
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
+        </div>
+
+        <form id="formRegistro" data-seccion="datosCuestionario">
+          <section class="card">
+            <div id="terminosCard">
+              <h2>Declaración jurada</h2>
+
+              <div class="terms-card">
+                <div class="terms-box">
+                  <p>
+                    Que las informaciones contenidas en este formulario respecto
+                    de su perfil, origen de fondos e ingresos mensuales, son
+                    veraces, certeras y comprobables, incluyendo pero no
+                    limitado a las referentes a su empleo y/o profesión, según
+                    aplique, para cuyas actividades o labores, se encuentra
+                    debidamente habilitado o autorizado, si aplica.
+                  </p>
+
+                  <p>
+                    Que reconoce que la Entidad es un sujeto obligado bajo las
+                    leyes, normas y regulaciones aplicables para el prevención
+                    de lavado de activos provenientes de actividades ilícitas,
+                    por lo que el Cliente autoriza a que la Entidad ejecute
+                    todos los pasos tendentes al cumplimiento de la debida
+                    diligencia, comprometiéndose el Cliente a cooperar para el
+                    buen desenvolvimiento de dicho proceso. A tales fines, el
+                    cliente autoriza a la Entidad realizar cualquier
+                    verificación en cualquier base de dato pública o privada.
+                    Específicamente, autoriza a la Entidad a verificar la
+                    información crediticia del Cliente a través de los centros
+                    de información crediticia, así como a suministrar a dichos
+                    centros de información crediticia, la información
+                    patrimonial y extra patrimonial que la Entidad considere
+                    relevante para los fines de evaluación crediticia, de
+                    conformidad con la Ley Organiza sobre Protección de Datos de
+                    Carácter Personal No. 172-13 del 13 de diciembre de 2013 y
+                    cualquier regulación aplicable.
+                  </p>
+
+                  <p>
+                    Que los recursos, patrimonio y activos que posee y que serán
+                    utilizados en las operaciones de mercado de valores con la
+                    Entidad provienen de actividades lícitas y son destinados a
+                    actividades de lícito comercio, y no son el resultado de
+                    ninguna violación o contravención a las leyes vigentes en el
+                    país o en el extranjero. Igualmente, las rentas o frutos
+                    sean obtenidos a través de las operaciones de mercado de
+                    valores a través o con la intermediación de la Entidad serán
+                    destinados a un fin lícito, y no serán destinados a ninguna
+                    actividad que constituya una infracción a las leyes vigentes
+                    en el país o en el extranjero.
+                  </p>
+
+                  <p>
+                    Que autoriza a la Entidad a crear una base de datos con mi
+                    información personal, bien sea la suministrada por el
+                    Cliente o bien sea la recolectada en los procesos de debida
+                    diligencia, y a compartir la misma con sus empresas
+                    vinculadas, así como a obtener toda la información y
+                    documentación que figuren en los expedientes del Cliente en
+                    empresas vinculadas a la Entidad; específicamente autorizo a
+                    la Entidad y empresas vinculadas a utilizar esta información
+                    para fines mercadológicos, publicitario y de ventas,
+                    incluyendo pero no limitado para la remisión correos
+                    electrónicos y mensajes telefónicos. El Cliente reconoce que
+                    la Entidad ha revelado que la información en la base de
+                    datos se encuentra sujeta al derecho de rectificación en los
+                    términos de la Ley Organiza sobre Protección de Datos de
+                    Carácter Personal No. 172-13 del 13 de diciembre de 2013 y
+                    cualquier regulación aplicable.
+                  </p>
+                </div>
+
+                <label class="checkbox-premium">
+                  <input type="checkbox" id="aceptaDeclaracion" />
+
+                  <span> He leído y acepto la declaración jurada. </span>
+                </label>
+                <div class="button-group">
+                  <button type="button" class="btn-secondary" id="btnAnterior">
+                    ← Anterior
+                  </button>
+
+                  <div class="button-group-end">
+                    <button
+                      type="button"
+                      class="btn-primary"
+                      id="btnAceptarDeclaracion"
+                      disabled
+                    >
+                      Continuar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hidden" id="firmaCard">
+              <h2>Confirmación final</h2>
+
+              <div class="signature-card">
+                
+                <div class="signature-text">
+                  <p>
+                    Confirmo que firmando este formulario declaro y doy fe de
+                    que la información suministrada es correcta y será
+                    considerada por JMMB.
+                  </p>
+
+                  <p>
+                    He leído este formulario antes de firmar y estoy consciente
+                    de las obligaciones implicadas.
+                  </p>
+
+                  <p>
+                    Yo/Nosotros afirmamos que todas las informaciones declaradas
+                    en este formulario son ciertas y autorizamos a JMMB a
+                    comprobarlas por cualquier medio permitido por la
+                    legislación vigente.
+                  </p>
+                </div>
+
+                <div class="signature-fields">
+                  <div class="signature-field">
+                    <label> Nombre del cliente </label>
+
+                    <div class="signature-line" id="nombreClienteFirma"></div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="signature-field">
+                      <label> Fecha </label>
+
+                      <div class="signature-line" id="fechaFirma"></div>
+                    </div>
+
+                    <div class="signature-field">
+                      <label> Firma </label>
+
+                      <button type="button" class="btn-primary" id="btnFirmar">
+                        ✍ Firmar electrónicamente
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="button-group-end">
+                  <button type="button" class="btn-primary" id="btnFinalizar">
+                    Finalizar solicitud
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+
+    <script src="app/app.js"></script>
+  </body>
+</html>

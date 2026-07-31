@@ -307,11 +307,12 @@ function cargarPaises() {
 // Boton siguente
 const btnSiguiente = document.getElementById("btnSiguiente");
 
-// btnSiguiente.addEventListener("click", guardarDatos);
-btnSiguiente.addEventListener("click", () => {
-  guardarDatos();
-  window.location.href = paginas[pasoActual + 1];
-});
+if (btnSiguiente) {
+  btnSiguiente.addEventListener("click", () => {
+    guardarDatos();
+    window.location.href = paginas[pasoActual + 1];
+  });
+}
 
 //Boton atras
 const btnAnterior = document.getElementById("btnAnterior");
@@ -339,7 +340,8 @@ if (btnVolver) {
 
 if (btnSalir) {
   btnSalir.addEventListener("click", () => {
-    sessionStorage.removeItem("registroCliente");
+    // No queremos que borre el cache de los datos ya guardados
+    // localStorage.removeItem("registroCliente");
 
     window.location.href = "index.html";
   });
@@ -352,7 +354,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.pathname.includes("fatca.html")
   ) {
     const registroCliente = JSON.parse(
-      sessionStorage.getItem("registroCliente"),
+      localStorage.getItem("registroCliente"),
     );
 
     console.log(registroCliente);
@@ -366,6 +368,8 @@ window.addEventListener("DOMContentLoaded", () => {
   cargarDatosFormulario();
 
   inicializarCamposCondicionales();
+
+  inicializarFirma();
 });
 
 // funcion que dependiendo de la pagina que sea, llama una funcion u otra.
@@ -391,7 +395,7 @@ function guardarDatosCliente() {
 
   const seccion = formulario.dataset.seccion;
 
-  let registroCliente = JSON.parse(sessionStorage.getItem("registroCliente"));
+  let registroCliente = JSON.parse(localStorage.getItem("registroCliente"));
 
   if (!registroCliente) {
     registroCliente = {
@@ -426,7 +430,7 @@ function guardarDatosCliente() {
 
   registroCliente[seccion] = datos;
 
-  sessionStorage.setItem("registroCliente", JSON.stringify(registroCliente));
+  localStorage.setItem("registroCliente", JSON.stringify(registroCliente));
 }
 
 // Funcion para guardar los datos de la segunda pagina
@@ -435,7 +439,7 @@ function guardarDatosLaborales() {
 
   const seccion = formulario.dataset.seccion;
 
-  let registroCliente = JSON.parse(sessionStorage.getItem("registroCliente"));
+  let registroCliente = JSON.parse(localStorage.getItem("registroCliente"));
 
   if (!registroCliente) {
     registroCliente = {
@@ -470,7 +474,7 @@ function guardarDatosLaborales() {
 
   registroCliente[seccion] = datos;
 
-  sessionStorage.setItem("registroCliente", JSON.stringify(registroCliente));
+  localStorage.setItem("registroCliente", JSON.stringify(registroCliente));
 }
 
 // Funcion poara guardar los datos de la tercera pagina
@@ -522,6 +526,34 @@ function actualizarCampoCondicional(radio) {
   }
 }
 
+document.querySelectorAll("select[data-target]").forEach(select => {
+
+    function actualizar() {
+
+        const target = document.getElementById(
+            select.dataset.target
+        );
+
+        if (!target) return;
+
+        if (select.value === select.dataset.showValue) {
+
+            target.classList.remove("hidden");
+
+        } else {
+
+            target.classList.add("hidden");
+
+        }
+
+    }
+
+    actualizar();
+
+    select.addEventListener("change", actualizar);
+
+});
+
 function limpiarCampos(contenedor) {
   const campos = contenedor.querySelectorAll("input, textarea, select");
 
@@ -538,7 +570,7 @@ function limpiarCampos(contenedor) {
 
 // Funcion para cargar los datos al formulario
 function cargarDatosFormulario() {
-  const registroCliente = JSON.parse(sessionStorage.getItem("registroCliente"));
+  const registroCliente = JSON.parse(localStorage.getItem("registroCliente"));
 
   if (!registroCliente) return;
 
@@ -572,4 +604,49 @@ function cargarDatosFormulario() {
         campo.value = datos[propiedad];
     }
   });
+}
+
+const check = document.getElementById("aceptaDeclaracion");
+const btnAceptar = document.getElementById("btnAceptarDeclaracion");
+const btnFinalizar = document.getElementById("btnFinalizar");
+
+if (check) {
+  check.addEventListener("change", () => {
+    btnAceptar.disabled = !check.checked;
+  });
+}
+
+if (btnAceptar) {
+  btnAceptar.addEventListener("click", () => {
+    document.getElementById("terminosCard").classList.add("hidden");
+
+    document.getElementById("firmaCard").classList.remove("hidden");
+  });
+}
+
+if (btnFinalizar) {
+  btnFinalizar.addEventListener("click", () => {
+    window.location.href = "fin.html";
+  });
+}
+
+
+function inicializarFirma() {
+
+    const nombreFirma = document.getElementById("nombreClienteFirma");
+    const fechaFirma = document.getElementById("fechaFirma");
+
+    if (!nombreFirma || !fechaFirma) return;
+
+    const registro = JSON.parse(localStorage.getItem("registroCliente"));
+
+    nombreFirma.textContent =
+        `${registro.datosCliente.nombres} ${registro.datosCliente.apellidos}`;
+
+    fechaFirma.textContent = new Date().toLocaleDateString("es-DO", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+    });
+
 }
