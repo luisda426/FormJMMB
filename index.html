@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Bienvenido</title>
-    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png" />
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -16,11 +16,11 @@
       <div class="welcome-card">
         <img src="assets/LogoJMMB.png" class="logo" alt="Logo" />
 
-        <h1>Bienvenido</h1>
+        <h1 id="tituloBienvenida">Bienvenido</h1>
 
         <h2>Solicitud de Vinculación de Cliente</h2>
 
-        <p class="intro">
+        <p class="intro" id="textoBienvenida">
           Gracias por elegirnos. Para completar su solicitud necesitaremos
           algunos datos personales y laborales. El proceso toma aproximadamente
           <strong>8 a 10 minutos.</strong>
@@ -36,9 +36,14 @@
           </div>
         </div>
 
-        <div class="progress-info">Formulario compuesto por 8 pasos.</div>
+        <div class="progress-info">Formulario compuesto por 9 pasos.</div>
 
         <button class="btn-primary" id="btnComenzar">Comenzar Solicitud</button>
+
+        <p class="restart-text hidden" id="restartContainer">
+          ¿Desea iniciar una nueva solicitud?
+          <a href="#" id="btnNuevaSolicitud"> Comenzar desde el inicio </a>
+        </p>
 
         <div class="footer-help">
           ¿Necesita ayuda?
@@ -50,8 +55,86 @@
       </div>
     </div>
 
+    <div class="modal-overlay" id="modalNuevaSolicitud">
+      <div class="modal">
+        <div class="modal-icon">📝</div>
+
+        <h2>¿Comenzar una nueva solicitud?</h2>
+
+        <p>
+          Se eliminará el progreso guardado de la solicitud actual y comenzará
+          un nuevo formulario desde el inicio. Esta acción no se puede deshacer.
+        </p>
+
+        <div class="modal-buttons">
+          <button class="btn-secondary" id="btnContinuarSolicitud">
+            Continuar solicitud
+          </button>
+
+          <button class="btn-danger" id="btnNuevaSolicitudConfirmar">
+            Nueva solicitud
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
-      document.getElementById("btnComenzar").addEventListener("click", () => {
+      const btnComenzar = document.getElementById("btnComenzar");
+
+      const titulo = document.getElementById("tituloBienvenida");
+
+      const texto = document.getElementById("textoBienvenida");
+
+      const registro = JSON.parse(localStorage.getItem("registroCliente"));
+
+      const restartContainer = document.getElementById("restartContainer");
+
+      const btnNuevaSolicitud = document.getElementById("btnNuevaSolicitud");
+
+      const modalNuevaSolicitud = document.getElementById(
+        "modalNuevaSolicitud",
+      );
+
+      const btnContinuarSolicitud = document.getElementById(
+        "btnContinuarSolicitud",
+      );
+
+      const btnNuevaSolicitudConfirmar = document.getElementById(
+        "btnNuevaSolicitudConfirmar",
+      );
+
+      // Verifica si existe información guardada
+      if (registro && Object.keys(registro).length > 0) {
+        titulo.textContent = "¡Bienvenido nuevamente!";
+
+        texto.innerHTML = `
+            Encontramos una solicitud guardada. Puede continuar
+            completándola cuando lo desee; toda la información
+            proporcionada anteriormente permanecerá disponible.
+        `;
+
+        btnComenzar.textContent = "Continuar solicitud";
+
+        restartContainer.classList.remove("hidden");
+      }
+
+      btnComenzar.addEventListener("click", () => {
+        window.location.href = "cliente.html";
+      });
+
+      btnNuevaSolicitud.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        modalNuevaSolicitud.classList.add("show");
+      });
+
+      btnContinuarSolicitud.addEventListener("click", () => {
+        modalNuevaSolicitud.classList.remove("show");
+      });
+
+      btnNuevaSolicitudConfirmar.addEventListener("click", () => {
+        localStorage.removeItem("registroCliente");
+
         window.location.href = "cliente.html";
       });
     </script>

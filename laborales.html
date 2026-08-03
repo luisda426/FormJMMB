@@ -6,7 +6,7 @@
 
     <title>Registro de Clientes</title>
 
-    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png" />
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -52,20 +52,20 @@
 
             <div class="grid-3">
               <div class="form-group">
-                <label>Sector</label>
-
-                <select data-field="sector">
-                  <option>Seleccione...</option>
-                  <option value="pruebasector">Prueba</option>
-                </select>
-              </div>
-
-              <div class="form-group">
                 <label>Ciudad</label>
 
                 <select data-field="ciudad">
                   <option>Seleccione...</option>
                   <option value="pruebaCiudad">Prueba</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label>Sector</label>
+
+                <select data-field="sector">
+                  <option>Seleccione...</option>
+                  <option value="pruebasector">Prueba</option>
                 </select>
               </div>
 
@@ -147,6 +147,11 @@
         </form>
       </div>
     </div>
+    <!-- <div id="loadingOverlay">
+      <img src="assets/loading.gif" />
+
+      <p id="loadingText">Preparando formulario...</p>
+    </div> -->
   </body>
 
   <script src="app/app.js"></script>

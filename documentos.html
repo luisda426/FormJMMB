@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Registro de Clientes</title>
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-step="7">
+    <div class="background">
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
+        </div>
+
+        <form id="formRegistro" data-seccion="datosDocumentos">
+          <!-- ========================================= -->
+
+          <section class="card">
+            <h2>Requisitos de documentos</h2>
+            <div class="legal-info">
+              <div class="legal-info-title">
+                <h3>Requisitos de los documentos</h3>
+              </div>
+
+              <p>
+                Antes de continuar, verifique que los archivos cumplan con los
+                siguientes requisitos:
+              </p>
+
+              <ul class="upload-requirements">
+                <li>
+                  Formatos permitidos: <strong>PDF, JPG, JPEG y PNG.</strong>
+                </li>
+
+                <li>Tamaño máximo por archivo: <strong>10 MB.</strong></li>
+
+                <li>La información debe ser legible.</li>
+
+                <li>Evite imágenes borrosas o con reflejos.</li>
+              </ul>
+            </div>
+
+            <div class="upload-card">
+              <div class="upload-icon">
+                <i data-lucide="id-card"></i>
+              </div>
+
+              <div class="upload-content">
+                <h3>Documento de identidad</h3>
+
+                <p>
+                  Adjunte una fotografía o archivo PDF de su documento de
+                  identidad vigente.
+                </p>
+
+                <input
+                  type="file"
+                  id="cedula"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  hidden
+                />
+
+                <button type="button" class="btn-secondary" id="btnCedula">
+                  Seleccionar archivo
+                </button>
+
+                <div class="upload-status">
+                  <div class="upload-loading hidden" id="loadingCedula">
+                    <div class="spinner"></div>
+
+                    Cargando documento...
+                  </div>
+
+                  <a href="#" id="archivoCedula" class="hidden upload-file">
+                  </a>
+
+                  <span id="textoCedula"> Ningún archivo seleccionado </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="upload-card">
+              <div class="upload-icon">
+                <i data-lucide="file-text"></i>
+              </div>
+
+              <div class="upload-content">
+                <h3>Certificación de ingresos</h3>
+
+                <p>
+                  Adjunte una carta de trabajo, certificación de ingresos u otro
+                  documento equivalente que respalde su capacidad de ingresos
+                </p>
+
+                <input
+                  type="file"
+                  id="certificacion"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  hidden
+                />
+
+                <button
+                  type="button"
+                  class="btn-secondary"
+                  id="btnCertificacion"
+                >
+                  Seleccionar archivo
+                </button>
+
+                <div class="upload-status">
+                  <div class="upload-loading hidden" id="loadingCertificacion">
+                    <div class="spinner"></div>
+
+                    Cargando documento...
+                  </div>
+
+                  <a
+                    href="#"
+                    id="archivoCertificacion"
+                    class="hidden upload-file"
+                  >
+                  </a>
+
+                  <span id="textoCertificacion">
+                    Ningún archivo seleccionado
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+
+            <div class="button-group">
+              <button type="button" class="btn-secondary" id="btnAnterior">
+                ← Anterior
+              </button>
+
+              <button type="button" class="btn-primary" id="btnSiguiente">
+                Siguiente →
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script src="app/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</html>

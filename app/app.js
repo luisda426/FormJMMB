@@ -245,6 +245,8 @@ const paginas = [
 
   "cuestionario2.html",
 
+  "documentos.html",
+
   "declaracion.html",
 ];
 
@@ -252,7 +254,11 @@ const pasoActual = Number(document.body.dataset.step);
 
 const formulario = document.getElementById("formRegistro");
 
-const seccion = formulario.dataset.seccion;
+let seccion = null;
+
+if (formulario) {
+  seccion = formulario.dataset.seccion;
+}
 
 const registroCliente = {
   datosCliente: {},
@@ -326,9 +332,11 @@ if (pasoActual === 0) {
     return;
   });
 } else {
-  btnAnterior.addEventListener("click", () => {
-    window.location.href = paginas[pasoActual - 1];
-  });
+  if (btnAnterior) {
+    btnAnterior.addEventListener("click", () => {
+      window.location.href = paginas[pasoActual - 1];
+    });
+  }
 }
 
 // BOTONES DEL MODAL
@@ -353,9 +361,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.pathname.includes("laborales.html") ||
     window.location.pathname.includes("fatca.html")
   ) {
-    const registroCliente = JSON.parse(
-      localStorage.getItem("registroCliente"),
-    );
+    const registroCliente = JSON.parse(localStorage.getItem("registroCliente"));
 
     console.log(registroCliente);
   }
@@ -526,32 +532,22 @@ function actualizarCampoCondicional(radio) {
   }
 }
 
-document.querySelectorAll("select[data-target]").forEach(select => {
+document.querySelectorAll("select[data-target]").forEach((select) => {
+  function actualizar() {
+    const target = document.getElementById(select.dataset.target);
 
-    function actualizar() {
+    if (!target) return;
 
-        const target = document.getElementById(
-            select.dataset.target
-        );
-
-        if (!target) return;
-
-        if (select.value === select.dataset.showValue) {
-
-            target.classList.remove("hidden");
-
-        } else {
-
-            target.classList.add("hidden");
-
-        }
-
+    if (select.value === select.dataset.showValue) {
+      target.classList.remove("hidden");
+    } else {
+      target.classList.add("hidden");
     }
+  }
 
-    actualizar();
+  actualizar();
 
-    select.addEventListener("change", actualizar);
-
+  select.addEventListener("change", actualizar);
 });
 
 function limpiarCampos(contenedor) {
@@ -630,23 +626,139 @@ if (btnFinalizar) {
   });
 }
 
-
 function inicializarFirma() {
+  const nombreFirma = document.getElementById("nombreClienteFirma");
+  const fechaFirma = document.getElementById("fechaFirma");
 
-    const nombreFirma = document.getElementById("nombreClienteFirma");
-    const fechaFirma = document.getElementById("fechaFirma");
+  if (!nombreFirma || !fechaFirma) return;
 
-    if (!nombreFirma || !fechaFirma) return;
+  const registro = JSON.parse(localStorage.getItem("registroCliente"));
 
-    const registro = JSON.parse(localStorage.getItem("registroCliente"));
+  nombreFirma.textContent = `${registro.datosCliente.nombres} ${registro.datosCliente.apellidos}`;
 
-    nombreFirma.textContent =
-        `${registro.datosCliente.nombres} ${registro.datosCliente.apellidos}`;
-
-    fechaFirma.textContent = new Date().toLocaleDateString("es-DO", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-    });
-
+  fechaFirma.textContent = new Date().toLocaleDateString("es-DO", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 }
+
+const btnVolverInicio = document.getElementById("btnVolverInicio");
+
+if (btnVolverInicio) {
+  btnVolverInicio.addEventListener("click", () => {
+    localStorage.removeItem("registroCliente");
+    window.location.href = "index.html";
+  });
+}
+
+// Funciones para la validacion de documentos
+
+const inputCedula = document.getElementById("cedula");
+
+const botonCedula = document.getElementById("btnCedula");
+
+const loadingCedula = document.getElementById("loadingCedula");
+
+const archivoCedula = document.getElementById("archivoCedula");
+
+const textoCedula = document.getElementById("textoCedula");
+
+if (botonCedula) {
+  botonCedula.addEventListener("click", () => {
+    inputCedula.click();
+  });
+}
+
+if (archivoCedula) {
+  archivoCedula.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    inputCedula.click();
+  });
+}
+
+if (inputCedula) {
+  inputCedula.addEventListener("change", () => {
+    if (!inputCedula.files.length) return;
+
+    loadingCedula.classList.remove("hidden");
+
+    textoCedula.classList.add("hidden");
+
+    archivoCedula.classList.add("hidden");
+
+    botonCedula.classList.add("hidden");
+
+    setTimeout(() => {
+      loadingCedula.classList.add("hidden");
+
+      archivoCedula.textContent = "📄 " + inputCedula.files[0].name;
+
+      archivoCedula.classList.remove("hidden");
+    }, 1000);
+  });
+}
+
+const inputCertificacion = document.getElementById("certificacion");
+
+const botonCertificacion = document.getElementById("btnCertificacion");
+
+const loadingCertificacion = document.getElementById("loadingCertificacion");
+
+const archivoCertificacion = document.getElementById("archivoCertificacion");
+
+const textoCertificacion = document.getElementById("textoCertificacion");
+
+if (botonCertificacion) {
+  botonCertificacion.addEventListener("click", () => {
+    inputCertificacion.click();
+  });
+}
+
+if (archivoCertificacion) {
+  archivoCertificacion.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    inputCertificacion.click();
+  });
+}
+
+if (inputCertificacion) {
+  inputCertificacion.addEventListener("change", () => {
+    if (!inputCertificacion.files.length) return;
+
+    loadingCertificacion.classList.remove("hidden");
+
+    textoCertificacion.classList.add("hidden");
+
+    archivoCertificacion.classList.add("hidden");
+
+    botonCertificacion.classList.add("hidden");
+
+    setTimeout(() => {
+      loadingCertificacion.classList.add("hidden");
+
+      archivoCertificacion.textContent =
+        "📄 " + inputCertificacion.files[0].name;
+
+      archivoCertificacion.classList.remove("hidden");
+    }, 1000);
+  });
+}
+
+// window.addEventListener("load", () => {
+//   const loading = document.getElementById("loadingOverlay");
+
+//   if (!loading) return;
+
+//   // Espera 1.5 segundos antes de comenzar a ocultarlo
+//   setTimeout(() => {
+//     loading.classList.add("fade-out");
+
+//     // Espera a que termine la animación
+//     setTimeout(() => {
+//       loading.remove();
+//     }, 300);
+//   }, 1500);
+// });

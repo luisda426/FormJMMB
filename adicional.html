@@ -22,7 +22,7 @@
 
         <form id="formRegistro" data-seccion="datosAdicionales">
           <section class="card">
-            <h2>Otra información relevante</h2>
+            <h2>Información Complementaria</h2>
             <div class="grid-2">
               <!-- Monto de inversión -->
 
@@ -46,12 +46,16 @@
                   Origen / Destino de los Fondos (Incluye préstamos)
                 </label>
 
-                <input
-                  type="text"
-                  id="origenDestinoFondos"
-                  data-field="origenDestinoFondos"
-                  placeholder="Indique el origen o destino"
-                />
+                <select id="origenDestinoFondos" data-field="origenDestinoFondos">
+                  <option>Seleccione...</option>
+                  <option value="Salario/Ingresos">Salario / Ingresos</option>
+                  <option value="Ahorro">Ahorro</option>
+                  <option value="Fondos/Prestamos tomados">Fondos / Préstamos tomados</option>
+                  <option value="Regalo">Regalo</option>
+                  <option value="Pension/Asistencia social">Pensión / Asistencia social</option>
+                  <option value="Herencia">Herencia</option>
+                  <option value="Donaciones beneficas">Donaciones benéficas</option>
+                </select>
               </div>
             </div>
 
