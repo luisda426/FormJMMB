@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Información de la Inversión</title>
-    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png" />
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -18,6 +18,17 @@
           <h1>Registro de Clientes</h1>
 
           <p>Complete la siguiente información.</p>
+        </div>
+        <div class="progress-wrapper">
+          <div class="progress-header">
+            <span class="progress-step"> Paso 0 de 10 </span>
+
+            <span class="progress-percent"> 0% </span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
         </div>
 
         <form id="formRegistro" data-seccion="datosAdicionales">
@@ -46,32 +57,298 @@
                   Origen / Destino de los Fondos (Incluye préstamos)
                 </label>
 
-                <select id="origenDestinoFondos" data-field="origenDestinoFondos">
+                <select
+                  id="origenDestinoFondos"
+                  data-field="origenDestinoFondos"
+                >
                   <option>Seleccione...</option>
                   <option value="Salario/Ingresos">Salario / Ingresos</option>
                   <option value="Ahorro">Ahorro</option>
-                  <option value="Fondos/Prestamos tomados">Fondos / Préstamos tomados</option>
+                  <option value="Fondos/Prestamos tomados">
+                    Fondos / Préstamos tomados
+                  </option>
                   <option value="Regalo">Regalo</option>
-                  <option value="Pension/Asistencia social">Pensión / Asistencia social</option>
+                  <option value="Pension/Asistencia social">
+                    Pensión / Asistencia social
+                  </option>
                   <option value="Herencia">Herencia</option>
-                  <option value="Donaciones beneficas">Donaciones benéficas</option>
+                  <option value="Donaciones beneficas">
+                    Donaciones benéficas
+                  </option>
                 </select>
               </div>
             </div>
 
             <!-- Propósito -->
-            <div class="grid-1">
-              <div class="form-group">
-                <label for="propositoRelacion">
-                  Propósito de la Relación (Producto(s) solicitado(s))
-                </label>
+            <label for="propositoRelacion"> Producto(s) solicitado(s) </label>
 
-                <input
-                  type="text"
-                  id="propositoRelacion"
-                  data-field="propositoRelacion"
-                  placeholder="Indique el propósito de la relación"
-                />
+            <div class="productos-grid">
+              <!-- BANCO -->
+              <div class="producto-card">
+                <h4>Banco</h4>
+
+                <div class="checkbox-options">
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Cuenta de ahorros Bonus Saver"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Cuenta de ahorros Bonus Saver</span
+                    >
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Cuenta corriente EzAccess"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"
+                      >Cuenta corriente EzAccess</span
+                    >
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Certificado de depósito"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"> Certificado de depósito</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- PUESTO -->
+
+              <div class="producto-card">
+                <h4>Inversiones - Puesto</h4>
+
+                <div class="checkbox-options">
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Sure Investor"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"> Sure Investor</span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Intermediación de títulos valor"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Intermediación de títulos valor
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Super Investor"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"> Super Investor </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- PRESTAMOS -->
+
+              <div class="producto-card">
+                <h4>Préstamos</h4>
+
+                <div class="checkbox-options">
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo personal"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"> Préstamo personal </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo de vehículo nuevo"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Préstamo de vehículo nuevo
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo de vehículo usado"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Préstamo de vehículo usado
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo hipotecario"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"> Préstamo hipotecario </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo nómina"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"> Préstamo nómina </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo consolidación de deudas"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Préstamo consolidación de deudas
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo pre-hipotecario"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Préstamo pre-hipotecario
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Préstamo educativo"
+                      data-field="productosSolicitados"
+                      data-target="divBeneficiarioPrestamo"
+                      data-show-value="Préstamo educativo"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title"> Préstamo educativo </span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- FONDOS -->
+
+              <div class="producto-card">
+                <h4>Inversiones - JMMB Funds</h4>
+
+                <div class="checkbox-options">
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Fondo mutuo de mercado de dinero"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Fondo mutuo de mercado de dinero
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Fondo mutuo de mercado de dinero en dólares"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Fondo mutuo de mercado de dinero en dólares
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Fondo de inversión cerrado inmobiliario II"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Fondo de inversión cerrado inmobiliario II
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Fondo de inversión de desarrollo de sociedades de energía sostenible"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Fondo de inversión de desarrollo de sociedades de energía
+                      sostenible
+                    </span>
+                  </label>
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Fondo de inversión cerrado de desarrollo"
+                      data-field="productosSolicitados"
+                    />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-title">
+                      Fondo de inversión cerrado de desarrollo
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-1">
+              <div id="divBeneficiarioPrestamo" class="grid-1 hidden">
+                <div class="form-group">
+                  <label for="beneficiariosTransaccion">
+                    Beneficiarios Directos e Indirectos de la Transacción
+                    diferentes a usted
+                  </label>
+
+                  <input
+                    type="text"
+                    id="beneficiariosTransaccion"
+                    data-field="beneficiariosTransaccion"
+                    placeholder="Indique los beneficiarios del préstamo"
+                  />
+                </div>
+                <!-- ========================================= -->
+                <!-- BENEFICIARIO FINAL -->
+                <!-- ========================================= -->
+
+                <div class="form-group">
+                  <label for="identificacionBeneficiarioFinal">
+                    Identificación de beneficiario final de la operación (si
+                    aplica)
+                  </label>
+
+                  <input
+                    type="text"
+                    id="identificacionBeneficiarioFinal"
+                    data-field="identificacionBeneficiarioFinal"
+                    placeholder="Indique la identificación"
+                  />
+                </div>
               </div>
             </div>
 
@@ -300,41 +577,6 @@
             </div>
 
             <!-- ========================================= -->
-            <!-- BENEFICIARIOS -->
-            <!-- ========================================= -->
-
-            <div class="form-group">
-              <label for="beneficiariosTransaccion">
-                Beneficiarios Directos e Indirectos de la Transacción diferentes
-                a usted
-              </label>
-
-              <input
-                type="text"
-                id="beneficiariosTransaccion"
-                data-field="beneficiariosTransaccion"
-                placeholder="Indique los beneficiarios"
-              />
-            </div>
-
-            <!-- ========================================= -->
-            <!-- BENEFICIARIO FINAL -->
-            <!-- ========================================= -->
-
-            <div class="form-group">
-              <label for="identificacionBeneficiarioFinal">
-                Identificación de beneficiario final de la operación (si aplica)
-              </label>
-
-              <input
-                type="text"
-                id="identificacionBeneficiarioFinal"
-                data-field="identificacionBeneficiarioFinal"
-                placeholder="Indique la identificación"
-              />
-            </div>
-
-            <!-- ========================================= -->
             <!-- PERSONAS RELACIONADAS -->
             <!-- ========================================= -->
 
@@ -383,7 +625,8 @@
         </form>
       </div>
     </div>
-
+    <script src="app/paises.js"></script>
+    <script src="app/municipios.js"></script>
     <script src="app/app.js"></script>
   </body>
 </html>

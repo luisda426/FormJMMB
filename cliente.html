@@ -18,6 +18,17 @@
 
           <p>Complete la siguiente información.</p>
         </div>
+        <div class="progress-wrapper">
+          <div class="progress-header">
+            <span class="progress-step"> Paso 1 de 9 </span>
+
+            <span class="progress-percent"> 0% </span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
 
         <form id="formRegistro" data-seccion="datosCliente">
           <!-- ========================================= -->
@@ -51,7 +62,7 @@
 
             <!-- ========================================= -->
 
-            <div class="grid-2">
+            <div class="grid-3">
               <div class="form-group">
                 <label>Tipo de identificación</label>
 
@@ -88,6 +99,12 @@
                   data-field="identificacion"
                 />
               </div>
+
+              <div class="form-group">
+                <label>Fecha de  nacimiento</label>
+
+                <input type="date" data-field="fechaNacimiento" />
+              </div>
             </div>
 
             <!-- ========================================= -->
@@ -116,7 +133,11 @@
               <div class="form-group">
                 <label>Lugar de Nacimiento</label>
 
-                <select id="nacimiento" data-field="nacimiento" data-paises>
+                <select
+                  id="nacimiento"
+                  data-field="lugarNacimiento"
+                  data-paises-vacio
+                >
                   <option value="">Seleccione...</option>
                 </select>
               </div>
@@ -124,7 +145,11 @@
               <div class="form-group">
                 <label>Nacionalidad</label>
 
-                <select id="nacionalidad" data-field="nacionalidad" data-paises>
+                <select
+                  id="nacionalidad"
+                  data-field="nacionalidad"
+                  data-paises-vacio
+                >
                   <option value="">Seleccione...</option>
                 </select>
               </div>
@@ -143,14 +168,14 @@
             <!-- ========================================= -->
 
             <div class="grid-3">
-
               <div class="form-group">
                 <label>Ciudad</label>
 
-                <select id="ciudad" data-field="ciudad">
-                  <option>Seleccione...</option>
-                  <option value="pruebaciudad">Prueba</option>
-                </select>
+                <select
+                  id="ciudad"
+                  data-field="ciudad"
+                  data-municipios
+                ></select>
               </div>
 
               <div class="form-group">
@@ -165,9 +190,7 @@
               <div class="form-group">
                 <label>País</label>
 
-                <select id="pais" data-field="pais" data-paises>
-                  <option value="">Seleccione...</option>
-                </select>
+                <select id="pais" data-field="pais" data-paises></select>
               </div>
             </div>
 
@@ -360,5 +383,7 @@
     </div> -->
   </body>
 
+  <script src="app/paises.js"></script>
+  <script src="app/municipios.js"></script>
   <script src="app/app.js"></script>
 </html>

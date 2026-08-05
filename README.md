@@ -23,7 +23,7 @@ Formlario para JMMB
 (LISTO) 2 drop down con dos nacionalidades y ya. Que se pueda dejar el segundo vacio, no obligatorio.
 
 * Dirección de residencia: chequear ese condicional
-() El input que sale abajo, deberia de salir solo abajo de la pregunta, no tomar todo el ancho.
+(LISTO) El input que sale abajo, deberia de salir solo abajo de la pregunta, no tomar todo el ancho.
 
 * Buscar mejor nombre de "otras informaciones relevantes"
 (LISTO)
@@ -32,13 +32,13 @@ Formlario para JMMB
 (LISTO) Origen / Destino de los Fondos (Incluye préstamos) poner dropdown con la imagen. OK, en la pagina de documentos poner que la certificacion que necesita subir es la opcion que eligio aqui. Es decir, tiene que jalar el dato de este dropdown.
 
 * Productos solicitados dropdown y que se pueda marcar mas de uno: puedes chequear en la página web.
-()  Propósito de la Relación (Producto(s) solicitado(s)) quitar eso y poner producto solicitado, y poner un CHECKCBOX con los productos de JMMB 
+(LISTO, REVISAR PRODUCTOS)  Propósito de la Relación (Producto(s) solicitado(s)) quitar eso y poner producto solicitado, y poner un CHECKCBOX con los productos de JMMB 
 
 * "Es una cuenta de ahorro" validar si es obligatorio/cantidad de operaciones esperadas: esto tengo que confirmarlo yo.
 ()
 
 * Preguntas del beneficiario directos e indirecto solo que aparezca cuando la persona selecciona *préstamo* en la pregunta de productos
-() OK, de los productos de JMMB si pone Prestamos, debe de salir la pregunta de Beneficiarios Directos e Indirectos de la Transacción diferentes a usted, dentro del campo indique los beneficiarios del PRESTAMO
+(LISTO, TAMBIEN LLEVA EL SIGUIENTE INPUT) OK, de los productos de JMMB si pone Prestamos, debe de salir la pregunta de Beneficiarios Directos e Indirectos de la Transacción diferentes a usted, dentro del campo indique los beneficiarios del PRESTAMO
 
 * Declaración de personas relacionadas - preguntarle a Saiyonada que significa que es una persona relacionada (ejemplo cuenta mancomunada)
 () 
@@ -50,7 +50,7 @@ Formlario para JMMB
 (LISTO)
 
 * Seleccionar todas las que aplica en operaciones financieras que han negociado no dropdown, checkbox
-() Poner checkbox verticalmente como estaba antes.
+(LISTO) Poner checkbox verticalmente como estaba antes.
 
 * Colocarle el año de periodo fiscales (donde aparece 20 20, es para colocarle 2024-2026 dependiendo, tengo que confirmar desde cuándo) - Venus preguntar a saiyo cuales años son los específicos si son 2026/24/25
 (LISTO) 2023 el primero columna y la segunda 2025
@@ -60,3 +60,11 @@ Formlario para JMMB
 
 * No colocar firma digital - se imprime y se firma a mano
 () Se tiene que imprimir en PDF con el formulario completo y todo. 
+
+
+El feedback fue:
+
+1. Que cuando el asesor imprima la solicitud, salga en el formato del formulario físico que te mandé.
+2. Que haya una lógica de cuáles documentos debes adjuntar según lo que hayas completado.
+3. Confirmar que cuando el cliente selecciona préstamo como producto, el formulario recoja toda la información que necesitamos (hay preguntas adicionales? confirmar con Saiyo)
+4. La declaración jurada que tiene un check por cada párrafo que esté así mismo en el form digital.

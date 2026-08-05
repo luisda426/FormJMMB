@@ -20,6 +20,18 @@
           <p>Complete la siguiente información.</p>
         </div>
 
+        <div class="progress-wrapper">
+          <div class="progress-header">
+            <span class="progress-step"> Paso 0 de 10 </span>
+
+            <span class="progress-percent"> 0% </span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
         <form id="formRegistro" data-seccion="datosFatca">
           <!-- ========================================= -->
 
@@ -65,14 +77,14 @@
                 <div class="form-group">
                   <label>Primera ciudadanía</label>
 
-                  <select id="ciudadania1" data-field="ciudadania1" data-paises>
+                  <select id="ciudadania1" data-field="ciudadania1" data-paises-vacio>
                     <option value="">Seleccione...</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Segunda ciudadanía (Opcional)</label>
 
-                  <select id="ciudadani2" data-field="ciudadani2" data-paises>
+                  <select id="ciudadania2" data-field="ciudadania2" data-paises-vacio>
                     <option value="">Seleccione...</option>
                   </select>
                 </div>
@@ -308,50 +320,67 @@
                     <span>No</span>
                   </label>
                 </div>
-              </div>
-            </div>
 
-            <div id="divDireccionEnvio" class="hidden">
-              <div class="form-group">
-                <label>Dirección de envío</label>
+                <div id="divDireccionEnvio" class="dependent-field hidden">
+                  <div class="form-group">
+                    <label>Dirección de envío</label>
 
-                <input type="text" data-field="direccionEnvio" />
+                    <input type="text" data-field="direccionEnvio" />
+                  </div>
+                </div>
               </div>
             </div>
 
             <!-- ============================================== -->
 
             <div class="grid-2">
+              <!-- ============================== -->
+              <!-- DIRECCIÓN EN USA -->
+              <!-- ============================== -->
+
               <div class="form-group">
                 <label>¿Tiene dirección de residencia en Estados Unidos?</label>
+
                 <div class="radio-group">
                   <label class="radio">
                     <input
-                      value="Si"
                       type="radio"
                       name="direccionResidenciaUSA"
+                      value="Si"
                       data-field="direccionResidenciaUSA"
                       data-target="divDireccionResidencia"
                       data-show-value="Si"
                     />
-
                     <span>Sí</span>
                   </label>
 
                   <label class="radio">
                     <input
-                      value="No"
                       type="radio"
                       name="direccionResidenciaUSA"
+                      value="No"
                       data-field="direccionResidenciaUSA"
                       data-target="divDireccionResidencia"
                       data-show-value="Si"
                     />
-
                     <span>No</span>
                   </label>
                 </div>
+
+                <!-- Campo dependiente -->
+
+                <div id="divDireccionResidencia" class="dependent-field hidden">
+                  <div class="form-group">
+                    <label>Dirección de residencia</label>
+
+                    <input type="text" data-field="direccionResidencia" />
+                  </div>
+                </div>
               </div>
+
+              <!-- ============================== -->
+              <!-- TELÉFONO EXTRANJERO -->
+              <!-- ============================== -->
 
               <div class="form-group">
                 <label>¿Tiene número telefónico fuera del país?</label>
@@ -359,46 +388,38 @@
                 <div class="radio-group">
                   <label class="radio">
                     <input
-                      value="Si"
                       type="radio"
                       name="telefonoExtranjero"
+                      value="Si"
                       data-field="telefonoExtranjero"
                       data-target="divTelefonoExtranjero"
                       data-show-value="Si"
                     />
-
                     <span>Sí</span>
                   </label>
 
                   <label class="radio">
                     <input
-                      value="No"
                       type="radio"
                       name="telefonoExtranjero"
+                      value="No"
                       data-field="telefonoExtranjero"
                       data-target="divTelefonoExtranjero"
                       data-show-value="Si"
                     />
-
                     <span>No</span>
                   </label>
                 </div>
-              </div>
-            </div>
 
-            <div id="divDireccionResidencia" class="hidden">
-              <div class="form-group">
-                <label>Dirección de residencia</label>
+                <!-- Campo dependiente -->
 
-                <input type="text" data-field="direccionResidencia" />
-              </div>
-            </div>
+                <div id="divTelefonoExtranjero" class="dependent-field hidden">
+                  <div class="form-group">
+                    <label>Número telefónico</label>
 
-            <div id="divTelefonoExtranjero" class="hidden">
-              <div class="form-group">
-                <label>Número telefónico</label>
-
-                <input type="text" data-field="telefonoExtranjeroNumero" />
+                    <input type="text" data-field="telefonoExtranjeroNumero" />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -419,5 +440,7 @@
     </div>
   </body>
 
+  <script src="app/paises.js"></script>
+  <script src="app/municipios.js"></script>
   <script src="app/app.js"></script>
 </html>
