@@ -29,33 +29,23 @@ body {
 
 .welcome-page {
   min-height: 100vh;
-
   display: flex;
-
   justify-content: center;
-
   align-items: center;
-
   padding: 40px;
-
-  background: linear-gradient(135deg, #7b1113, #a51d23, #f4f4f4);
+  background: linear-gradient(135deg, #bf3821, #ed1c29, #f4f4f486);
 }
 
 .welcome-container {
   width: 100%;
-
   max-width: 700px;
 }
 
 .welcome-card {
   background: #fff;
-
   border-radius: 24px;
-
   padding: 50px;
-
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
-
   text-align: center;
 }
 
@@ -118,21 +108,15 @@ body {
   height: 120px;
 }
 
-
-
 .feature img {
-
   width: 50px;
 
   height: 48px;
 
   object-fit: contain;
-
 }
 
-
 .feature span {
-
   font-size: 14px;
 
   line-height: 1.4;
@@ -140,7 +124,6 @@ body {
   color: #555;
 
   font-weight: 500;
-
 }
 
 .progress-info {
@@ -497,50 +480,36 @@ select:focus {
 .checkbox-custom {
   width: 22px;
   height: 22px;
-
   border-radius: 7px;
-
   border: 1px solid #b5121a7e;
-
   flex-shrink: 0;
-
   position: relative;
-
   transition: 0.2s;
 }
 
 .checkbox-title {
   font-size: 14px;
-
   font-weight: 500;
 }
 
-.checkbox-option input:checked+.checkbox-custom {
+.checkbox-option input:checked + .checkbox-custom {
   background: #b5121b;
 }
 
-.checkbox-option input:checked+.checkbox-custom::after {
+.checkbox-option input:checked + .checkbox-custom::after {
   content: "✓";
-
   color: white;
-
   position: absolute;
-
   left: 50%;
   top: 50%;
-
   transform: translate(-50%, -50%);
-
   font-size: 14px;
-
   font-weight: bold;
 }
 
 .checkbox-option:has(input:checked) {
   border-color: #b5121b;
-
   background: rgba(181, 18, 27, 0.05);
-
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -548,33 +517,23 @@ select:focus {
 
 .productos-grid {
   display: grid;
-
   grid-template-columns: repeat(2, 1fr);
-
   gap: 22px;
-
   margin: 18px 0px;
 }
 
 .producto-card {
   padding: 20px;
-
   border: 1px solid #ececec;
-
   border-radius: 16px;
-
   background: white;
-
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
 }
 
 .producto-card h4 {
   margin-bottom: 16px;
-
   color: #b5121b;
-
   font-size: 14px;
-
   font-weight: 700;
 }
 
@@ -592,70 +551,48 @@ select:focus {
 
 .progress-header {
   display: flex;
-
   justify-content: space-between;
-
   margin-bottom: 10px;
 }
 
 .progress-step {
   font-size: 14px;
-
   font-weight: 600;
-
   color: #f8f7f7;
 }
 
 .progress-percent {
   font-size: 14px;
-
   font-weight: 700;
-
   color: #b5121b;
 }
 
 .progress-bar {
   height: 10px;
-
   border-radius: 50px;
-
   background: #ececec;
-
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-
   border-radius: 50px;
-
   background: linear-gradient(90deg, #a3f184, #23dd0a);
-
   transition: width 0.35s;
 }
 
 /* Pagina PEP */
 .legal-info {
   background: #f8f8f8;
-
   border: 1px solid #e5e5e5;
-
   border-left: 4px solid #8b1111;
-
   border-radius: 12px;
-
   padding: 22px 24px;
-
   margin-bottom: 30px;
-
   color: #555;
-
   font-size: 13px;
-
   line-height: 1.7;
-
   overflow-y: auto;
-
   max-height: 420px;
 }
 
@@ -673,11 +610,8 @@ select:focus {
 
 .button-group {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   margin-top: 50px;
 }
 
@@ -692,7 +626,7 @@ select:focus {
 /*============================================*/
 
 .btn-primary {
-  background: linear-gradient(135deg, #c62828, #8e0000);
+  background: linear-gradient(135deg, #ed1c29, #bf3821);
 
   color: white;
 
@@ -1284,6 +1218,56 @@ textarea:focus {
   color: #b5121b;
 }
 
+.percentage-group {
+  margin-top: 22px;
+}
+
+.input-suffix {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  transition: 0.2s ease;
+}
+
+.input-suffix:focus-within {
+  border-color: #b5121b;
+  box-shadow: 0 0 0 3px rgba(181, 18, 27, 0.12);
+}
+
+.input-suffix input {
+  flex: 1;
+
+  border: none;
+  outline: none;
+
+  padding: 14px 16px;
+
+  font-size: 15px;
+
+  background: transparent;
+}
+
+.input-suffix span {
+  padding: 0 16px;
+
+  background: #f6f6f6;
+
+  border-left: 1px solid #e4e4e4;
+
+  font-weight: 600;
+
+  color: #666;
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
 /* =========================================
    RESPONSIVE
 ========================================= */
@@ -1650,7 +1634,6 @@ textarea:focus {
    ========================================= */
 
 @media (max-width: 900px) {
-
   .features {
     gap: 14px;
     margin: 25px 0;
@@ -1733,7 +1716,6 @@ textarea:focus {
 
     line-height: 1.55;
   }
-
 
   .btn-primary {
     padding: 14px 22px;

@@ -97,11 +97,13 @@
                   type="text"
                   placeholder="000-0000000-0"
                   data-field="identificacion"
+                  data-mask="identificacion"
+                  disabled
                 />
               </div>
 
               <div class="form-group">
-                <label>Fecha de  nacimiento</label>
+                <label>Fecha de nacimiento</label>
 
                 <input type="date" data-field="fechaNacimiento" />
               </div>
@@ -116,6 +118,8 @@
                 <input
                   id="telefonoCasa"
                   type="text"
+                  class="telefonoMascara"
+                  placeholder="809-000-0000"
                   data-field="telefonoCasa"
                 />
               </div>
@@ -123,7 +127,13 @@
               <div class="form-group">
                 <label>Celular</label>
 
-                <input id="celular" type="text" data-field="celular" />
+                <input
+                  id="celular"
+                  type="text"
+                  class="telefonoMascara"
+                  placeholder="809-000-0000"
+                  data-field="celular"
+                />
               </div>
             </div>
 
@@ -361,7 +371,7 @@
     <div class="modal-overlay" id="modalSalir">
       <div class="modal">
         <div class="modal-icon">
-            <img src="assets/precaucion.png" >
+          <img src="assets/precaucion.png" />
         </div>
 
         <h2>¿Desea salir del formulario?</h2>

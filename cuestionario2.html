@@ -102,6 +102,22 @@
                 </label>
               </div>
             </div>
+            <div class="form-group percentage-group">
+              <label for="capacidadAhorro">Capacidad de ahorro</label>
+
+              <div class="input-suffix">
+                <input
+                  type="number"
+                  id="capacidadAhorro"
+                  data-field="capacidadAhorro"
+                  min="0"
+                  max="100"
+                  placeholder="0"
+                />
+
+                <span>%</span>
+              </div>
+            </div>
 
             <!-- ========================================= -->
             <!-- Total Activos Líquidos -->
@@ -154,6 +170,22 @@
 
                   <span> Más de RD$20.0 Millones </span>
                 </label>
+              </div>
+            </div>
+            <div class="form-group percentage-group">
+              <label for="cuentaAhorroCorriente"> Cta. Ahorro / Cte. </label>
+
+              <div class="input-suffix">
+                <input
+                  type="number"
+                  id="cuentaAhorroCorriente"
+                  data-field="cuentaAhorroCorriente"
+                  min="0"
+                  max="100"
+                  placeholder="0"
+                />
+
+                <span>%</span>
               </div>
             </div>
 
@@ -210,6 +242,22 @@
                 </label>
               </div>
             </div>
+            <div class="form-group percentage-group">
+              <label for="obligacionesDeudas"> Obligaciones (Deudas) </label>
+
+              <div class="input-suffix">
+                <input
+                  type="number"
+                  id="obligacionesDeudas"
+                  data-field="obligacionesDeudas"
+                  min="0"
+                  max="100"
+                  placeholder="0"
+                />
+
+                <span>%</span>
+              </div>
+            </div>
 
             <!-- =========================================
               REFERENCIAS BANCARIAS
@@ -258,6 +306,7 @@
                   <input
                     type="text"
                     id="telefonoBanco1"
+                    class="telefonoMascara"
                     data-field="telefonoBanco1"
                     placeholder="Teléfono del banco"
                   />
@@ -315,6 +364,7 @@
                   <input
                     type="text"
                     id="telefonoBanco2"
+                    class="telefonoMascara"
                     data-field="telefonoBanco2"
                     placeholder="Teléfono del banco"
                   />

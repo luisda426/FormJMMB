@@ -187,6 +187,101 @@ function cargarMunicipios() {
   });
 }
 
+// Funcion para que la cedula o el pasaporte se vean en el mismo formato
+const identificacion = document.getElementById("identificacion");
+
+const radiosTipoDocumento = document.querySelectorAll('input[name="tipo"]');
+
+function actualizarMascaraIdentificacion() {
+  const seleccionado = document.querySelector('input[name="tipo"]:checked');
+
+  if (!identificacion) return;
+
+  // Si todavía no ha seleccionado nada
+  if (!seleccionado) {
+    identificacion.disabled = true;
+    identificacion.value = "";
+    identificacion.placeholder = "Seleccione el tipo de identificación";
+    identificacion.removeAttribute("maxLength");
+    delete identificacion.dataset.tipo;
+
+    return;
+  }
+
+  identificacion.disabled = false;
+  identificacion.value = "";
+
+  if (seleccionado.value === "cedula") {
+    identificacion.placeholder = "000-0000000-0";
+    identificacion.maxLength = 13;
+    identificacion.dataset.tipo = "cedula";
+  } else if (seleccionado.value === "pasaporte") {
+    identificacion.placeholder = "Número de pasaporte";
+    identificacion.removeAttribute("maxLength");
+    identificacion.dataset.tipo = "pasaporte";
+  }
+}
+
+radiosTipoDocumento.forEach((radio) => {
+  radio.addEventListener("change", actualizarMascaraIdentificacion);
+});
+
+if (identificacion) {
+  identificacion.addEventListener("input", () => {
+    if (identificacion.dataset.tipo !== "cedula") {
+      return;
+    }
+
+    let valor = identificacion.value.replace(/\D/g, "");
+
+    valor = valor.substring(0, 11);
+
+    if (valor.length > 10) {
+      valor = valor.replace(/^(\d{3})(\d{7})(\d)/, "$1-$2-$3");
+    } else if (valor.length > 3) {
+      valor = valor.replace(/^(\d{3})(\d+)/, "$1-$2");
+    }
+
+    identificacion.value = valor;
+  });
+}
+
+// Funcion para que los telefonos se vean en el mismo formato.
+function aplicarMascaraTelefono(input) {
+  input.addEventListener("input", () => {
+    let valor = input.value.replace(/\D/g, ""); // Solo números
+
+    valor = valor.substring(0, 10); // Máximo 10 dígitos
+
+    if (valor.length > 6) {
+      valor = valor.replace(/^(\d{3})(\d{3})(\d{0,4}).*/, "$1-$2-$3");
+    } else if (valor.length > 3) {
+      valor = valor.replace(/^(\d{3})(\d{0,3})/, "$1-$2");
+    }
+
+    input.value = valor;
+  });
+}
+
+// Aqui agarramos los input que tienen la clases telefonoMascara
+
+document.querySelectorAll(".telefonoMascara").forEach(aplicarMascaraTelefono);
+
+function capitalizarNombres(input) {
+  input.addEventListener("input", () => {
+    let valor = input.value;
+
+    valor = valor
+      .toLowerCase()
+      .replace(/\b\w/g, (letra) => letra.toUpperCase());
+
+    input.value = valor;
+  });
+}
+
+document
+  .querySelectorAll("[data-field='nombres'], [data-field='apellidos']")
+  .forEach(capitalizarNombres);
 //=================Botones de los formularios==================//
 // Boton siguente
 const btnSiguiente = document.getElementById("btnSiguiente");
@@ -238,14 +333,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const registroCliente = JSON.parse(localStorage.getItem("registroCliente"));
 
   console.log(registroCliente);
-  // if (
-  //   window.location.pathname.includes("laborales.html") ||
-  //   window.location.pathname.includes("fatca.html")
-  // ) {
-  //   const registroCliente = JSON.parse(localStorage.getItem("registroCliente"));
-
-  //   console.log(registroCliente);
-  // }
 });
 
 // Funcion que cuando cargue cualquier pagina, carga lo datos correspondientes a dicha pagina
@@ -259,6 +346,8 @@ window.addEventListener("DOMContentLoaded", () => {
   cargarDatosFormulario();
 
   inicializarCamposCondicionales();
+
+  actualizarMascaraIdentificacion();
 
   // inicializarFirma();
 });
@@ -283,6 +372,7 @@ function obtenerRegistroCliente() {
   return registroCliente;
 }
 
+// Funcion general para guardar los datos
 function guardarDatos() {
   const formulario = document.getElementById("formRegistro");
 
@@ -294,36 +384,40 @@ function guardarDatos() {
 
   const datos = {};
 
-  formulario.querySelectorAll("[data-field]").forEach((campo) => {
-    const propiedad = campo.dataset.field;
+  if (seccion === "datosDeclaracion") {
+    datos.declaracionJurada = true;
+  } else {
+    formulario.querySelectorAll("[data-field]").forEach((campo) => {
+      const propiedad = campo.dataset.field;
 
-    switch (campo.type) {
-      case "radio":
-        if (campo.checked) {
+      switch (campo.type) {
+        case "radio":
+          if (campo.checked) {
+            datos[propiedad] = campo.value;
+          }
+          break;
+
+        case "checkbox":
+          if (!datos[propiedad]) {
+            datos[propiedad] = [];
+          }
+
+          if (campo.checked) {
+            datos[propiedad].push(campo.value);
+          }
+          break;
+
+        case "file":
+          if (campo.files.length > 0) {
+            datos[propiedad] = campo.files[0].name;
+          }
+          break;
+
+        default:
           datos[propiedad] = campo.value;
-        }
-        break;
-
-      case "checkbox":
-        if (!datos[propiedad]) {
-          datos[propiedad] = [];
-        }
-
-        if (campo.checked) {
-          datos[propiedad].push(campo.value);
-        }
-        break;
-
-      case "file":
-        if (campo.files.length > 0) {
-          datos[propiedad] = campo.files[0].name;
-        }
-        break;
-
-      default:
-        datos[propiedad] = campo.value;
-    }
-  });
+      }
+    });
+  }
 
   registroCliente[seccion] = datos;
 
@@ -408,6 +502,7 @@ function limpiarCampos(contenedor) {
   });
 }
 
+//Funcion que cuando cambia algun checkbox y tenga algun input dependiente
 document
   .querySelectorAll('input[type="checkbox"][data-target]')
   .forEach((checkbox) => {
@@ -461,7 +556,11 @@ function cargarDatosFormulario() {
         break;
 
       case "checkbox":
-        campo.checked = datos[propiedad];
+        if (Array.isArray(datos[propiedad])) {
+          campo.checked = datos[propiedad].includes(campo.value);
+        } else {
+          campo.checked = Boolean(datos[propiedad]);
+        }
         break;
 
       default:
@@ -470,6 +569,7 @@ function cargarDatosFormulario() {
   });
 }
 
+// Funcion de declaracion jurada, si fueron seleccionadas las 4, prende el boton.
 const checks = document.querySelectorAll(".declaracion-check");
 
 const btn = document.getElementById("btnAceptarDeclaracion");
@@ -511,6 +611,7 @@ if (btn) {
 //   });
 // }
 
+// Funcion del boton de la ultima pagina
 const btnVolverInicio = document.getElementById("btnVolverInicio");
 
 if (btnVolverInicio) {
