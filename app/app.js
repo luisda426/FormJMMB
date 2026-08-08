@@ -393,7 +393,13 @@ function guardarDatos() {
       switch (campo.type) {
         case "radio":
           if (campo.checked) {
-            datos[propiedad] = campo.value;
+            if (campo.value === "Si") {
+              datos[propiedad] = true;
+            } else if (campo.value === "No") {
+              datos[propiedad] = false;
+            } else {
+              datos[propiedad] = campo.value;
+            }
           }
           break;
 
@@ -552,9 +558,15 @@ function cargarDatosFormulario() {
 
     switch (campo.type) {
       case "radio":
-        campo.checked = campo.value === datos[propiedad];
-        break;
+        if (typeof datos[propiedad] === "boolean") {
+          campo.checked =
+            (datos[propiedad] === true && campo.value === "Si") ||
+            (datos[propiedad] === false && campo.value === "No");
+        } else {
+          campo.checked = campo.value === datos[propiedad];
+        }
 
+        break;
       case "checkbox":
         if (Array.isArray(datos[propiedad])) {
           campo.checked = datos[propiedad].includes(campo.value);
@@ -587,29 +599,28 @@ if (btn) {
 
   verificarDeclaraciones();
 
-  btn.addEventListener("click", () => {
-    guardarDatos();
-    window.location.href = "fin.html";
-    // window.location.href = paginas[pasoActual + 1];
+  btn.addEventListener("click", async () => {
+    try {
+      // Primero guardamos la declaración
+      guardarDatos();
+
+      // Luego enviamos TODO el registro al API
+      const resultado = await enviarSolicitud();
+
+      console.log("Solicitud creada correctamente:", resultado);
+
+      // Solo cambiamos de página si todo salió bien
+      window.location.href = "fin.html";
+    } catch (error) {
+      console.error("Error enviando la solicitud:", error);
+
+      alert(
+        "Ocurrió un error al enviar la solicitud. Por favor, inténtelo nuevamente.",
+      );
+    }
   });
 }
-
-// function inicializarFirma() {
-//   const nombreFirma = document.getElementById("nombreClienteFirma");
-//   const fechaFirma = document.getElementById("fechaFirma");
-
-//   if (!nombreFirma || !fechaFirma) return;
-
-//   const registro = JSON.parse(localStorage.getItem("registroCliente"));
-
-//   nombreFirma.textContent = `${registro.datosCliente.nombres} ${registro.datosCliente.apellidos}`;
-
-//   fechaFirma.textContent = new Date().toLocaleDateString("es-DO", {
-//     day: "2-digit",
-//     month: "long",
-//     year: "numeric",
-//   });
-// }
+////////////////////////////////////////////////////
 
 // Funcion del boton de la ultima pagina
 const btnVolverInicio = document.getElementById("btnVolverInicio");
@@ -620,6 +631,7 @@ if (btnVolverInicio) {
     window.location.href = "index.html";
   });
 }
+//////////////////////////////////////////////////
 
 // Funciones para la validacion de documentos
 
@@ -714,6 +726,31 @@ if (inputCertificacion) {
       archivoCertificacion.classList.remove("hidden");
     }, 1000);
   });
+}
+//////////////////////////////////////////////
+
+// Funcion que manda el dato local al API
+
+async function enviarSolicitud() {
+  const registroCliente = obtenerRegistroCliente();
+
+  const respuesta = await fetch("http://localhost:3000/api/solicitudes", {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify(registroCliente),
+  });
+
+  const resultado = await respuesta.json();
+
+  if (!respuesta.ok) {
+    throw new Error(resultado.error || "Error creando la solicitud");
+  }
+
+  return resultado;
 }
 
 // window.addEventListener("load", () => {
