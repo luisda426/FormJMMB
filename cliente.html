@@ -288,13 +288,59 @@
               <div class="form-group">
                 <label>Profesión</label>
 
-                <select id="profesion" data-field="profesion">
-                  <option>Seleccione...</option>
-                  <option value="pruebaprofesion1">Profesion 1</option>
-                  <option value="pruebaprofesion2">Profesion 2</option>
-                  <option value="pruebaprofesion3">Profesion 3</option>
+                <select
+                  id="profesion"
+                  data-field="profesion"
+                  data-target="divOtraProfesion"
+                  data-show-value="Otro"
+                >
+                  <option value="">Seleccione...</option>
+
+                  <option value="Médico/a">Médico/a</option>
+                  <option value="Abogado/a">Abogado/a</option>
+                  <option value="Ingeniero/a">Ingeniero/a</option>
+                  <option value="Arquitecto/a">Arquitecto/a</option>
+                  <option value="Contador/a">Contador/a</option>
+                  <option value="Economista">Economista</option>
+                  <option value="Administrador/a de Empresas">
+                    Administrador/a de Empresas
+                  </option>
+                  <option value="Mercadólogo/a">Mercadólogo/a</option>
+                  <option value="Psicólogo/a">Psicólogo/a</option>
+                  <option value="Profesor/a">Profesor/a</option>
+                  <option value="Artista / Diseñador/a">
+                    Artista / Diseñador/a
+                  </option>
+                  <option value="Informático / Programador">
+                    Informático / Programador
+                  </option>
+                  <option value="Técnico / Electricista">
+                    Técnico / Electricista
+                  </option>
+                  <option value="Chofer">Chofer</option>
+                  <option value="Estudiante">Estudiante</option>
+                  <option value="Ama de casa">Ama de casa</option>
+                  <option value="Jubilado / Pensionado">
+                    Jubilado / Pensionado
+                  </option>
+                  <option value="Desempleado">Desempleado</option>
+                  <option value="Otro">Otro (especificar)</option>
                 </select>
+
+                
               </div>
+              <div id="divOtraProfesion" class="hidden">
+                  <div class="form-group">
+                    <label for="otraProfesion">Especifique su profesión</label>
+
+                    <input
+                      type="text"
+                      id="otraProfesion"
+                      data-field="otraProfesion"
+                      placeholder="Indique su profesión"
+                    />
+                  </div>
+                </div>
             </div>
 
             <!-- ========================================= -->

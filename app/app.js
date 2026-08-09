@@ -79,9 +79,13 @@ const progressFill = document.querySelector(".progress-fill");
 if (progressStep && progressPercent && progressFill) {
   const pasoActualPlus = pasoActual + 1;
   const totalPasos = 9;
-  const porcentaje = (pasoActualPlus / totalPasos) * 100;
+  const porcentaje = Math.min(
+    Math.round((pasoActualPlus / totalPasos) * 100),
+    99
+  );
 
   progressStep.textContent = `Paso ${pasoActualPlus} de ${totalPasos}`;
+  progressPercent.textContent = `${Math.round(porcentaje)}%`;
   progressFill.style.width = `${porcentaje}%`;
 }
 
@@ -478,22 +482,23 @@ function actualizarCampoCondicional(radio) {
   }
 }
 
+//Funcion que dependiendo del radio, ceckbox o select tenga un input dependiente, lo abre
 document.querySelectorAll("select[data-target]").forEach((select) => {
-  function actualizar() {
-    const target = document.getElementById(select.dataset.target);
+  // function actualizar() {
+  //   const target = document.getElementById(select.dataset.target);
 
-    if (!target) return;
+  //   if (!target) return;
 
-    if (select.value === select.dataset.showValue) {
-      target.classList.remove("hidden");
-    } else {
-      target.classList.add("hidden");
-    }
-  }
+  //   if (select.value === select.dataset.showValue) {
+  //     target.classList.remove("hidden");
+  //   } else {
+  //     target.classList.add("hidden");
+  //   }
+  // }
 
-  actualizar();
+  // actualizar();
 
-  select.addEventListener("change", actualizar);
+  select.addEventListener("change", actualizarSelectsCondicionales);
 });
 
 function limpiarCampos(contenedor) {
@@ -579,6 +584,25 @@ function cargarDatosFormulario() {
         campo.value = datos[propiedad];
     }
   });
+  actualizarSelectsCondicionales();
+}
+
+//Funcion reutilizable por si un radio o select tienen un input dependiente
+function actualizarSelectsCondicionales() {
+  document.querySelectorAll("select[data-target]").forEach((select) => {
+    const target = document.getElementById(select.dataset.target);
+
+    if (!target) return;
+
+    if (select.value === select.dataset.showValue) {
+      target.classList.remove("hidden");
+    } else {
+      target.classList.add("hidden");
+
+      limpiarCampos(target);
+
+    }
+  });
 }
 
 // Funcion de declaracion jurada, si fueron seleccionadas las 4, prende el boton.
@@ -605,7 +629,7 @@ if (btn) {
       guardarDatos();
 
       // Luego enviamos TODO el registro al API
-      const resultado = await enviarSolicitud();
+      // const resultado = await enviarSolicitud();
 
       console.log("Solicitud creada correctamente:", resultado);
 

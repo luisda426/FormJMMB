@@ -256,10 +256,13 @@ body {
 
 .background {
   min-height: 100vh;
-
-  padding: 60px;
-
-  background: linear-gradient(135deg, #850000, #b40000, #d32f2f);
+  background-image: url("../assets/background-ancho.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px 20px;
+  /* padding: 60px;
+  background: linear-gradient(135deg, #850000, #b40000, #d32f2f); */
 }
 
 .container {
@@ -564,7 +567,7 @@ select:focus {
 .progress-percent {
   font-size: 14px;
   font-weight: 700;
-  color: #b5121b;
+  color: #ffffff;
 }
 
 .progress-bar {
@@ -1668,7 +1671,14 @@ textarea:focus {
   }
 
   .background {
-    padding: 25px;
+    background-image: url("../assets/background-alto.webp");
+
+    background-size: 100% 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    padding: 20px 12px;
+    /* padding: 25px; */
   }
 
   .card {
