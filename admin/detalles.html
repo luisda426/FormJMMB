@@ -1,0 +1,903 @@
+<!doctype html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Detalle de solicitud | FormJMMB</title>
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="./css/admin.css" />
+  </head>
+
+  <body class="admin-page">
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <img src="../assets/LogoJMMB.png" alt="JMMB" />
+        </div>
+
+        <div class="sidebar-brand">
+          <span class="sidebar-brand-title"> JMMB </span>
+
+          <span class="sidebar-brand-subtitle"> Panel administrativo </span>
+        </div>
+      </div>
+
+      <nav class="sidebar-navigation">
+        <a href="./index.html" class="sidebar-link">
+          <span class="sidebar-icon"> ▦ </span>
+
+          <span> Dashboard </span>
+        </a>
+
+        <a href="./index.html" class="sidebar-link">
+          <span class="sidebar-icon"> ☷ </span>
+
+          <span> Solicitudes </span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">A</div>
+
+          <div class="sidebar-user-info">
+            <span id="sidebarUserName"> Administrador </span>
+
+            <span id="sidebarUserEmail"> Cargando... </span>
+          </div>
+        </div>
+
+        <button id="logoutButton" class="logout-button" type="button">
+          <span class="sidebar-icon"> ↪ </span>
+
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <div>
+          <h1>Detalle de solicitud</h1>
+
+          <p>Consulta la información registrada por el cliente.</p>
+        </div>
+      </header>
+
+      <section class="dashboard-content">
+        <div class="detail-topbar">
+          <button type="button" class="back-button" onclick="history.back()">
+            ← Volver
+          </button>
+          <button id="printButton" class="print-button" type="button">
+            <span class="print-icon"> ⎙ </span>
+
+            Imprimir
+          </button>
+        </div>
+
+        <section id="detailContent" class="detail-section">
+          <div class="detail-header">
+            <div>
+              <span class="detail-label"> SOLICITUD </span>
+
+              <h2 id="detailId">Cargando...</h2>
+            </div>
+
+            <span id="detailStatus" class="status-badge"> Cargando... </span>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Información personal</h3>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Nombres</span>
+                <span id="detailNombres" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Apellidos</span>
+                <span id="detailApellidos" class="detail-field-value">-</span>
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Tipo de documento</span>
+                <span id="detailTipoDocumento" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Identificación</span>
+                <span id="detailIdentificacion" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Fecha de nacimiento</span>
+                <span id="detailFechaNacimiento" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Celular</span>
+                <span id="detailCelular" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Teléfono de casa</span>
+                <span id="detailTelefonoCasa" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Lugar de nacimiento</span>
+                <span id="detailLugarNacimiento" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Nacionalidad</span>
+                <span id="detailNacionalidad" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Dirección</span>
+                <span id="detailDireccion" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Ciudad</span>
+                <span id="detailCiudad" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Sector</span>
+                <span id="detailSector" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">País</span>
+                <span id="detailPais" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Correo electrónico</span>
+                <span id="detailEmail" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Ley155</span>
+                <span id="detailLey155" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Estado civil</span>
+                <span id="detailCivil" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Sexo</span>
+                <span id="detailSexo" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Profesión</span>
+                <span id="detailProfesion" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Ocupación</span>
+                <span id="detailOcupacion" class="detail-field-value">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Datos laborales</h3>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Empresa</span>
+                <span id="detailEmpresa" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Dirección</span>
+                <span id="detailDireccionEmpresa" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Ciudad</span>
+                <span id="detailCiudadEmpresa" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Sector</span>
+                <span id="detailSectorEmpresa" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">País</span>
+                <span id="detailPaisEmpresa" class="detail-field-value">-</span>
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Cargo</span>
+                <span id="detailCargo" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Fecha de Ingreso</span>
+                <span id="detailIngreso" class="detail-field-value">-</span>
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Teléfono</span>
+                <span id="detailTelefonoEmpresa" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Correo</span>
+                <span id="detailEmailEmpresa" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Comentarios</span>
+                <span id="detailComentariosLaborales" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Información FATCA</h3>
+
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Otras ciudadanías</span>
+                <span id="detailOtrasCiudadanias" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Ciudadanía 1</span>
+                <span id="detailCiudadania1" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Ciudadanía 2</span>
+                <span id="detailCiudadania2" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field detail-field-2">
+                <span class="detail-field-label">Residencia física en USA</span>
+                <span id="detailResidenciaFisicaUSA" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">TIN</span>
+                <span id="detailTin" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Más de una residencia fiscal</span
+                >
+                <span id="detailMasResidenciaFiscal" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Países de residencia fiscal</span
+                >
+                <span
+                  id="detailPaisesResidenciaFiscal"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Comentarios</span>
+                <span id="detailComentariosFatca" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Condición USA</span>
+                <span id="detailCondicionUSA" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Green Card</span>
+                <span id="detailGreenCard" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Dirección de envío</span>
+                <span id="detailDireccionEnvioUSA" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Detalle dirección de envío</span
+                >
+                <span id="detailDireccionEnvio" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Dirección de residencia USA</span
+                >
+                <span
+                  id="detailDireccionResidenciaUSA"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Detalle residencia USA</span>
+                <span id="detailDetalleResidencia" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Teléfono extranjero</span>
+                <span id="detailTelefonoExtranjero" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Número extranjero</span>
+                <span
+                  id="detailTelefonoExtranjeroNumero"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Información PEP</h3>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Es PEP</span>
+                <span id="detailEsPEP" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Cargo PEP</span>
+                <span id="detailCargoPEP" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">País PEP</span>
+                <span id="detailPaisPEP" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Fecha designación</span>
+                <span id="detailFechaDesignacionPEP" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Fecha remoción</span>
+                <span id="detailFechaRemocionPEP" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Relación con PEP</span>
+                <span id="detailRelacionPEP" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Nombre PEP relacionado</span>
+                <span id="detailNombrePEP" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">País PEP relacionado</span>
+                <span id="detailPaisPEPRelacionado" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Parentesco</span>
+                <span id="detailParentescoPEP" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Cargo relacionado</span>
+                <span id="detailCargoPEPRelacionado" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Fecha designación</span>
+                <span
+                  id="detailFechaDesignacionPEPRelacionado"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Fecha remoción</span>
+                <span
+                  id="detailFechaRemocionPEPRelacionado"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Información adicional</h3>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Monto de inversión</span>
+                <span id="detailMontoInversion" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Origen / destino de fondos</span
+                >
+                <span id="detailOrigenDestinoFondos" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Productos solicitados</span>
+                <span id="detailProductosSolicitados" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Beneficiarios de la transacción</span
+                >
+                <span
+                  id="detailBeneficiariosTransaccion"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Identificación beneficiario final</span
+                >
+                <span
+                  id="detailIdentificacionBeneficiarioFinal"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Cuenta de ahorro básica</span>
+                <span id="detailCuentaAhorroBasica" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Verificación de Única cuenta</span
+                >
+                <span id="detailUnicaCuenta" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Cantidad de operaciones</span>
+                <span id="detailCantidadOperaciones" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Otra cantidad de operaciones</span
+                >
+                <span
+                  id="detailOtraCantidadOperaciones"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Forma de transacciones</span>
+                <span id="detailFormaTransacciones" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Tipo de transferencia</span>
+                <span id="detailTipoTransferencia" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Personas relacionadas</span>
+                <span id="detailPersonasRelacionadas" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Vinculado a JMMB</span>
+                <span id="detailVinculadoJMMB" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Perfil del inversionista</h3>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Edad del inversionista</span>
+                <span id="detailEdadInversionista" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Objetivo del capital</span>
+                <span id="detailObjetivoCapital" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Criterio de riesgo</span>
+                <span id="detailCriterioRiesgo" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Nivel académico</span>
+                <span id="detailNivelAcademico" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Operaciones financieras</span>
+                <span
+                  id="detailOperacionesFinancieras"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Otros derivados</span>
+                <span id="detailOtrosDerivados" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Plazo de objetivos</span>
+                <span id="detailPlazoObjetivos" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Plazo que podría necesidar la inversión</span
+                >
+                <span
+                  id="detailPlazoNecesidadInversion"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Capacidad de pérdidas</span>
+                <span id="detailCapacidadPerdidas" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Información financiera</h3>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Ingresos anuales</span>
+                <span id="detailIngresosAnuales" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Capacidad de ahorro</span>
+                <span id="detailCapacidadAhorro" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Total activos líquidos</span>
+                <span id="detailTotalActivosLiquidos" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Cuenta ahorro / corriente</span
+                >
+                <span
+                  id="detailCuentaAhorroCorriente"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Patrimonio total</span>
+                <span id="detailPatrimonioTotal" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Obligaciones / deudas</span>
+                <span id="detailObligacionesDeudas" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Banco 1</span>
+                <span id="detailBanco1" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Tipo de cuenta</span>
+                <span id="detailTipoCuenta1" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Teléfono banco 1</span>
+                <span id="detailTelefonoBanco1" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Oficial banco 1</span>
+                <span id="detailOficialBanco1" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Banco 2</span>
+                <span id="detailBanco2" class="detail-field-value">-</span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Tipo de cuenta</span>
+                <span id="detailTipoCuenta2" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Teléfono banco 2</span>
+                <span id="detailTelefonoBanco2" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Oficial banco 2</span>
+                <span id="detailOficialBanco2" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Patrimonio período 1</span>
+                <span id="detailPatrimonioPeriodo1" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Patrimonio período 2</span>
+                <span id="detailPatrimonioPeriodo2" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Pasivos período 1</span>
+                <span id="detailPasivosPeriodo1" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Pasivos período 2</span>
+                <span id="detailPasivosPeriodo2" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Declaración y documentos</h3>
+
+            <div class="detail-grid detail-grid-1">
+              <div class="detail-field">
+                <span class="detail-field-label">Declaración jurada</span>
+                <span id="detailDeclaracionJurada" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="detailNotFound" class="detail-not-found">
+          <div class="empty-state-icon">!</div>
+
+          <h3>Solicitud no encontrada</h3>
+
+          <p>
+            No pudimos encontrar la solicitud que estás intentando consultar.
+          </p>
+
+          <a href="./index.html" class="back-button"> Volver al dashboard </a>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./js/detalles.js"></script>
+  </body>
+</html>

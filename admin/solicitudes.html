@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Panel de Control | FormJMMB</title>
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="./css/admin.css" />
+  </head>
+
+  <body class="admin-page">
+    <!-- ========================================
+       SIDEBAR
+  ======================================== -->
+
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <img src="../assets/LogoJMMB.png" alt="JMMB" />
+        </div>
+
+        <div class="sidebar-brand">
+          <span class="sidebar-brand-title"> FormJMMB </span>
+
+          <span class="sidebar-brand-subtitle"> Panel administrativo </span>
+        </div>
+      </div>
+
+      <nav class="sidebar-navigation">
+        <a href="./index.html" class="sidebar-link">
+          <span class="sidebar-icon">▦</span>
+
+          <span> Dashboard </span>
+        </a>
+
+        <a href="#" class="sidebar-link active">
+          <span class="sidebar-icon">☷</span>
+
+          <span> Solicitudes </span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">A</div>
+
+          <div class="sidebar-user-info">
+            <span id="sidebarUserName"> Administrador </span>
+
+            <span id="sidebarUserEmail"> Cargando... </span>
+          </div>
+        </div>
+
+        <button id="logoutButton" class="logout-button">
+          <span class="sidebar-icon"> ↪ </span>
+
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- ========================================
+        CONTENIDO PRINCIPAL
+    ======================================== -->
+
+    <main class="admin-main">
+
+      <!-- ========================================
+            CONTENIDO
+        ======================================== -->
+
+      <section class="dashboard-content">
+        <!-- ========================================
+            SOLICITUDES
+        ======================================== -->
+
+        <section class="requests-section">
+          <div class="section-header">
+            <div>
+              <h2>Solicitudes</h2>
+
+              <p>Consulta y administra las solicitudes recibidas.</p>
+            </div>
+          </div>
+
+          <!-- FILTROS -->
+
+          <div class="requests-toolbar">
+            <div class="search-wrapper">
+              <span class="search-icon"> ⌕ </span>
+
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Buscar por nombre, identificación..."
+              />
+            </div>
+
+            <select id="statusFilter" class="status-filter">
+              <option value="todos">Todos los estados</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Revisión">Revisión</option>
+              <option value="Completo">Completo</option>
+            </select>
+          </div>
+
+          <!-- TABLA -->
+
+          <div class="table-container">
+            <table class="requests-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+
+                  <th>Cliente</th>
+
+                  <th>Identificación</th>
+
+                  <th>Teléfono</th>
+
+                  <th>Fecha</th>
+
+                  <th>Estado</th>
+
+                  <th>Acción</th>
+                </tr>
+              </thead>
+
+              <tbody id="requestsTableBody"></tbody>
+            </table>
+
+            <div id="emptyState" class="empty-state">
+              <div class="empty-state-icon">⌕</div>
+
+              <h3>No se encontraron solicitudes</h3>
+
+              <p>Intenta cambiar los filtros de búsqueda.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./js/solicitudes.js"></script>
+  </body>
+</html>

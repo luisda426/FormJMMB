@@ -256,7 +256,7 @@ body {
 
 .background {
   min-height: 100vh;
-  background-image: url("../assets/background-ancho.webp");
+  background-image: url("../assets/background-alto.webp");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
