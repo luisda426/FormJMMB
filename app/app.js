@@ -69,6 +69,8 @@ const btnSalir = document.getElementById("btnSalir");
 
 const btnVolver = document.getElementById("btnVolver");
 
+const archivosRegistro = {};
+
 // FIN DE LAS VARIABLES
 
 // Funcion y variables para el PROGRESS BAR
@@ -81,7 +83,7 @@ if (progressStep && progressPercent && progressFill) {
   const totalPasos = 9;
   const porcentaje = Math.min(
     Math.round((pasoActualPlus / totalPasos) * 100),
-    99
+    99,
   );
 
   progressStep.textContent = `Paso ${pasoActualPlus} de ${totalPasos}`;
@@ -291,8 +293,21 @@ document
 const btnSiguiente = document.getElementById("btnSiguiente");
 
 if (btnSiguiente) {
-  btnSiguiente.addEventListener("click", () => {
+  btnSiguiente.addEventListener("click", async () => {
     guardarDatos();
+    const formulario = document.getElementById("formRegistro");
+    if (!formulario) return;
+    const seccion = formulario.dataset.seccion;
+
+    if (seccion === "datosDocumentos") {
+      try {
+        await subirDocumentos();
+      } catch (error) {
+        console.error("Error subiendo documentos:", error);
+        alert("No se pudieron guardar los documentos. Intente nuevamente.");
+        return;
+      }
+    }
     window.location.href = paginas[pasoActual + 1];
   });
 }
@@ -419,8 +434,15 @@ function guardarDatos() {
 
         case "file":
           if (campo.files.length > 0) {
-            datos[propiedad] = campo.files[0].name;
+            const archivo = campo.files[0];
+
+            // Guardamos el archivo real temporalmente
+            archivosRegistro[propiedad] = archivo;
+
+            // Guardamos solamente el nombre en los datos
+            datos[propiedad] = archivo.name;
           }
+
           break;
 
         default:
@@ -484,20 +506,6 @@ function actualizarCampoCondicional(radio) {
 
 //Funcion que dependiendo del radio, ceckbox o select tenga un input dependiente, lo abre
 document.querySelectorAll("select[data-target]").forEach((select) => {
-  // function actualizar() {
-  //   const target = document.getElementById(select.dataset.target);
-
-  //   if (!target) return;
-
-  //   if (select.value === select.dataset.showValue) {
-  //     target.classList.remove("hidden");
-  //   } else {
-  //     target.classList.add("hidden");
-  //   }
-  // }
-
-  // actualizar();
-
   select.addEventListener("change", actualizarSelectsCondicionales);
 });
 
@@ -600,7 +608,6 @@ function actualizarSelectsCondicionales() {
       target.classList.add("hidden");
 
       limpiarCampos(target);
-
     }
   });
 }
@@ -752,6 +759,66 @@ if (inputCertificacion) {
   });
 }
 //////////////////////////////////////////////
+
+async function subirDocumentos() {
+  const registroCliente = obtenerRegistroCliente();
+
+  if (!registroCliente) {
+    throw new Error("No existe el registro del cliente.");
+  }
+
+  const identificacion = registroCliente.datosCliente?.identificacion;
+
+  if (!identificacion) {
+    throw new Error("No se encontró la identificación del cliente.");
+  }
+
+  const formData = new FormData();
+
+  // Identificación del cliente
+  formData.append("identificacion", identificacion);
+
+  // Agregar archivos seleccionados
+  for (const [tipoDocumento, archivo] of Object.entries(archivosRegistro)) {
+    if (!archivo) continue;
+
+    formData.append("documentos", archivo, archivo.name);
+
+    formData.append("tiposDocumento", tipoDocumento);
+  }
+
+  // Si no hay documentos seleccionados,
+  // no hacemos ninguna petición
+  if (Object.keys(archivosRegistro).length === 0) {
+    console.log("No hay documentos para subir.");
+
+    return;
+  }
+
+  const respuesta = await fetch("http://localhost:3000/api/documentos", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!respuesta.ok) {
+    const error = await respuesta.text();
+
+    throw new Error(error);
+  }
+
+  const resultado = await respuesta.json();
+
+  console.log("Documentos subidos:", resultado);
+
+  // Guardamos las rutas devueltas por el API
+  registroCliente.datosDocumentos = resultado.documentos;
+
+  localStorage.setItem("registroCliente", JSON.stringify(registroCliente));
+
+  console.log("Registro actualizado:", registroCliente);
+}
+
+/////////////////////////////////////////////////////////////
 
 // Funcion que manda el dato local al API
 
