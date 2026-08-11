@@ -30,6 +30,7 @@ const paginaAnterior = body.dataset.prev;
 const paginaSiguiente = body.dataset.next;
 
 const paginas = [
+  "preferencias.html",
   "cliente.html",
   "laborales.html",
   "fatca.html",
@@ -52,6 +53,7 @@ if (formulario) {
 }
 
 const registroCliente = {
+  datosPreferencias: {},
   datosCliente: {},
   datosLaborales: {},
   fatca: {},
@@ -80,7 +82,7 @@ const progressFill = document.querySelector(".progress-fill");
 
 if (progressStep && progressPercent && progressFill) {
   const pasoActualPlus = pasoActual + 1;
-  const totalPasos = 9;
+  const totalPasos = 10;
   const porcentaje = Math.min(
     Math.round((pasoActualPlus / totalPasos) * 100),
     99,
@@ -217,11 +219,11 @@ function actualizarMascaraIdentificacion() {
   identificacion.disabled = false;
   identificacion.value = "";
 
-  if (seleccionado.value === "cedula") {
+  if (seleccionado.value === "Cédula") {
     identificacion.placeholder = "000-0000000-0";
     identificacion.maxLength = 13;
     identificacion.dataset.tipo = "cedula";
-  } else if (seleccionado.value === "pasaporte") {
+  } else if (seleccionado.value === "Pasaporte") {
     identificacion.placeholder = "Número de pasaporte";
     identificacion.removeAttribute("maxLength");
     identificacion.dataset.tipo = "pasaporte";
@@ -231,6 +233,48 @@ function actualizarMascaraIdentificacion() {
 radiosTipoDocumento.forEach((radio) => {
   radio.addEventListener("change", actualizarMascaraIdentificacion);
 });
+
+
+// Funcion para que la cedula o el pasaporte se vean en el mismo formato CONYUGE
+const identificacionConyuge = document.getElementById("identificacionConyuge");
+
+const radiosTipoDocumentoConyuge = document.querySelectorAll('input[name="tipoDocumentoConyuge"]');
+
+function actualizarMascaraIdentificacionConyuge() {
+  const seleccionado = document.querySelector('input[name="tipoDocumentoConyuge"]:checked');
+
+  if (!identificacionConyuge) return;
+
+  // Si todavía no ha seleccionado nada
+  if (!seleccionado) {
+    identificacionConyuge.disabled = true;
+    identificacionConyuge.value = "";
+    identificacionConyuge.placeholder = "Seleccione el tipo de identificación";
+    identificacionConyuge.removeAttribute("maxLength");
+    delete identificacionConyuge.dataset.tipo;
+
+    return;
+  }
+
+  identificacionConyuge.disabled = false;
+  identificacionConyuge.value = "";
+
+  if (seleccionado.value === "Cédula") {
+    identificacionConyuge.placeholder = "000-0000000-0";
+    identificacionConyuge.maxLength = 13;
+    identificacionConyuge.dataset.tipo = "cedula";
+  } else if (seleccionado.value === "Pasaporte") {
+    identificacionConyuge.placeholder = "Número de pasaporte";
+    identificacionConyuge.removeAttribute("maxLength");
+    identificacionConyuge.dataset.tipo = "pasaporte";
+  }
+}
+
+radiosTipoDocumentoConyuge.forEach((radio) => {
+  radio.addEventListener("change", actualizarMascaraIdentificacionConyuge);
+});
+
+
 
 if (identificacion) {
   identificacion.addEventListener("input", () => {
@@ -364,9 +408,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   cargarDatosFormulario();
 
+  actualizarInstitucionesVinculacion();
+  actualizarAlertaAFP();
+
   inicializarCamposCondicionales();
 
   actualizarMascaraIdentificacion();
+
+  actualizarMascaraIdentificacionConyuge();
 
   // inicializarFirma();
 });
@@ -587,7 +636,16 @@ function cargarDatosFormulario() {
           campo.checked = Boolean(datos[propiedad]);
         }
         break;
-
+      case "file":
+        if (datos[propiedad]) {
+          const textoArchivo = document.getElementById(
+            `texto${propiedad.charAt(0).toUpperCase() + propiedad.slice(1)}`,
+          );
+          if (textoArchivo) {
+            textoArchivo.textContent = datos[propiedad];
+          }
+        }
+        break;
       default:
         campo.value = datos[propiedad];
     }
@@ -843,6 +901,65 @@ async function enviarSolicitud() {
 
   return resultado;
 }
+
+// Funcion para la primera pagian de preferencias
+
+function actualizarInstitucionesVinculacion() {
+  const entidadesCliente = document.querySelectorAll(
+    'input[data-field="entidadesCliente"]',
+  );
+
+  const institucionesVinculacion = document.querySelectorAll(
+    'input[data-field="institucionesVincular"]',
+  );
+
+  // Obtener las entidades que el cliente ya tiene
+  const seleccionadas = [...entidadesCliente]
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value);
+
+  // Revisar las instituciones a las que quiere vincularse
+  institucionesVinculacion.forEach((checkbox) => {
+    const institucion = checkbox.value;
+
+    if (seleccionadas.includes(institucion)) {
+      // No puede seleccionar una institución
+      // de la que ya es cliente
+      checkbox.checked = false;
+      checkbox.disabled = true;
+    } else {
+      checkbox.disabled = false;
+    }
+  });
+}
+
+function actualizarAlertaAFP() {
+  const checkboxAFP = document.querySelector(
+    'input[data-field="institucionesVincular"][value="AFP"]',
+  );
+
+  const alertaAFP = document.getElementById("alertaAFP");
+
+  if (!checkboxAFP || !alertaAFP) return;
+
+  if (checkboxAFP.checked) {
+    alertaAFP.classList.remove("hidden");
+  } else {
+    alertaAFP.classList.add("hidden");
+  }
+}
+
+document
+  .querySelectorAll('input[data-field="entidadesCliente"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener("change", actualizarInstitucionesVinculacion);
+  });
+
+document
+  .querySelectorAll('input[data-field="institucionesVincular"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener("change", actualizarAlertaAFP);
+  });
 
 // window.addEventListener("load", () => {
 //   const loading = document.getElementById("loadingOverlay");

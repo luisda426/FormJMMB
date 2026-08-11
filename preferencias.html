@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Preferencias</title>
+
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/png" />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-step="0">
+    <div class="background">
+      <div class="container">
+        <div class="header">
+          <h1>Registro de Clientes</h1>
+
+          <p>Complete la siguiente información.</p>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- PROGRESS BAR -->
+        <!-- ========================================= -->
+
+        <div class="progress-wrapper">
+          <div class="progress-header">
+            <span class="progress-step"> Paso 1 de 10 </span>
+
+            <span class="progress-percent"> 0% </span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 10%"></div>
+          </div>
+        </div>
+
+        <form id="formRegistro" data-seccion="datosPreferencias">
+          <section class="card">
+            <h2>Preferencias de vinculación</h2>
+
+            <!-- ========================================= -->
+            <!-- OFICINA DE PREFERENCIA -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label for="oficinaPreferencia"> Oficina de preferencia </label>
+
+              <select id="oficinaPreferencia" data-field="oficinaPreferencia">
+                <option value="">
+                  Selecciona la oficina de tu preferencia
+                </option>
+
+                <option value="Piantini">Piantini</option>
+
+                <option value="Bella Vista">Bella Vista</option>
+
+                <option value="Megacentro">Megacentro</option>
+
+                <option value="Santiago">Santiago</option>
+
+                <option value="Punta Cana">Punta Cana</option>
+              </select>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- TIPO DE VINCULACIÓN -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label class="field-description">
+                ¿Es tu primera vez adquiriendo productos con nosotros?
+              </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="primeraVez"
+                    value="Si"
+                    data-field="primeraVez"
+                    data-target="divEntidadesCliente"
+                    data-show-value="No"
+                  />
+
+                  <span>Sí</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="primeraVez"
+                    value="No"
+                    data-field="primeraVez"
+                    data-target="divEntidadesCliente"
+                    data-show-value="No"
+                  />
+
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- ENTIDADES DE LAS QUE YA ES CLIENTE -->
+            <!-- ========================================= -->
+
+            <div id="divEntidadesCliente" class="hidden">
+              <div class="form-group">
+                <label> Entidades de las que eres cliente </label>
+
+                <div class="checkbox-options">
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Banco"
+                      data-field="entidadesCliente"
+                    />
+
+                    <span class="checkbox-custom"></span>
+
+                    <span class="checkbox-title"> Banco </span>
+                  </label>
+
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="SAFI"
+                      data-field="entidadesCliente"
+                    />
+
+                    <span class="checkbox-custom"></span>
+
+                    <span class="checkbox-title"> SAFI </span>
+                  </label>
+
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="Puesto"
+                      data-field="entidadesCliente"
+                    />
+
+                    <span class="checkbox-custom"></span>
+
+                    <span class="checkbox-title"> Puesto </span>
+                  </label>
+
+                  <label class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      value="AFP"
+                      data-field="entidadesCliente"
+                    />
+
+                    <span class="checkbox-custom"></span>
+
+                    <span class="checkbox-title"> AFP </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- INSTITUCIÓN A VINCULARSE -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+
+              <label class="field-description">
+                ¿Dónde quieres vincularte?
+              </label>
+
+              <div class="checkbox-options">
+                <!-- BANCO -->
+
+                <label class="checkbox-option">
+                  <input
+                    type="checkbox"
+                    value="Banco"
+                    data-field="institucionesVincular"
+                    data-institucion="Banco"
+                  />
+
+                  <span class="checkbox-custom"></span>
+
+                  <span class="checkbox-title"> Banco </span>
+                </label>
+
+                <!-- SAFI -->
+
+                <label class="checkbox-option">
+                  <input
+                    type="checkbox"
+                    value="SAFI"
+                    data-field="institucionesVincular"
+                    data-institucion="SAFI"
+                  />
+
+                  <span class="checkbox-custom"></span>
+
+                  <span class="checkbox-title"> SAFI </span>
+                </label>
+
+                <!-- PUESTO -->
+
+                <label class="checkbox-option">
+                  <input
+                    type="checkbox"
+                    value="Puesto"
+                    data-field="institucionesVincular"
+                    data-institucion="Puesto"
+                  />
+
+                  <span class="checkbox-custom"></span>
+
+                  <span class="checkbox-title"> Puesto </span>
+                </label>
+
+                <!-- AFP -->
+
+                <label class="checkbox-option">
+                  <input
+                    type="checkbox"
+                    value="AFP"
+                    data-field="institucionesVincular"
+                    data-institucion="AFP"
+                    id="institucionAFP"
+                  />
+
+                  <span class="checkbox-custom"></span>
+
+                  <span class="checkbox-title"> AFP </span>
+                </label>
+              </div>
+
+              <!-- ========================================= -->
+              <!-- ALERTA AFP -->
+              <!-- ========================================= -->
+
+              <div id="alertaAFP" class="alerta-info hidden">
+                <span class="alerta-icon"> ℹ </span>
+
+                <span>
+                  Para la afiliación de AFP, un asesor financiero te estará
+                  contactando.
+                </span>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+
+            <div class="button-group">
+              <button type="button" class="btn-secondary" id="btnAnterior">
+                ← Anterior
+              </button>
+
+              <button type="button" class="btn-primary" id="btnSiguiente">
+                Siguiente →
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+    <!--=====================================
+    MODAL SALIR
+    ======================================-->
+
+    <div class="modal-overlay" id="modalSalir">
+      <div class="modal">
+        <div class="modal-icon">
+          <img src="assets/precaucion.png" />
+        </div>
+
+        <h2>¿Desea salir del formulario?</h2>
+
+        <p>
+          Su progreso se guardará automáticamente. Podrá regresar más tarde y
+          continuar completando su solicitud desde donde la dejó.
+        </p>
+
+        <div class="modal-buttons">
+          <button class="btn-secondary" id="btnVolver">Volver</button>
+
+          <button class="btn-danger" id="btnSalir">Salir</button>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="loadingOverlay">
+      <img src="assets/loading.gif" />
+
+      <p id="loadingText">Preparando formulario...</p>
+    </div> -->
+
+    <script src="app/app.js"></script>
+  </body>
+</html>
