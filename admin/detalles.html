@@ -93,6 +93,47 @@
           <div class="detail-divider"></div>
 
           <div class="detail-group">
+            <h3>Preferencias de vinculación</h3>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Oficina de preferencia</span>
+                <span id="detailOficinaPreferencia" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Primera vez adquiriendo productos</span
+                >
+                <span id="detailPrimeraVez" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Entidades en la que es cliente</span
+                >
+                <span id="detailEntidadesCliente" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Donde quiere vincularse</span>
+                <span
+                  id="detailInstitucionesVincular"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="detail divider"></div>
+
+          <div class="detail-group">
             <h3>Información personal</h3>
 
             <div class="detail-grid detail-grid-2">
@@ -129,7 +170,11 @@
               </div>
             </div>
 
-            <div class="detail-grid detail-grid-2">
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Correo electrónico</span>
+                <span id="detailEmail" class="detail-field-value">-</span>
+              </div>
               <div class="detail-field">
                 <span class="detail-field-label">Celular</span>
                 <span id="detailCelular" class="detail-field-value">-</span>
@@ -181,17 +226,6 @@
               </div>
             </div>
 
-            <div class="detail-grid detail-grid-2">
-              <div class="detail-field">
-                <span class="detail-field-label">Correo electrónico</span>
-                <span id="detailEmail" class="detail-field-value">-</span>
-              </div>
-              <div class="detail-field">
-                <span class="detail-field-label">Ley155</span>
-                <span id="detailLey155" class="detail-field-value">-</span>
-              </div>
-            </div>
-
             <div class="detail-grid detail-grid-3">
               <div class="detail-field">
                 <span class="detail-field-label">Estado civil</span>
@@ -202,15 +236,163 @@
                 <span id="detailSexo" class="detail-field-value">-</span>
               </div>
               <div class="detail-field">
-                <span class="detail-field-label">Profesión</span>
-                <span id="detailProfesion" class="detail-field-value">-</span>
+                <span class="detail-field-label"
+                  >¿Es residente de la República Dominicana?</span
+                >
+                <span id="detailResidenteRD" class="detail-field-value">-</span>
               </div>
             </div>
 
-            <div class="detail-grid detail-grid-1">
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Profesión</span>
+                <span id="detailProfesion" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Otra profesión</span>
+                <span id="detailOtraProfesion" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
               <div class="detail-field">
                 <span class="detail-field-label">Ocupación</span>
                 <span id="detailOcupacion" class="detail-field-value">-</span>
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Ley155</span>
+                <span id="detailLey155" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Tiene otras fuentes de ingreso</span
+                >
+                <span id="detailFuentesIngresos" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Fuentes de ingreso</span>
+                <span id="detailOtrasFuentesIngresos" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Actividad laboral financiera</span
+                >
+                <span id="detailActLaboralFinanciera" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Explicación de Actividad laboral financiera</span
+                >
+                <span
+                  id="detailExplicacionActLaboralFinanciera"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-group">
+            <h3>Información Cónyuge</h3>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Nombres</span>
+                <span id="detailNombresConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Apellidos</span>
+                <span id="detailApellidosConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Correo electrónico</span>
+                <span id="detailEmailConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Edad</span>
+                <span id="detailEdadConyuge" class="detail-field-value">-</span>
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Tipo de documento</span>
+                <span id="detailTipoDocumentoConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Identificación</span>
+                <span
+                  id="detailIdentificacionConyuge"
+                  class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Institución donde labora</span>
+                <span id="detailLaboraConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Cargo</span>
+                <span id="detailCargoConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
+                <span class="detail-field-label">Teléfono de casa</span>
+                <span id="detailTelefonoCasaConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label">Celular</span>
+                <span id="detailCelularConyuge" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">Ingresos Mensuales</span>
+                <span id="detailIngresosConyuge" class="detail-field-value"
+                  >-</span
+                >
               </div>
             </div>
           </div>
