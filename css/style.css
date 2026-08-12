@@ -33,7 +33,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background: linear-gradient(135deg, #bf3821, #ed1c29, #f4f4f486);
+  background: linear-gradient(135deg, #cf2b27, #ed1c29, #f4f4f41e);
 }
 
 .welcome-container {
@@ -206,7 +206,7 @@ body {
 }
 
 .modal h2 {
-  color: #bf3821;
+  color: #cf2b27;
   margin-bottom: 15px;
 }
 
@@ -229,7 +229,7 @@ body {
 }
 
 .btn-danger {
-  background: #bf3821;
+  background: #cf2b27;
 
   color: white;
 
@@ -256,7 +256,7 @@ body {
 
 .background {
   min-height: 100vh;
-  background-image: url("../assets/background-alto.webp");
+  background-image: url("../assets/background-ancho-2.webp");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -318,7 +318,7 @@ body {
 }
 
 .card h2 {
-  color: #b00020;
+  color: #cf2b27;
 
   margin-bottom: 30px;
 
@@ -633,7 +633,7 @@ select:focus {
 /*============================================*/
 
 .btn-primary {
-  background: linear-gradient(135deg, #ed1c29, #bf3821);
+  background: linear-gradient(135deg, #cf2b27, #bf3821);
 
   color: white;
 
@@ -1772,7 +1772,7 @@ textarea:focus {
   }
 
   .background {
-    background-image: url("../assets/background-alto.webp");
+    background-image: url("../assets/background-alto-2.webp");
 
     background-size: 100% 100%;
     background-position: center top;
