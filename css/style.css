@@ -516,7 +516,7 @@ select:focus {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.dependent-field{
+.dependent-field {
   margin-top: 20px;
 }
 
@@ -1672,14 +1672,22 @@ textarea:focus {
 
 .checkbox-option:has(input:disabled)::after {
   content: "Ya eres cliente";
-  display: block;
+
   margin-left: auto;
-  font-size: 11px;
+
+  flex-shrink: 0;
+
+  font-size: 10px;
   font-weight: 600;
+
   color: #888;
+
   background: #e9e9e9;
-  padding: 4px 8px;
+
+  padding: 4px 7px;
+
   border-radius: 20px;
+
   white-space: nowrap;
 }
 
@@ -1702,7 +1710,6 @@ textarea:focus {
   line-height: 1.5;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   animation: alertaEntrada 0.25s ease-out;
-    
 }
 
 .alerta-icon {
@@ -1736,6 +1743,26 @@ textarea:focus {
 /* =========================================
    RESPONSIVE
    ========================================= */
+
+@media (max-width: 600px) {
+  .checkbox-options {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-option {
+    padding: 12px 10px;
+    gap: 8px;
+  }
+
+  .checkbox-title {
+    font-size: 14px;
+  }
+
+  .checkbox-option:has(input:disabled)::after {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+}
 
 @media (max-width: 900px) {
   .features {
