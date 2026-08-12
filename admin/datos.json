@@ -5,6 +5,12 @@
       "fechaCreacion": "2026-07-24",
       "estadoSolicitud": "Pendiente"
     },
+    "datosPreferencias": {
+      "oficinaPreferencia": "Piantini",
+      "primeraVez": "Si",
+      "entidadesCliente": [],
+      "institucionesVincular": ["Banco", "Puesto"]
+    },
     "vinculacionClientePersonal": {
       "activosLiquidos25M": "No",
       "bancarizacion": "Si",
@@ -35,7 +41,13 @@
       "civil": "Soltero",
       "sexo": "Masculino",
       "profesion": "Docente",
-      "ocupacion": "pensionado"
+      "ocupacion": "pensionado",
+      "otraProfesion": "",
+      "ingresosFormales": "No",
+      "otrosIngresosFormales": "",
+      "residenteRD": "Si",
+      "actLaboralFinanciera": "No",
+      "explicacionActLaboralFinanciera": ""
     },
     "datosLaborales": {
       "empresa": null,
@@ -146,6 +158,12 @@
       "fechaCreacion": "2026-08-06",
       "estadoSolicitud": "Pendiente"
     },
+    "datosPreferencias": {
+      "oficinaPreferencia": "Bella Vista",
+      "primeraVez": "No",
+      "entidadesCliente": ["Banco", "AFP"],
+      "institucionesVincular": ["Banco", "SAFI", "AFP"]
+    },
     "datosCliente": {
       "nombres": "María Fernanda",
       "apellidos": "Pérez Rodríguez",
@@ -165,7 +183,13 @@
       "civil": "Soltero",
       "sexo": "Masculino",
       "profesion": "Docente",
-      "ocupacion": "independiente"
+      "ocupacion": "independiente",
+      "otraProfesion": "Consultor Independiente",
+      "ingresosFormales": "Si",
+      "otrosIngresosFormales": "Alquiler de propiedades",
+      "residenteRD": "Si",
+      "actLaboralFinanciera": "Si",
+      "explicacionActLaboralFinanciera": "Miembro del Consejo de una cooperativa de ahorro y crédito por 3 años"
     },
     "datosLaborales": {
       "empresa": "N/A",
@@ -269,6 +293,12 @@
       "fechaCreacion": "2026-07-29",
       "estadoSolicitud": "Pendiente"
     },
+    "datosPreferencias": {
+      "oficinaPreferencia": "Santiago",
+      "primeraVez": "No",
+      "entidadesCliente": ["Puesto"],
+      "institucionesVincular": ["Puesto"]
+    },
     "datosCliente": {
       "nombres": "Carlos Alberto",
       "apellidos": "Gómez Santana",
@@ -288,7 +318,13 @@
       "civil": "Soltero",
       "sexo": "Femenino",
       "profesion": "Ingeniero Civil",
-      "ocupacion": "independiente"
+      "ocupacion": "independiente",
+      "otraProfesion": "Consultor Independiente",
+      "ingresosFormales": "Si",
+      "otrosIngresosFormales": "Alquiler de propiedades",
+      "residenteRD": "Si",
+      "actLaboralFinanciera": "Si",
+      "explicacionActLaboralFinanciera": "Miembro del Consejo de una cooperativa de ahorro y crédito por 3 años"
     },
     "datosLaborales": {
       "empresa": "Comercial Reyes",
@@ -392,6 +428,12 @@
       "fechaCreacion": "2026-07-27",
       "estadoSolicitud": "Pendiente"
     },
+    "datosPreferencias": {
+      "oficinaPreferencia": "Megacentro",
+      "primeraVez": "Si",
+      "entidadesCliente": [],
+      "institucionesVincular": ["SAFI", "AFP"]
+    },
     "datosCliente": {
       "nombres": "Ana Sofía",
       "apellidos": "Reyes Fermín",
@@ -408,10 +450,27 @@
       "pais": "República Dominicana",
       "email": "ana.reyes3@testmail.com",
       "ley155": 0,
-      "civil": "Unión Libre",
+      "civil": "Casado",
       "sexo": "Femenino",
       "profesion": "Contador/a",
-      "ocupacion": "independiente"
+      "ocupacion": "independiente",
+      "nombresConyuge": "Luis",
+      "apellidosConyuge": "Gomez Castillo",
+      "emailConyuge": "luis.gomez@email.com",
+      "edadConyuge": 38,
+      "tipoDocumentoConyuge": "Pasaporte",
+      "identificacionConyuge": "CD9876543",
+      "laboraConyuge": "Cervecería Nacional Dominicana",
+      "cargoConyuge": "Supervisor de Producción",
+      "telefonoCasaConyuge": "809-555-2345",
+      "celularConyuge": "849-555-7654",
+      "ingresosConyuge": 55000,
+      "otraProfesion": "",
+      "ingresosFormales": "No",
+      "otrosIngresosFormales": "",
+      "residenteRD": "No",
+      "actLaboralFinanciera": "No",
+      "explicacionActLaboralFinanciera": ""
     },
     "datosLaborales": {
       "empresa": "N/A",
@@ -494,7 +553,7 @@
     "datosCuestionario2": {
       "ingresosAnuales": "Entre RD$7.0 y RD$20 Millones",
       "capacidadAhorro": "34",
-      "totalActivosLiquidos": "Mas de RD$20.0 Millones",
+      "totalActivosLiquidos": "Más de RD$25.0 Millones",
       "cuentaAhorroCorriente": "18",
       "patrimonioTotal": "Menos de RD$2 Millones",
       "obligacionesDeudas": "2",
@@ -541,7 +600,13 @@
       "civil": "Soltero",
       "sexo": "Masculino",
       "profesion": "Arquitecto/a",
-      "ocupacion": "independiente"
+      "ocupacion": "independiente",
+      "otraProfesion": "Corredor de Bienes Raíces",
+      "ingresosFormales": "Si",
+      "otrosIngresosFormales": "Comisiones por venta de propiedades",
+      "residenteRD": "Si",
+      "actLaboralFinanciera": "Si",
+      "explicacionActLaboralFinanciera": "Corredor de valores registrado desde hace 5 años"
     },
     "datosLaborales": {
       "empresa": "Farmacia Central",
@@ -652,6 +717,17 @@
       "fechaCreacion": "2026-07-31",
       "estadoSolicitud": "Completo"
     },
+    "vinculacionClientePersonal": {
+      "activosLiquidos25M": "No",
+      "bancarizacion": "Si",
+      "duracionRelacion": "Más de 3 años menos de 5 años",
+      "productoAjustado": "Si",
+      "relacionCaraCara": "Si",
+      "resumenCliente": "Cliente con negocio registrado por cédula, busca ampliar servicios financieros.",
+      "tipoCliente": "PYME Cédula",
+      "tipoClienteProspecto": "No profesional",
+      "vinculacionMancomunada": "Si"
+    },
     "datosCliente": {
       "nombres": "Laura Patricia",
       "apellidos": "Batista Cabrera",
@@ -668,7 +744,7 @@
       "pais": "República Dominicana",
       "email": "laura.batista5@testmail.com",
       "ley155": 0,
-      "civil": "Unión Libre",
+      "civil": "Casado",
       "sexo": "Masculino",
       "profesion": "Docente",
       "ocupacion": "empleado"
@@ -1164,6 +1240,17 @@
       "fechaCreacion": "2026-07-31",
       "estadoSolicitud": "Pendiente"
     },
+    "vinculacionClientePersonal": {
+      "activosLiquidos25M": "No",
+      "bancarizacion": "Si",
+      "duracionRelacion": "Cliente Nuevo (Menos de 1 año)",
+      "productoAjustado": "Si",
+      "relacionCaraCara": "Si",
+      "resumenCliente": "Cliente interesado en abrir cuenta corriente para su negocio de importación.",
+      "tipoCliente": "Comercial",
+      "tipoClienteProspecto": "No profesional",
+      "vinculacionMancomunada": "No"
+    },
     "datosCliente": {
       "nombres": "Elena Victoria",
       "apellidos": "Vasquez Guzmán",
@@ -1262,7 +1349,7 @@
     "datosCuestionario2": {
       "ingresosAnuales": "Mas de RD$25.0 Millones",
       "capacidadAhorro": "20",
-      "totalActivosLiquidos": "Mas de RD$20.0 Millones",
+      "totalActivosLiquidos": "Más de RD$25.0 Millones",
       "cuentaAhorroCorriente": "37",
       "patrimonioTotal": "Menos de RD$2 Millones",
       "obligacionesDeudas": "14",
@@ -1309,7 +1396,7 @@
       "civil": "Soltero",
       "sexo": "Masculino",
       "profesion": "Médico/a",
-      "ocupacion": "retirado"
+      "ocupacion": "Retirado"
     },
     "datosLaborales": {
       "empresa": null,
@@ -1394,7 +1481,7 @@
       "capacidadAhorro": "28",
       "totalActivosLiquidos": "Menos de RD$2 Millones",
       "cuentaAhorroCorriente": "22",
-      "patrimonioTotal": "Mas de RD$20.0 Millones",
+      "patrimonioTotal": "Más de RD$20.0 Millones",
       "obligacionesDeudas": "22",
       "banco1": "Scotiabank",
       "tipoCuenta1": "Corriente",
@@ -1518,7 +1605,7 @@
     "datosCuestionario2": {
       "ingresosAnuales": "Menos de RD$2 Millones",
       "capacidadAhorro": "17",
-      "totalActivosLiquidos": "Mas de RD$20.0 Millones",
+      "totalActivosLiquidos": "Más de RD$25.0 Millones",
       "cuentaAhorroCorriente": "38",
       "patrimonioTotal": "Entre RD$10.0 y RD$15 Millones",
       "obligacionesDeudas": "18",
@@ -1565,7 +1652,18 @@
       "civil": "Casado",
       "sexo": "Femenino",
       "profesion": "Arquitecto/a",
-      "ocupacion": "independiente"
+      "ocupacion": "independiente",
+      "nombresConyuge": "Maria",
+      "apellidosConyuge": "Rodriguez Perez",
+      "emailConyuge": "maria.rodriguez@email.com",
+      "edadConyuge": 34,
+      "tipoDocumentoConyuge": "Cédula",
+      "identificacionConyuge": "001-1234567-8",
+      "laboraConyuge": "Banco Popular Dominicano",
+      "cargoConyuge": "Analista de Crédito",
+      "telefonoCasaConyuge": "809-555-1234",
+      "celularConyuge": "829-555-6789",
+      "ingresosConyuge": 45000
     },
     "datosLaborales": {
       "empresa": "Comercial Reyes",
@@ -1673,6 +1771,17 @@
       "fechaCreacion": "2026-07-21",
       "estadoSolicitud": "Completo"
     },
+    "vinculacionClientePersonal": {
+      "activosLiquidos25M": "Si",
+      "bancarizacion": "Si",
+      "duracionRelacion": "Más de 5 años",
+      "productoAjustado": "Si",
+      "relacionCaraCara": "Si",
+      "resumenCliente": "Cliente de larga trayectoria, busca diversificar su portafolio de inversiones.",
+      "tipoCliente": "Personal",
+      "tipoClienteProspecto": "No profesional",
+      "vinculacionMancomunada": "Si"
+    },
     "datosCliente": {
       "nombres": "Valentina Lucía",
       "apellidos": "Rivas Tejada",
@@ -1689,10 +1798,21 @@
       "pais": "República Dominicana",
       "email": "valentina.rivas13@testmail.com",
       "ley155": 0,
-      "civil": "Soltero",
+      "civil": "Casado",
       "sexo": "Masculino",
       "profesion": "Contador/a",
-      "ocupacion": "independiente"
+      "ocupacion": "independiente",
+      "nombresConyuge": "Carlos",
+      "apellidosConyuge": "Fernandez Diaz",
+      "emailConyuge": "carlos.fernandez@email.com",
+      "edadConyuge": 41,
+      "tipoDocumentoConyuge": "Pasaporte",
+      "identificacionConyuge": "AB1234567",
+      "laboraConyuge": "Grupo Ramos",
+      "cargoConyuge": "Gerente de Operaciones",
+      "telefonoCasaConyuge": "809-555-9876",
+      "celularConyuge": "849-555-3210",
+      "ingresosConyuge": 78000
     },
     "datosLaborales": {
       "empresa": "Tech Solutions RD",
@@ -1803,6 +1923,17 @@
       "fechaCreacion": "2026-08-08",
       "estadoSolicitud": "Revisión"
     },
+    "vinculacionClientePersonal": {
+      "activosLiquidos25M": "No",
+      "bancarizacion": "No",
+      "duracionRelacion": "Más de 1 año menos de 3 años",
+      "productoAjustado": "Si",
+      "relacionCaraCara": "Si",
+      "resumenCliente": "Pequeño comerciante con RNC, solicita vinculación para financiamiento de inventario.",
+      "tipoCliente": "PYME RNC",
+      "tipoClienteProspecto": "No profesional",
+      "vinculacionMancomunada": "No"
+    },
     "datosCliente": {
       "nombres": "Marco Aurelio",
       "apellidos": "Fontaine Léveque",
@@ -1819,10 +1950,21 @@
       "pais": "República Dominicana",
       "email": "marco.fontaine14@testmail.com",
       "ley155": 0,
-      "civil": "Unión Libre",
+      "civil": "Casado",
       "sexo": "Femenino",
       "profesion": "Arquitecto/a",
-      "ocupacion": "empleado"
+      "ocupacion": "empleado",
+      "nombresConyuge": "Ana",
+      "apellidosConyuge": "Martinez Sosa",
+      "emailConyuge": "ana.martinez@email.com",
+      "edadConyuge": 29,
+      "tipoDocumentoConyuge": "Cédula",
+      "identificacionConyuge": "002-9876543-1",
+      "laboraConyuge": "Universidad APEC",
+      "cargoConyuge": "Profesora",
+      "telefonoCasaConyuge": "809-555-4567",
+      "celularConyuge": "829-555-8901",
+      "ingresosConyuge": 32000
     },
     "datosLaborales": {
       "empresa": null,

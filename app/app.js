@@ -56,13 +56,13 @@ const registroCliente = {
   datosPreferencias: {},
   datosCliente: {},
   datosLaborales: {},
-  fatca: {},
-  pep: {},
-  adicional: {},
-  cuestionario: {},
-  cuestionario2: {},
-  documentos: {},
-  declaracionJurada: {},
+  datosFatca: {},
+  datosPep: {},
+  datosAdicionales: {},
+  datosCuestionario: {},
+  datosCuestionario2: {},
+  datosDocumentos: {},
+  datosDeclaracion: {},
 };
 
 const modalSalir = document.getElementById("modalSalir");
@@ -234,14 +234,17 @@ radiosTipoDocumento.forEach((radio) => {
   radio.addEventListener("change", actualizarMascaraIdentificacion);
 });
 
-
 // Funcion para que la cedula o el pasaporte se vean en el mismo formato CONYUGE
 const identificacionConyuge = document.getElementById("identificacionConyuge");
 
-const radiosTipoDocumentoConyuge = document.querySelectorAll('input[name="tipoDocumentoConyuge"]');
+const radiosTipoDocumentoConyuge = document.querySelectorAll(
+  'input[name="tipoDocumentoConyuge"]',
+);
 
 function actualizarMascaraIdentificacionConyuge() {
-  const seleccionado = document.querySelector('input[name="tipoDocumentoConyuge"]:checked');
+  const seleccionado = document.querySelector(
+    'input[name="tipoDocumentoConyuge"]:checked',
+  );
 
   if (!identificacionConyuge) return;
 
@@ -273,8 +276,6 @@ function actualizarMascaraIdentificacionConyuge() {
 radiosTipoDocumentoConyuge.forEach((radio) => {
   radio.addEventListener("change", actualizarMascaraIdentificacionConyuge);
 });
-
-
 
 if (identificacion) {
   identificacion.addEventListener("input", () => {
@@ -425,6 +426,7 @@ function obtenerRegistroCliente() {
 
   if (!registroCliente) {
     registroCliente = {
+      datosPreferencias: {},
       datosCliente: {},
       datosLaborales: {},
       datosFatca: {},

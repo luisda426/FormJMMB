@@ -82,28 +82,6 @@ function obtenerIdSolicitud() {
 CARGAR SOLICITUD
 ======================================== */
 
-// function cargarSolicitud() {
-//   const id = Number(obtenerIdSolicitud());
-
-//   if (!id) {
-//     mostrarNoEncontrado();
-//     return;
-//   }
-
-//   const solicitud = solicitudes.find((item) => item.idSolicitud === id);
-
-//   if (!solicitud) {
-//     mostrarNoEncontrado();
-//     return;
-//   }
-
-//   solicitudActual = solicitud;
-
-//   mostrarSolicitud(solicitud);
-
-//   cargarVinculacionCliente(solicitud);
-// }
-
 async function cargarSolicitud() {
   const id = obtenerIdSolicitud();
 
@@ -165,6 +143,7 @@ function cargarVinculacionCliente(solicitud) {
   }
 
   mostrarVinculacionComoFormulario();
+  preseleccionarActivosLiquidos(solicitud);
 }
 
 function obtenerDatosVinculacion() {
@@ -185,8 +164,8 @@ function obtenerDatosVinculacion() {
           ?.value || "",
       tipoClienteProspecto: "No profesional",
       bancarizacion:
-        document.querySelector('input[name="bancarizacion"]:checked')
-          ?.value || "",
+        document.querySelector('input[name="bancarizacion"]:checked')?.value ||
+        "",
     },
   };
 }
@@ -202,6 +181,26 @@ function mostrarVinculacionComoFormulario() {
 
   formulario.style.display = "block";
   detalle.style.display = "none";
+}
+
+function preseleccionarActivosLiquidos(solicitud) {
+  const financiera = solicitud.datosCuestionario2 || {};
+  const valor = financiera.totalActivosLiquidos;
+
+  if (!valor) {
+    return;
+  }
+
+  const esMasDe25M = valor.trim() === "Más de RD$25.0 Millones";
+  const seleccion = esMasDe25M ? "Si" : "No";
+
+  const radio = document.querySelector(
+    `input[name="activosLiquidos25M"][value="${seleccion}"]`,
+  );
+
+  if (radio) {
+    radio.checked = true;
+  }
 }
 
 function mostrarVinculacionComoDetalle(datos) {
@@ -279,6 +278,7 @@ function mostrarSolicitud(solicitud) {
   detailContent.style.display = "block";
   detailNotFound.classList.remove("show");
 
+  const preferencias = solicitud.datosPreferencias || {};
   const cliente = solicitud.datosCliente || {};
   const solicitudInfo = solicitud.solicitud || {};
   const laboral = solicitud.datosLaborales || {};
@@ -302,6 +302,24 @@ function mostrarSolicitud(solicitud) {
 
   status.className =
     "status-badge " + obtenerClaseEstado(solicitudInfo.estadoSolicitud);
+
+  // ========================================
+  // PREFERENCIAS DE VINCULACIÓN
+  // ========================================
+
+  document.getElementById("detailOficinaPreferencia").textContent =
+    mostrarValor(preferencias.oficinaPreferencia);
+
+  document.getElementById("detailPrimeraVez").textContent = mostrarValor(
+    preferencias.primeraVez,
+  );
+
+  document.getElementById("detailEntidadesCliente").innerHTML = mostrarLista(
+    preferencias.entidadesCliente,
+  );
+
+  document.getElementById("detailInstitucionesVincular").innerHTML =
+    mostrarLista(preferencias.institucionesVincular);
 
   // ========================================
   // INFORMACIÓN PERSONAL
@@ -381,6 +399,72 @@ function mostrarSolicitud(solicitud) {
 
   document.getElementById("detailPais").textContent = mostrarValor(
     cliente.pais,
+  );
+
+  // CAMPOS AGREGADOS DESPUES
+  document.getElementById("detailOtraProfesion").textContent = mostrarValor(
+    cliente.otraProfesion,
+  );
+
+  document.getElementById("detailFuentesIngresos").textContent = mostrarValor(
+    cliente.ingresosFormales,
+  );
+
+  document.getElementById("detailOtrasFuentesIngresos").textContent =
+    mostrarValor(cliente.otrosIngresosFormales);
+
+  document.getElementById("detailResidenteRD").textContent = mostrarValor(
+    cliente.residenteRD,
+  );
+
+  document.getElementById("detailActLaboralFinanciera").textContent =
+    mostrarValor(cliente.actLaboralFinanciera);
+
+  document.getElementById("detailExplicacionActLaboralFinanciera").textContent =
+    mostrarValor(cliente.explicacionActLaboralFinanciera);
+  // ========================================
+  // INFORMACIÓN CÓNYUGE
+  // ========================================
+
+  document.getElementById("detailNombresConyuge").textContent = mostrarValor(
+    cliente.nombresConyuge,
+  );
+
+  document.getElementById("detailApellidosConyuge").textContent = mostrarValor(
+    cliente.apellidosConyuge,
+  );
+
+  document.getElementById("detailEmailConyuge").textContent = mostrarValor(
+    cliente.emailConyuge,
+  );
+
+  document.getElementById("detailEdadConyuge").textContent = mostrarValor(
+    cliente.edadConyuge,
+  );
+
+  document.getElementById("detailTipoDocumentoConyuge").textContent =
+    mostrarValor(cliente.tipoDocumentoConyuge);
+
+  document.getElementById("detailIdentificacionConyuge").textContent =
+    mostrarValor(cliente.identificacionConyuge);
+
+  document.getElementById("detailLaboraConyuge").textContent = mostrarValor(
+    cliente.laboraConyuge,
+  );
+
+  document.getElementById("detailCargoConyuge").textContent = mostrarValor(
+    cliente.cargoConyuge,
+  );
+
+  document.getElementById("detailTelefonoCasaConyuge").textContent =
+    mostrarValor(cliente.telefonoCasaConyuge);
+
+  document.getElementById("detailCelularConyuge").textContent = mostrarValor(
+    cliente.celularConyuge,
+  );
+
+  document.getElementById("detailIngresosConyuge").textContent = mostrarValor(
+    cliente.ingresosConyuge,
   );
 
   // ========================================
@@ -798,14 +882,278 @@ function obtenerClaseEstado(estado) {
 IMPRIMIR SOLICITUD
 ======================================== */
 
+/* ========================================
+BOTON DE IMPRIMIR
+======================================== */
+
 const printButton = document.getElementById("printButton");
 
 if (printButton) {
-  printButton.addEventListener("click", () => {
-    window.print();
+  printButton.addEventListener("click", async () => {
+    if (!solicitudActual) {
+      console.warn("No hay una solicitud cargada todavía.");
+      return;
+    }
+
+    const pdfBytes = await rellenarPDF(solicitudActual);
+    const blob = new Blob([pdfBytes], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+
+    const ventana = window.open(url);
+    ventana.onload = () => ventana.print();
   });
 }
 
+/////////////////////////////////////////////////////////////////////
+
+function convertirSiNo(valor) {
+  if (valor === null || valor === undefined || valor === "") return "";
+  return Number(valor) === 1 ? "Si" : "No";
+}
+
+function obtenerFechaHoy() {
+  const hoy = new Date();
+  const dia = String(hoy.getDate()).padStart(2, "0");
+  const mes = String(hoy.getMonth() + 1).padStart(2, "0");
+  const anio = hoy.getFullYear();
+  return `${dia}/${mes}/${anio}`;
+}
+
+function marcarX(valor) {
+  return Number(valor) === 1 ? "X" : "";
+}
+
+function mapearIngresosAnuales(texto) {
+  const mapa = {
+    "Menos de RD$2 Millones": "2",
+    "Entre RD$2.0 y RD$5.7 Millones": "5",
+    "Entre RD$7.0 y RD$20 Millones": "7",
+    "Más de RD$25.0 Millones": "25",
+  };
+  return mapa[texto?.trim()] || "";
+}
+
+function mapearActivosLiquidos(texto) {
+  const mapa = {
+    "Menos de RD$2 Millones": "2",
+    "Entre RD$2.0 y RD$7 Millones": "7",
+    "Entre RD$10.0 y RD$15 Millones": "10",
+    "Entre RD$15.0 y RD$24 Millones": "20", // penúltima -> mismo bucket que la última
+    "Más de RD$25.0 Millones": "20",
+  };
+  return mapa[texto?.trim()] || "";
+}
+
+function mapearPatrimonioTotal(texto) {
+  const mapa = {
+    "Menos de RD$2 Millones": "2",
+    "Entre RD$2.0 y RD$7 Millones": "7",
+    "Entre RD$10.0 y RD$15 Millones": "10",
+    "Más de RD$20.0 Millones": "20",
+  };
+  return mapa[texto?.trim()] || "";
+}
+
+// campo del PDF -> función que saca el valor de la solicitud completa
+const MAPEO_TEXTO = {
+  apellidos: (s) => s.datosCliente?.apellidos || "",
+  nombres: (s) => s.datosCliente?.nombres || "",
+  "identificacion-cedula": (s) =>
+    s.datosCliente?.tipoDocumento === "cedula"
+      ? s.datosCliente?.identificacion || ""
+      : "",
+  pasaporte: (s) =>
+    s.datosCliente?.tipoDocumento === "pasaporte"
+      ? s.datosCliente?.identificacion || ""
+      : "",
+  "id-estranjero": (s) =>
+    s.datosCliente?.tipoDocumento === "id-estranjero"
+      ? s.datosCliente?.identificacion || ""
+      : "",
+  "fecha-nacimiento": (s) => s.datosCliente?.fechaNacimiento || "",
+  "telefono-casa": (s) => s.datosCliente?.telefonoCasa || "",
+  celular: (s) => s.datosCliente?.celular || "",
+  "lugar-nacimiento": (s) => s.datosCliente?.lugarNacimiento || "",
+  nacionalidad: (s) => s.datosCliente?.nacionalidad || "",
+  sector: (s) => s.datosCliente?.sector || "",
+  ciudad: (s) => s.datosCliente?.ciudad || "",
+  pais: (s) => s.datosCliente?.pais || "",
+  email: (s) => s.datosCliente?.email || "",
+  profesion: (s) => s.datosCliente?.profesion || "",
+  direccion: (s) => s.datosCliente?.direccion || "",
+
+  empresa: (s) => s.datosLaborales?.empresa || "",
+  "empresa-ciudad": (s) => s.datosLaborales?.ciudad || "",
+  "empresa-pais": (s) => s.datosLaborales?.pais || "",
+  "empresa-sector": (s) => s.datosLaborales?.sector || "",
+  "empresa-direccion": (s) => s.datosLaborales?.direccionEmpresa || "",
+  "empresa-cargo": (s) => s.datosLaborales?.cargo || "",
+  "empresa-telefono": (s) => s.datosLaborales?.telefono || "",
+  "empresa-email": (s) => s.datosLaborales?.email || "",
+  "empresa-comentarios": (s) => s.datosLaborales?.comentarios || "",
+
+  "fatca-otra-ciudadania-1": (s) => s.datosFatca?.ciudadania1 || "",
+  "fatca-otra-ciudadania-2": (s) => s.datosFatca?.ciudadania2 || "",
+  "fatca-telefono": (s) => s.datosFatca?.telefonoExtranjeroNumero || "",
+  "fatca-comentarios": (s) => s.datosFatca?.comentarios || "",
+
+  "pep-cargo": (s) => s.datosPep?.cargoPEP || "",
+  "pep-pais": (s) => s.datosPep?.paisPEP || "",
+  "pep-fecha-designacion": (s) => s.datosPep?.fechaDesignacionPEP || "",
+  "pep-fecha-remocion": (s) => s.datosPep?.fechaRemocionPEP || "",
+  "pep-relacion-nombre": (s) => s.datosPep?.nombrePEP || "",
+  "pep-relacion-parentesco": (s) => s.datosPep?.parentescoPEP || "",
+  "pep-relacion-cargo": (s) => s.datosPep?.cargoPEPRelacionado || "",
+  "pep-relacion-fecha-designacion": (s) =>
+    s.datosPep?.fechaDesignacionPEPRelacionado || "",
+  "pep-relacion-fecha-remocion": (s) =>
+    s.datosPep?.fechaRemocionPEPRelacionado || "",
+
+  "adicional-origen": (s) => s.datosAdicionales?.origenDestinoFondos || "",
+  "adicional-beneficiario": (s) =>
+    s.datosAdicionales?.beneficiariosTransaccion || "",
+  "adicional-id-beneficiario": (s) =>
+    s.datosAdicionales?.identificacionBeneficiarioFinal || "",
+  "adicional-declaracion-relacionadas": (s) =>
+    s.datosAdicionales?.personasRelacionadas || "",
+  "adicional-vinculado-jmmb": (s) => s.datosAdicionales?.vinculadoJMMB || "",
+
+  "adicional-capacidad-ahorro": (s) =>
+    s.datosCuestionario2?.capacidadAhorro || "",
+  "adicional-cuenta-ahorro-corriente": (s) =>
+    s.datosCuestionario2?.cuentaAhorroCorriente || "",
+  "adicional-obligaciones": (s) =>
+    s.datosCuestionario2?.obligacionesDeudas || "",
+  "adicional-banco-1": (s) => s.datosCuestionario2?.banco1 || "",
+  "adicional-tipo-banco-1": (s) => s.datosCuestionario2?.tipoCuenta1 || "",
+  "adicional-telefono-banco-1": (s) =>
+    s.datosCuestionario2?.telefonoBanco1 || "",
+  "adicional-oficial-banco-1": (s) => s.datosCuestionario2?.oficialBanco1 || "",
+
+  "perfil-canal-cara": (s) =>
+    s.vinculacionClientePersonal?.relacionCaraCara || "",
+  "perfil-resumen": (s) => s.vinculacionClientePersonal?.resumenCliente || "",
+  cliente: (s) => s.idSolicitud || "",
+
+  "empresa-fecha-ingreso": (s) => s.datosLaborales?.ingreso || "",
+
+  "fatca-mas-residencias-1": (s) => s.datosFatca?.ciudadania1 || "",
+  "fatca-mas-residencias-2": (s) => s.datosFatca?.ciudadania2 || "",
+
+  "adicional-proposito": (s) =>
+    (s.datosAdicionales?.productosSolicitados || []).join(", "),
+
+  "adicional-operaciones-otro": (s) =>
+    s.datosAdicionales?.otraCantidadOperaciones || "",
+
+  "perfil-nombre-cliente": (s) => {
+    const c = s.datosCliente || {};
+    return `${c.nombres || ""} ${c.apellidos || ""}`.trim();
+  },
+
+  "fecha-oficial": () => obtenerFechaHoy(),
+  "fecha-cliente": () => obtenerFechaHoy(),
+
+  "adicional-periodos-1": () => "2025",
+  "adicional-periodos-2": () => "2026",
+  "adicional-total-patrimonio-1": (s) =>
+    s.datosCuestionario2?.patrimonioPeriodo1 || "",
+  "adicional-total-patrimonio-2": (s) =>
+    s.datosCuestionario2?.patrimonioPeriodo2 || "",
+  "adicional-total-activos-1": (s) =>
+    s.datosCuestionario2?.pasivosPeriodo1 || "",
+  "adicional-total-activos-2": (s) =>
+    s.datosCuestionario2?.pasivosPeriodo2 || "",
+
+  "declaracion-1": (s) => marcarX(s.datosDeclaracion?.declaracionJurada),
+  "declaracion-2": (s) => marcarX(s.datosDeclaracion?.declaracionJurada),
+  "declaracion-3": (s) => marcarX(s.datosDeclaracion?.declaracionJurada),
+  "declaracion-4": (s) => marcarX(s.datosDeclaracion?.declaracionJurada),
+};
+
+// campo del PDF (grupo de radio) -> función que saca el valor
+const MAPEO_RADIO = {
+  "tipo-documento": (s) => s.datosCliente?.tipoDocumento || "",
+  sexo: (s) => s.datosCliente?.sexo || "",
+  ocupacion: (s) => s.datosCliente?.ocupacion || "",
+  civil: (s) => s.datosCliente?.civil || "",
+  ley155: (s) => convertirSiNo(s.datosCliente?.ley155),
+
+  fatca: (s) => convertirSiNo(s.datosFatca?.otrasCiudadanias),
+  USA: (s) => s.datosFatca?.condicionUSA || "",
+  "fatca-residencia": (s) => convertirSiNo(s.datosFatca?.residenciaFisicaUSA),
+  "fatca-mas-residencia": (s) =>
+    convertirSiNo(s.datosFatca?.masResidenciaFiscal),
+  "fatca-telefonico": (s) => convertirSiNo(s.datosFatca?.telefonoExtranjero),
+  "fatca-direccion-residencia": (s) =>
+    convertirSiNo(s.datosFatca?.direccionResidenciaUSA),
+  "fatca-direccionUSA": (s) => convertirSiNo(s.datosFatca?.direccionEnvioUSA),
+  "fatca-greencard": (s) => convertirSiNo(s.datosFatca?.greenCard),
+
+  pep: (s) => convertirSiNo(s.datosPep?.esPEP),
+  "pep-relacion": (s) => convertirSiNo(s.datosPep?.relacionPEP),
+
+  "adicional-cuenta-basica": (s) =>
+    convertirSiNo(s.datosAdicionales?.cuentaAhorroBasica),
+  "adicional-operaciones": (s) => s.datosAdicionales?.cantidadOperaciones || "",
+  "adicional-transacciones": (s) =>
+    s.datosAdicionales?.formaTransacciones || "",
+  "adicional-transferencias": (s) =>
+    s.datosAdicionales?.tipoTransferencia || "",
+
+  "perfil-cara": (s) => convertirSiNo(s.vinculacionClientePersonal ? 1 : 0), // TODO revisar
+  "perfil-producto-ajustado": (s) =>
+    s.vinculacionClientePersonal?.productoAjustado || "",
+  "adicional-cuenta-verificada": (s) =>
+    convertirSiNo(s.datosAdicionales?.unicaCuenta),
+  "adicional-ingresos": (s) =>
+    mapearIngresosAnuales(s.datosCuestionario2?.ingresosAnuales),
+  "adicional-activos": (s) =>
+    mapearActivosLiquidos(s.datosCuestionario2?.totalActivosLiquidos),
+  "adicional-patrimonio": (s) =>
+    mapearPatrimonioTotal(s.datosCuestionario2?.patrimonioTotal),
+};
+
+async function rellenarPDF(solicitud) {
+  const { PDFDocument, PDFTextField, PDFRadioGroup } = PDFLib;
+
+  const pdfBytes = await fetch("/admin/pdf/formulario-banco.pdf").then(
+    (res) => {
+      if (!res.ok) throw new Error(`No se pudo cargar el PDF: ${res.status}`);
+      return res.arrayBuffer();
+    },
+  );
+
+  const pdfDoc = await PDFDocument.load(pdfBytes);
+  const form = pdfDoc.getForm();
+
+  Object.entries(MAPEO_TEXTO).forEach(([nombreCampo, obtenerValor]) => {
+    try {
+      const campo = form.getField(nombreCampo);
+      if (campo instanceof PDFTextField) {
+        campo.setText(String(obtenerValor(solicitud) ?? ""));
+      }
+    } catch (err) {
+      console.warn(`Texto no encontrado: "${nombreCampo}"`);
+    }
+  });
+
+  Object.entries(MAPEO_RADIO).forEach(([nombreGrupo, obtenerValor]) => {
+    try {
+      const grupo = form.getRadioGroup(nombreGrupo);
+      const valor = obtenerValor(solicitud);
+      if (valor) grupo.select(valor);
+    } catch (err) {
+      console.warn(
+        `No se pudo seleccionar "${nombreGrupo}" con valor "${obtenerValor(solicitud)}"`,
+      );
+    }
+  });
+
+  return await pdfDoc.save();
+}
+
+//////////////////////////////////////////
 /* ========================================
 CERRAR SESIÓN
 ======================================== */

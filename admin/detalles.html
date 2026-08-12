@@ -268,7 +268,8 @@
                         type="radio"
                         name="activosLiquidos25M"
                         value="Si"
-                        data-field="activosLiquidos"
+                        data-field="activosLiquidos25M"
+                        disabled
                       />
                       <span>Si</span>
                     </label>
@@ -278,7 +279,8 @@
                         type="radio"
                         name="activosLiquidos25M"
                         value="No"
-                        data-field="activosLiquidos"
+                        data-field="activosLiquidos25M"
+                        disabled
                       />
                       <span>No</span>
                     </label>
@@ -433,13 +435,8 @@
                 </span>
               </div>
               <div class="detail-field detail-field-full">
-                <span class="detail-field-label">
-                  Bancarización cliente
-                </span>
-                <span
-                  id="detalleBancarizacion"
-                  class="detail-field-value"
-                >
+                <span class="detail-field-label"> Bancarización cliente </span>
+                <span id="detalleBancarizacion" class="detail-field-value">
                 </span>
               </div>
             </div>
@@ -1434,7 +1431,7 @@
         </section>
       </section>
     </main>
-
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script type="module" src="./js/detalles.js"></script>
   </body>
 </html>
