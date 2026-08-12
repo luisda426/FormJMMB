@@ -92,6 +92,361 @@
 
           <div class="detail-divider"></div>
 
+          <div class="detail-divider"></div>
+
+          <!-- -------------------------------------------------- -->
+          <!-- AQUI TENEMOS LOS INPUTS PARA QUE EL ASESOR RELLENE -->
+          <!-- -------------------------------------------------- -->
+
+          <div id="vinculacionFormulario">
+            <div class="detail-group">
+              <h3>Información de vinculación</h3>
+
+              <!-- Tipo de cliente -->
+              <div class="detail-grid detail-grid-2">
+                <div class="detail-field">
+                  <span class="detail-field-label">Tipo de cliente</span>
+
+                  <select id="tipoCliente" class="detail-input">
+                    <option value="" disabled selected>Selecciona...</option>
+                    <option value="Comercial">Comercial</option>
+                    <option value="PYME RNC">PYME RNC</option>
+                    <option value="PYME Cédula">PYME Cédula</option>
+                    <option value="Personal">Personal</option>
+                  </select>
+                </div>
+
+                <!-- Vinculación mancomunada -->
+                <div class="detail-field">
+                  <span class="detail-field-label">
+                    ¿Solicitud de vinculación mancomunada?
+                  </span>
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="vinculacionMancomunada"
+                        value="Si"
+                        data-field="vinculacionMancomunada"
+                      />
+
+                      <span>Si</span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="vinculacionMancomunada"
+                        value="No"
+                        data-field="vinculacionMancomunada"
+                      />
+
+                      <span>No</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail-grid detail-grid-2">
+                <!-- Duración de la relación -->
+                <div class="detail-field">
+                  <span class="detail-field-label"
+                    >Duración de la relación</span
+                  >
+
+                  <select id="duracionRelacion" class="detail-input">
+                    <option value="" disabled selected>Selecciona...</option>
+                    <option value="Cliente Nuevo (Menos de 1 año)">
+                      Cliente Nuevo (Menos de 1 año)
+                    </option>
+                    <option value="Más de 1 año menos de 3 años">
+                      Más de 1 año menos de 3 años
+                    </option>
+                    <option value="Más de 3 años menos de 5 años">
+                      Más de 3 años menos de 5 años
+                    </option>
+                    <option value="Más de 5 años">Más de 5 años</option>
+                  </select>
+                </div>
+
+                <!-- Relación cara a cara -->
+                <div class="detail-field">
+                  <span class="detail-field-label">Relación cara a cara</span>
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="relacionCaraCara"
+                        value="Si"
+                        data-field="relacionCaraCara"
+                        disabled
+                        checked
+                      />
+
+                      <span>Si</span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="relacionCaraCara"
+                        value="No"
+                        data-field="relacionCaraCara"
+                        disabled
+                      />
+
+                      <span>No</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail-grid">
+                <!-- Resumen del cliente -->
+                <div class="detail-field">
+                  <span class="detail-field-label">Resumen del cliente</span>
+
+                  <textarea
+                    id="resumenCliente"
+                    class="detail-input detail-textarea"
+                    placeholder="Escriba un resumen del cliente..."
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="detail-grid">
+                <!-- Producto acorde al cliente -->
+                <div class="detail-field detail-field-full">
+                  <span class="detail-field-label">
+                    ¿Se ajusta el producto solicitado/ofrecido a las
+                    características y objetivos del cliente?
+                  </span>
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="productoAjustado"
+                        value="Si"
+                        data-field="productoAjustado"
+                        disabled
+                        checked
+                      />
+                      <span>Si</span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="productoAjustado"
+                        value="No"
+                        data-field="productoAjustado"
+                        disabled
+                      />
+                      <span>No</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Activos líquidos -->
+              <div class="detail-grid">
+                <div class="detail-field detail-field-full">
+                  <span class="detail-field-label">
+                    ¿El cliente/prospecto ha indicado que sus activos líquidos,
+                    esto es, efectivo y equivalente de efectivo (inversiones en
+                    el sistema financiero y de valores a nivel nacional e
+                    internacional), es igual o mayor al equivalente en pesos
+                    dominicanos de RD$ 25,000,000.00?
+                  </span>
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="activosLiquidos25M"
+                        value="Si"
+                        data-field="activosLiquidos"
+                      />
+                      <span>Si</span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="activosLiquidos25M"
+                        value="No"
+                        data-field="activosLiquidos"
+                      />
+                      <span>No</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail-grid detail-grid-2">
+                <!-- Tipo de cliente/prospecto -->
+                <div class="detail-field detail-field-full">
+                  <span class="detail-field-label">
+                    El cliente/prospecto es
+                  </span>
+
+                  <select
+                    id="tipoClienteProspecto"
+                    class="detail-input"
+                    disabled
+                  >
+                    <option value="">Selecciona...</option>
+                    <option value="Profesional">Profesional</option>
+                    <option value="No profesional" selected>
+                      No profesional
+                    </option>
+                    <option value="Cliente desea considerado No Profesional">
+                      Cliente desea considerado No Profesional
+                    </option>
+                  </select>
+                </div>
+                <div class="detail-field detail-field-full">
+                  <span class="detail-field-label">
+                    Bancarización cliente
+                  </span>
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="bancarizacion"
+                        value="Si"
+                        data-field="bancarizacion"
+                      />
+                      <span>Si</span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="bancarizacion"
+                        value="No"
+                        data-field="bancarizacion"
+                      />
+                      <span>No</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="button-group-end">
+                <button
+                  id="guardarVinculacionButton"
+                  class="save-button btn-primary"
+                  type="button"
+                >
+                  Guardar información
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ---------------------------------------------------------------------------- -->
+          <!-- AQUI TENEMOS LOS CAMPOS SI ES QUE LA INFORMACION DEL ASESOR YA ESTA GUARDADA -->
+          <!-- ---------------------------------------------------------------------------- -->
+          <div
+            id="vinculacionDetalle"
+            class="detail-group"
+            style="display: none"
+          >
+            <h3>Información de vinculación</h3>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">Tipo de cliente</span>
+                <span id="detalleTipoCliente" class="detail-field-value">
+                </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label">
+                  ¿Solicitud de vinculación mancomunada?
+                </span>
+                <span
+                  id="detalleVinculacionMancomunada"
+                  class="detail-field-value"
+                >
+                </span>
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">
+                  Duración de la relación
+                </span>
+                <span id="detalleDuracionRelacion" class="detail-field-value">
+                </span>
+              </div>
+
+              <div class="detail-field">
+                <span class="detail-field-label"> Relación cara a cara </span>
+                <span id="detalleRelacionCaraCara" class="detail-field-value">
+                </span>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-field detail-field-full">
+                <span class="detail-field-label"> Resumen del cliente </span>
+                <span id="detalleResumenCliente" class="detail-field-value">
+                </span>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-field detail-field-full">
+                <span class="detail-field-label">
+                  ¿Se ajusta el producto solicitado/ofrecido a las
+                  características y objetivos del cliente?
+                </span>
+                <span id="detalleProductoAjustado" class="detail-field-value">
+                </span>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div class="detail-field detail-field-full">
+                <span class="detail-field-label">
+                  ¿El cliente/prospecto ha indicado que sus activos líquidos,
+                  esto es, efectivo y equivalente de efectivo (inversiones en el
+                  sistema financiero y de valores a nivel nacional e
+                  internacional), es igual o mayor al equivalente en pesos
+                  dominicanos de RD$ 25,000,000.00?
+                </span>
+                <span id="detalleActivosLiquidos25M" class="detail-field-value">
+                </span>
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field detail-field-full">
+                <span class="detail-field-label">
+                  El cliente/prospecto es
+                </span>
+                <span
+                  id="detalleTipoClienteProspecto"
+                  class="detail-field-value"
+                >
+                </span>
+              </div>
+              <div class="detail-field detail-field-full">
+                <span class="detail-field-label">
+                  Bancarización cliente
+                </span>
+                <span
+                  id="detalleBancarizacion"
+                  class="detail-field-value"
+                >
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
           <div class="detail-group">
             <h3>Preferencias de vinculación</h3>
 
@@ -131,7 +486,7 @@
             </div>
           </div>
 
-          <div class="detail divider"></div>
+          <div class="detail-divider"></div>
 
           <div class="detail-group">
             <h3>Información personal</h3>

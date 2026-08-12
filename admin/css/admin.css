@@ -156,13 +156,10 @@ TITULO
 ======================================== */
 
 .login-header h1 {
-  color: #ed1c29;
-
+  color: #cf2b27;
   font-size: 27px;
   font-weight: 650;
-
   letter-spacing: -0.4px;
-
   margin-bottom: 9px;
 }
 
@@ -297,7 +294,7 @@ ERROR
 
   border: 1px solid #ffd2d2;
 
-  color: #b42318;
+  color: #cf2b27;
 
   font-size: 13px;
 
@@ -321,7 +318,7 @@ BOTON
 
   border-radius: 9px;
 
-  background: #ed1c29;
+  background: #cf2b27;
 
   color: #ffffff;
 
@@ -1136,6 +1133,8 @@ EMPTY STATE
 
 /* ======================================== Aqui comienza pagina de detalles======================================== */
 
+
+
 /* ========================================
 DETALLES DE SOLICITUD
 ======================================== */
@@ -1328,7 +1327,7 @@ GRID DE INFORMACIÓN
 .detail-field-label {
   color: #999999;
 
-  font-size: 10px;
+  font-size: 12px;
 
   font-weight: 500;
 }
@@ -1339,6 +1338,127 @@ GRID DE INFORMACIÓN
   font-size: 13px;
 
   font-weight: 600;
+}
+
+/* ========================================
+CAMPOS DEL FORMULARIO DEL ASESOR
+======================================== */
+
+input,
+select {
+  padding: 15px;
+
+  border-radius: 14px;
+
+  border: 1px solid #d7d7d7;
+
+  background: white;
+
+  font-size: 15px;
+
+  transition: 0.25s;
+
+  outline: none;
+}
+
+textarea {
+  width: 100%;
+
+  min-height: 130px;
+
+  resize: vertical;
+
+  padding: 16px;
+
+  border: 1px solid #d7d7d7;
+
+  border-radius: 14px;
+
+  font-family: "Inter", sans-serif;
+
+  font-size: 15px;
+
+  transition: 0.25s;
+
+  outline: none;
+}
+
+
+textarea:focus {
+  border-color: #c62828;
+
+  box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.15);
+}
+
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  max-width: 100%;
+
+  box-sizing: border-box;
+}
+
+.radio-group {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-top: 10px;
+}
+
+.radio {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+
+.radio input,
+.radio-option input {
+  accent-color: #c62828;
+
+  width: 18px;
+
+  height: 18px;
+}
+
+.button-group-end {
+  display: flex;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ed1c29, #bf3821);
+
+  color: white;
+
+  border: none;
+
+  border-radius: 14px;
+
+  padding: 16px 40px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+
+  box-shadow: 0 8px 20px rgba(198, 40, 40, 0.25);
 }
 
 /* ========================================
@@ -1461,6 +1581,7 @@ ESTILOS PARA IMPRESIÓN
 ======================================== */
 
 @media print {
+
   .admin-sidebar,
   .admin-header,
   .detail-topbar,

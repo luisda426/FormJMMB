@@ -5,6 +5,17 @@
       "fechaCreacion": "2026-07-24",
       "estadoSolicitud": "Pendiente"
     },
+    "vinculacionClientePersonal": {
+      "activosLiquidos25M": "No",
+      "bancarizacion": "Si",
+      "duracionRelacion": "Cliente Nuevo (Menos de 1 año)",
+      "productoAjustado": "Si",
+      "relacionCaraCara": "Si",
+      "resumenCliente": "asdfasdf",
+      "tipoCliente": "Comercial",
+      "tipoClienteProspecto": "No profesional",
+      "vinculacionMancomunada": "Si"
+    },
     "datosCliente": {
       "nombres": "Luis Daniel",
       "apellidos": "Marquina Nougues",

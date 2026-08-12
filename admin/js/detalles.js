@@ -82,6 +82,28 @@ function obtenerIdSolicitud() {
 CARGAR SOLICITUD
 ======================================== */
 
+// function cargarSolicitud() {
+//   const id = Number(obtenerIdSolicitud());
+
+//   if (!id) {
+//     mostrarNoEncontrado();
+//     return;
+//   }
+
+//   const solicitud = solicitudes.find((item) => item.idSolicitud === id);
+
+//   if (!solicitud) {
+//     mostrarNoEncontrado();
+//     return;
+//   }
+
+//   solicitudActual = solicitud;
+
+//   mostrarSolicitud(solicitud);
+
+//   cargarVinculacionCliente(solicitud);
+// }
+
 async function cargarSolicitud() {
   const id = obtenerIdSolicitud();
 
@@ -109,10 +131,144 @@ async function cargarSolicitud() {
     }
 
     mostrarSolicitud(solicitudActual);
+    cargarVinculacionCliente(solicitudActual);
   } catch (error) {
     console.error("Error cargando la solicitud:", error);
     mostrarNoEncontrado();
   }
+}
+
+async function cargarSolicitudes() {
+  try {
+    const respuesta = await fetch("././datos.json");
+
+    if (!respuesta.ok) {
+      throw new Error("No se pudo cargar datos.json");
+    }
+
+    solicitudes = await respuesta.json();
+
+    cargarSolicitud();
+  } catch (error) {
+    console.error("Error cargando solicitudes:", error);
+
+    mostrarNoEncontrado();
+  }
+}
+
+function cargarVinculacionCliente(solicitud) {
+  const datosVinculacion = solicitud.vinculacionClientePersonal;
+
+  if (datosVinculacion) {
+    mostrarVinculacionComoDetalle(datosVinculacion);
+    return;
+  }
+
+  mostrarVinculacionComoFormulario();
+}
+
+function obtenerDatosVinculacion() {
+  const idSolicitud = Number(obtenerIdSolicitud());
+  return {
+    idSolicitud: idSolicitud,
+    vinculacionClientePersonal: {
+      tipoCliente: document.getElementById("tipoCliente").value,
+      vinculacionMancomunada:
+        document.querySelector('input[name="vinculacionMancomunada"]')?.value ||
+        "",
+      duracionRelacion: document.getElementById("duracionRelacion").value,
+      relacionCaraCara: "Si",
+      resumenCliente: document.getElementById("resumenCliente").value.trim(),
+      productoAjustado: "Si",
+      activosLiquidos25M:
+        document.querySelector('input[name="activosLiquidos25M"]:checked')
+          ?.value || "",
+      tipoClienteProspecto: "No profesional",
+      bancarizacion:
+        document.querySelector('input[name="bancarizacion"]:checked')
+          ?.value || "",
+    },
+  };
+}
+
+function mostrarVinculacionComoFormulario() {
+  const formulario = document.getElementById("vinculacionFormulario");
+
+  const detalle = document.getElementById("vinculacionDetalle");
+
+  if (!formulario || !detalle) {
+    return;
+  }
+
+  formulario.style.display = "block";
+  detalle.style.display = "none";
+}
+
+function mostrarVinculacionComoDetalle(datos) {
+  const formulario = document.getElementById("vinculacionFormulario");
+
+  const detalle = document.getElementById("vinculacionDetalle");
+
+  if (!formulario || !detalle) {
+    return;
+  }
+
+  formulario.style.display = "none";
+  detalle.style.display = "block";
+
+  document.getElementById("detalleTipoCliente").textContent =
+    datos.tipoCliente || "-";
+
+  document.getElementById("detalleVinculacionMancomunada").textContent =
+    datos.vinculacionMancomunada || "-";
+
+  document.getElementById("detalleDuracionRelacion").textContent =
+    datos.duracionRelacion || "-";
+
+  document.getElementById("detalleRelacionCaraCara").textContent =
+    datos.relacionCaraCara || "-";
+
+  document.getElementById("detalleResumenCliente").textContent =
+    datos.resumenCliente || "-";
+
+  document.getElementById("detalleProductoAjustado").textContent =
+    datos.productoAjustado || "-";
+
+  document.getElementById("detalleActivosLiquidos25M").textContent =
+    datos.activosLiquidos25M || "-";
+
+  document.getElementById("detalleTipoClienteProspecto").textContent =
+    datos.tipoClienteProspecto || "-";
+
+  document.getElementById("detalleBancarizacion").textContent =
+    datos.bancarizacion || "-";
+}
+
+const guardarVinculacionButton = document.getElementById(
+  "guardarVinculacionButton",
+);
+
+if (guardarVinculacionButton) {
+  guardarVinculacionButton.addEventListener("click", () => {
+    const datosVinculacion = obtenerDatosVinculacion();
+
+    console.log("Datos de vinculación:", datosVinculacion);
+
+    // =========================================================
+    // SIMULACIÓN DE RESPUESTA DEL API
+    // Este true será reemplazado posteriormente por la respuesta
+    // real del API cuando hagamos el fetch().
+    // =========================================================
+
+    const respuestaAPI = true;
+
+    if (!respuestaAPI) {
+      console.error("No se pudo guardar la información.");
+      return;
+    }
+
+    mostrarVinculacionComoDetalle(datosVinculacion);
+  });
 }
 
 /* ========================================
@@ -583,9 +739,7 @@ function mostrarLista(lista) {
     return "-";
   }
 
-  return lista
-    .map((item) => `• ${item}`)
-    .join("<br>");
+  return lista.map((item) => `• ${item}`).join("<br>");
 }
 
 // ========================================
@@ -593,11 +747,7 @@ function mostrarLista(lista) {
 // ========================================
 
 function formatearMonto(valor) {
-  if (
-    valor === null ||
-    valor === undefined ||
-    valor === ""
-  ) {
+  if (valor === null || valor === undefined || valor === "") {
     return "-";
   }
 
