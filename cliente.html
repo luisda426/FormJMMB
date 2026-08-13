@@ -115,7 +115,7 @@
 
             <!-- ========================================= -->
 
-            <div class="grid-3">
+            <div class="grid-2">
               <div class="form-group">
                 <label>Email Personal</label>
 
@@ -133,7 +133,11 @@
                   data-field="telefonoCasa"
                 />
               </div>
+            </div>
 
+            <!-- ========================================= -->
+
+            <div class="grid-2">
               <div class="form-group">
                 <label>Celular</label>
 
@@ -143,6 +147,17 @@
                   class="telefonoMascara"
                   placeholder="809-000-0000"
                   data-field="celular"
+                />
+              </div>
+              <div class="form-group">
+                <label>Otro telefono</label>
+
+                <input
+                  id="otroTelefono"
+                  type="text"
+                  class="telefonoMascara"
+                  placeholder="809-000-0000"
+                  data-field="otroTelefono"
                 />
               </div>
             </div>
@@ -377,11 +392,22 @@
                     <input
                       type="radio"
                       name="ocupacion"
-                      value="Empresario"
+                      value="Retirado"
                       data-field="ocupacion"
                     />
 
-                    <span>Empresario</span>
+                    <span>Retirado</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="ocupacion"
+                      value="Pensionado"
+                      data-field="ocupacion"
+                    />
+
+                    <span>Pensionado</span>
                   </label>
 
                   <label class="radio">

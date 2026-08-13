@@ -377,6 +377,10 @@ function mostrarSolicitud(solicitud) {
     cliente.celular,
   );
 
+  document.getElementById("detailOtroTelefono").textContent = mostrarValor(
+    cliente.otroTelefono,
+  );
+
   document.getElementById("detailTelefonoCasa").textContent = mostrarValor(
     cliente.telefonoCasa,
   );
@@ -1054,8 +1058,8 @@ const MAPEO_TEXTO = {
   "fecha-oficial": () => obtenerFechaHoy(),
   "fecha-cliente": () => obtenerFechaHoy(),
 
-  "adicional-periodos-1": () => "2025",
-  "adicional-periodos-2": () => "2026",
+  "adicional-periodos-1": () => "2024",
+  "adicional-periodos-2": () => "2025",
   "adicional-total-patrimonio-1": (s) =>
     s.datosCuestionario2?.patrimonioPeriodo1 || "",
   "adicional-total-patrimonio-2": (s) =>
