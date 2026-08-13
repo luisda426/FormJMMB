@@ -195,29 +195,64 @@ function cargarMunicipios() {
   });
 }
 
+// Funcion para cargar los sectores en los select
+function cargarSectores() {
+  const selects = document.querySelectorAll("select[data-sectores]");
+
+  selects.forEach((select) => {
+    const valorActual = select.value;
+
+    select.innerHTML = "";
+
+    const opcionInicial = document.createElement("option");
+
+    opcionInicial.value = "";
+
+    opcionInicial.textContent = "Seleccione...";
+
+    select.appendChild(opcionInicial);
+
+    sectores.forEach((sector) => {
+      const option = document.createElement("option");
+
+      option.value = sector.value;
+
+      option.textContent = sector.nombre;
+
+      select.appendChild(option);
+    });
+
+    // Si ya tenía un valor guardado
+    if (valorActual) {
+      select.value = valorActual;
+    }
+  });
+}
+
 // Funcion para que la cedula o el pasaporte se vean en el mismo formato
 const identificacion = document.getElementById("identificacion");
 
 const radiosTipoDocumento = document.querySelectorAll('input[name="tipo"]');
 
-function actualizarMascaraIdentificacion() {
+function actualizarMascaraIdentificacion(resetValue = true) {
   const seleccionado = document.querySelector('input[name="tipo"]:checked');
 
   if (!identificacion) return;
 
-  // Si todavía no ha seleccionado nada
   if (!seleccionado) {
     identificacion.disabled = true;
     identificacion.value = "";
     identificacion.placeholder = "Seleccione el tipo de identificación";
     identificacion.removeAttribute("maxLength");
     delete identificacion.dataset.tipo;
-
     return;
   }
 
   identificacion.disabled = false;
-  identificacion.value = "";
+
+  if (resetValue) {
+    identificacion.value = "";
+  }
 
   if (seleccionado.value === "Cédula") {
     identificacion.placeholder = "000-0000000-0";
@@ -241,26 +276,27 @@ const radiosTipoDocumentoConyuge = document.querySelectorAll(
   'input[name="tipoDocumentoConyuge"]',
 );
 
-function actualizarMascaraIdentificacionConyuge() {
+function actualizarMascaraIdentificacionConyuge(resetValue = true) {
   const seleccionado = document.querySelector(
     'input[name="tipoDocumentoConyuge"]:checked',
   );
 
   if (!identificacionConyuge) return;
 
-  // Si todavía no ha seleccionado nada
   if (!seleccionado) {
     identificacionConyuge.disabled = true;
     identificacionConyuge.value = "";
     identificacionConyuge.placeholder = "Seleccione el tipo de identificación";
     identificacionConyuge.removeAttribute("maxLength");
     delete identificacionConyuge.dataset.tipo;
-
     return;
   }
 
   identificacionConyuge.disabled = false;
-  identificacionConyuge.value = "";
+
+  if (resetValue) {
+    identificacionConyuge.value = "";
+  }
 
   if (seleccionado.value === "Cédula") {
     identificacionConyuge.placeholder = "000-0000000-0";
@@ -408,16 +444,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
   cargarMunicipios();
 
+  cargarSectores();
+
   cargarDatosFormulario();
+  actualizarInversiones();
 
   actualizarInstitucionesVinculacion();
   actualizarAlertaAFP();
 
   inicializarCamposCondicionales();
 
-  actualizarMascaraIdentificacion();
+  actualizarMascaraIdentificacion(false);
 
-  actualizarMascaraIdentificacionConyuge();
+  actualizarMascaraIdentificacionConyuge(false);
 
   // inicializarFirma();
 });
@@ -532,31 +571,230 @@ function inicializarCamposCondicionales() {
   });
 }
 
+// function actualizarCampoCondicional(radio) {
+//   const targetId = radio.dataset.target;
+
+//   const valorMostrar = radio.dataset.showValue;
+
+//   const target = document.getElementById(targetId);
+
+//   if (!target) return;
+
+//   const grupo = document.querySelectorAll(
+//     `input[type="radio"][data-target="${targetId}"]`,
+//   );
+
+//   const radioSeleccionado = [...grupo].find((radio) => radio.checked);
+
+//   if (radioSeleccionado && radioSeleccionado.value === valorMostrar) {
+//     target.classList.remove("hidden");
+//   } else {
+//     target.classList.add("hidden");
+
+//     limpiarCampos(target);
+//   }
+// }
+
 function actualizarCampoCondicional(radio) {
-  const targetId = radio.dataset.target;
-
+  const targetIds = radio.dataset.target.split(/\s+/).filter(Boolean);
   const valorMostrar = radio.dataset.showValue;
-
-  const target = document.getElementById(targetId);
-
-  if (!target) return;
+  const groupName = radio.name;
 
   const grupo = document.querySelectorAll(
-    `input[type="radio"][data-target="${targetId}"]`,
+    `input[type="radio"][name="${groupName}"]`,
   );
 
-  const radioSeleccionado = [...grupo].find((radio) => radio.checked);
+  const radioSeleccionado = [...grupo].find((r) => r.checked);
+  const mostrar = radioSeleccionado && radioSeleccionado.value === valorMostrar;
 
-  if (radioSeleccionado && radioSeleccionado.value === valorMostrar) {
-    target.classList.remove("hidden");
-  } else {
-    target.classList.add("hidden");
+  targetIds.forEach((targetId) => {
+    const target = document.getElementById(targetId);
+    if (!target) return;
 
-    limpiarCampos(target);
-  }
+    if (mostrar) {
+      target.classList.remove("hidden");
+    } else {
+      target.classList.add("hidden");
+      limpiarCampos(target);
+    }
+  });
 }
 
-//Funcion que dependiendo del radio, ceckbox o select tenga un input dependiente, lo abre
+//////////////////////////////////////////////////////////////////
+//Funcion para que aparezcan las inversiones dependiendo de los productos solicitados
+
+function actualizarInversiones() {
+  const productos = document.querySelectorAll(
+    'input[data-field="productosSolicitados"]',
+  );
+
+  const divInversionesPuesto = document.getElementById("divInversionesPuesto");
+
+  const divInversionesSafi = document.getElementById("divInversionesSafi");
+
+  const divSolicitud = document.getElementById("divSolicitud");
+
+  const divSolicitudBanco = document.getElementById("divSolicitudBanco");
+
+  const divSolicitudPrestamo = document.getElementById("divSolicitudPrestamo");
+
+  const divSolicitudCertificado = document.getElementById(
+    "divSolicitudCertificado",
+  );
+
+  const divBeneficiarioPrestamo = document.getElementById(
+    "divBeneficiarioPrestamo",
+  );
+
+  if (
+    !divInversionesPuesto ||
+    !divInversionesSafi ||
+    !divSolicitud ||
+    !divSolicitudBanco ||
+    !divSolicitudPrestamo ||
+    !divSolicitudCertificado ||
+    !divBeneficiarioPrestamo
+  ) {
+    return;
+  }
+
+  // ==========================================================
+  // PRODUCTOS
+  // ==========================================================
+
+  const productosPuestoBolsa = [
+    "Sure Investor",
+    "Intermediación de títulos valor",
+    "Super Investor",
+  ];
+
+  const productosSafi = [
+    "Fondo mutuo de mercado de dinero",
+    "Fondo mutuo de mercado de dinero en dólares",
+    "Fondo de inversión cerrado inmobiliario II",
+  ];
+
+  const productosBanco = [
+    "Cuenta de ahorros Bonus Saver",
+    "Cuenta corriente EzAccess",
+    "Cuenta Nómina",
+  ];
+
+  const productosPrestamo = [
+    "Préstamo personal",
+    "Préstamo de vehículo",
+    "Préstamo hipotecario",
+    "Préstamo nómina",
+    "Préstamo consolidación de deudas",
+  ];
+
+  const productosCertificado = ["Certificado de depósito"];
+
+  // ==========================================================
+  // VERIFICAR SELECCIONES
+  // ==========================================================
+
+  const seleccionadoPuesto = [...productos].some(
+    (checkbox) =>
+      checkbox.checked && productosPuestoBolsa.includes(checkbox.value),
+  );
+
+  const seleccionadoSafi = [...productos].some(
+    (checkbox) => checkbox.checked && productosSafi.includes(checkbox.value),
+  );
+
+  const seleccionadoBanco = [...productos].some(
+    (checkbox) => checkbox.checked && productosBanco.includes(checkbox.value),
+  );
+
+  const seleccionadoPrestamo = [...productos].some(
+    (checkbox) =>
+      checkbox.checked && productosPrestamo.includes(checkbox.value),
+  );
+
+  const seleccionadoCertificado = [...productos].some(
+    (checkbox) =>
+      checkbox.checked && productosCertificado.includes(checkbox.value),
+  );
+
+  // ==========================================================
+  // INVERSIONES PUESTO
+  // ==========================================================
+
+  // divInversionesPuesto.classList.toggle("hidden", !seleccionadoPuesto);
+  if (seleccionadoPuesto) {
+    divInversionesPuesto.classList.remove("hidden");
+  } else {
+    divInversionesPuesto.classList.add("hidden");
+    limpiarCampos(divInversionesPuesto);
+  }
+
+  // ==========================================================
+  // INVERSIONES SAFI
+  // ==========================================================
+
+  // divInversionesSafi.classList.toggle("hidden", !seleccionadoSafi);
+  if (seleccionadoSafi) {
+    divInversionesSafi.classList.remove("hidden");
+  } else {
+    divInversionesSafi.classList.add("hidden");
+    limpiarCampos(divInversionesSafi);
+  }
+
+  // ==========================================================
+  // SOLICITUD BANCO
+  // ==========================================================
+
+  if (seleccionadoBanco) {
+    divSolicitudBanco.classList.remove("hidden");
+  } else {
+    divSolicitudBanco.classList.add("hidden");
+    limpiarCampos(divSolicitudBanco);
+  }
+
+  // ==========================================================
+  // SOLICITUD PRÉSTAMO
+  // ==========================================================
+
+  if (seleccionadoPrestamo) {
+    divSolicitudPrestamo.classList.remove("hidden");
+    divBeneficiarioPrestamo.classList.remove("hidden");
+  } else {
+    divSolicitudPrestamo.classList.add("hidden");
+    divBeneficiarioPrestamo.classList.add("hidden");
+    limpiarCampos(divBeneficiarioPrestamo);
+    limpiarCampos(divSolicitudPrestamo);
+  }
+
+  // ==========================================================
+  // SOLICITUD CERTIFICADO
+  // ==========================================================
+
+  if (seleccionadoCertificado) {
+    divSolicitudCertificado.classList.remove("hidden");
+  } else {
+    divSolicitudCertificado.classList.add("hidden");
+    limpiarCampos(divSolicitudCertificado);
+  }
+  // ==========================================================
+  // CONTENEDOR GENERAL DE SOLICITUD
+  // ==========================================================
+
+  const necesitaSolicitud =
+    seleccionadoBanco || seleccionadoPrestamo || seleccionadoCertificado;
+
+  divSolicitud.classList.toggle("hidden", !necesitaSolicitud);
+}
+
+document
+  .querySelectorAll('input[data-field="productosSolicitados"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener("change", actualizarInversiones);
+  });
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+//Funcion que dependiendo del radio, checkbox o select tenga un input dependiente, lo abre
 document.querySelectorAll("select[data-target]").forEach((select) => {
   select.addEventListener("change", actualizarSelectsCondicionales);
 });

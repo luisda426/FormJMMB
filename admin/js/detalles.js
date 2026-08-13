@@ -266,7 +266,7 @@ if (guardarVinculacionButton) {
       return;
     }
 
-    mostrarVinculacionComoDetalle(datosVinculacion);
+    // mostrarVinculacionComoDetalle(datosVinculacion);
   });
 }
 
@@ -339,6 +339,10 @@ function mostrarSolicitud(solicitud) {
 
   document.getElementById("detailIdentificacion").textContent = mostrarValor(
     cliente.identificacion,
+  );
+
+  document.getElementById("detailIdExtranjero").textContent = mostrarValor(
+    cliente.idExtranjero,
   );
 
   document.getElementById("detailFechaNacimiento").textContent = formatearFecha(

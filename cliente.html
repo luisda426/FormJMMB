@@ -20,7 +20,7 @@
         </div>
         <div class="progress-wrapper">
           <div class="progress-header">
-            <span class="progress-step"> Paso 1 de 9 </span>
+            <span class="progress-step"> Paso 0 de 9 </span>
 
             <span class="progress-percent"> 0% </span>
           </div>
@@ -73,7 +73,7 @@
                       type="radio"
                       name="tipo"
                       data-field="tipoDocumento"
-                      data-target="divResidenteRD"
+                      data-target="divResidenteRD divIdExtranjero"
                       data-show-value="Pasaporte"
                     />
                     <span>Cédula</span>
@@ -85,7 +85,7 @@
                       type="radio"
                       name="tipo"
                       data-field="tipoDocumento"
-                      data-target="divResidenteRD"
+                      data-target="divResidenteRD divIdExtranjero"
                       data-show-value="Pasaporte"
                     />
                     <span>Pasaporte</span>
@@ -105,11 +105,15 @@
                   disabled
                 />
               </div>
+              <div id="divIdExtranjero" class="form-group hidden">
+                <label>ID país de Origen</label>
 
-              <div class="form-group">
-                <label>Fecha de nacimiento</label>
-
-                <input type="date" data-field="fechaNacimiento" />
+                <input
+                  id="idExtranjero"
+                  type="text"
+                  placeholder="Ingrese el ID"
+                  data-field="idExtranjero"
+                />
               </div>
             </div>
 
@@ -117,11 +121,20 @@
 
             <div class="grid-2">
               <div class="form-group">
+                <label>Fecha de nacimiento</label>
+
+                <input type="date" data-field="fechaNacimiento" />
+              </div>
+              <div class="form-group">
                 <label>Email Personal</label>
 
                 <input id="email" type="email" data-field="email" />
               </div>
+            </div>
 
+            <!-- ========================================= -->
+
+            <div class="grid-3">
               <div class="form-group">
                 <label>Teléfono de Casa</label>
 
@@ -133,11 +146,6 @@
                   data-field="telefonoCasa"
                 />
               </div>
-            </div>
-
-            <!-- ========================================= -->
-
-            <div class="grid-2">
               <div class="form-group">
                 <label>Celular</label>
 
@@ -216,10 +224,7 @@
               <div class="form-group">
                 <label>Sector</label>
 
-                <select id="sector" data-field="sector">
-                  <option>Seleccione...</option>
-                  <option value="pruebasector">Prueba</option>
-                </select>
+                <select id="sector" data-field="sector" data-sectores></select>
               </div>
 
               <div class="form-group">
@@ -709,5 +714,6 @@
 
   <script src="app/paises.js"></script>
   <script src="app/municipios.js"></script>
+  <script src="app/sectores.js"></script>
   <script src="app/app.js"></script>
 </html>

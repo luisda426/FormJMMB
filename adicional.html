@@ -34,50 +34,6 @@
         <form id="formRegistro" data-seccion="datosAdicionales">
           <section class="card">
             <h2>Información Complementaria</h2>
-            <div class="grid-2">
-              <!-- Monto de inversión -->
-
-              <div class="form-group">
-                <label for="montoInversion">
-                  Monto de la inversión inicial
-                </label>
-
-                <input
-                  type="text"
-                  id="montoInversion"
-                  data-field="montoInversion"
-                  placeholder="Ingrese el monto"
-                />
-              </div>
-
-              <!-- Origen / Destino -->
-
-              <div class="form-group">
-                <label for="origenDestinoFondos">
-                  Origen / Destino de los Fondos (Incluye préstamos)
-                </label>
-
-                <select
-                  id="origenDestinoFondos"
-                  data-field="origenDestinoFondos"
-                >
-                  <option value="" disabled selected>Seleccione...</option>
-                  <option value="Salario/Ingresos">Salario / Ingresos</option>
-                  <option value="Ahorro">Ahorro</option>
-                  <option value="Fondos/Prestamos tomados">
-                    Fondos / Préstamos tomados
-                  </option>
-                  <option value="Regalo">Regalo</option>
-                  <option value="Pension/Asistencia social">
-                    Pensión / Asistencia social
-                  </option>
-                  <option value="Herencia">Herencia</option>
-                  <option value="Donaciones beneficas">
-                    Donaciones benéficas
-                  </option>
-                </select>
-              </div>
-            </div>
 
             <!-- Propósito -->
             <label for="propositoRelacion"> Producto(s) solicitado(s) </label>
@@ -160,8 +116,6 @@
                       type="checkbox"
                       value="Préstamo nómina"
                       data-field="productosSolicitados"
-                      data-target="divBeneficiarioPrestamo"
-                      data-show-value="Préstamo nómina"
                     />
                     <span class="checkbox-custom"></span>
                     <span class="checkbox-title"> Préstamo nómina </span>
@@ -261,6 +215,244 @@
                 </div>
               </div>
             </div>
+
+            <!-- Aqui tenemos los apartados de cada uno de los productos -->
+
+            <!-- ========================================= -->
+            <!-- INVERSIONES PUESTO -->
+            <!-- ========================================= -->
+
+            <div id="divInversionesPuesto" class="producto-card grid-1 hidden">
+              <h4>Inversiones en Puesto</h4>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="montoEstimadoInversionPuestoUSD">
+                    Monto estimado inversion puesto en USD
+                  </label>
+
+                  <input
+                    type="number"
+                    id="montoEstimadoInversionPuestoUSD"
+                    data-field="montoEstimadoInversionPuestoUSD"
+                    placeholder="Indique el monto..."
+                  />
+                  <small class="exchange-rate">
+                    Tasa de cambio referencial: <strong>1 USD = 61 RD$</strong>
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="origenFondosUSD"> Origen de fondos en USD </label>
+
+                  <select id="origenFondosUSD" data-field="origenFondosUSD">
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="Salario/Ingresos">Salario / Ingresos</option>
+                    <option value="Ahorro">Ahorro</option>
+                    <option value="Fondos/Prestamos tomados">
+                      Fondos / Préstamos tomados
+                    </option>
+                    <option value="Regalo">Regalo</option>
+                    <option value="Pension/Asistencia social">
+                      Pensión / Asistencia social
+                    </option>
+                    <option value="Herencia">Herencia</option>
+                    <option value="Donaciones beneficas">
+                      Donaciones benéficas
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="montoEstimadoInversionPuestoRD">
+                    Monto estimado inversion puesto en RD$
+                  </label>
+
+                  <input
+                    type="number"
+                    id="montoEstimadoInversionPuestoRD"
+                    data-field="montoEstimadoInversionPuestoRD"
+                    placeholder="Indique el monto..."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="origenFondosPuestoRD">
+                    Origen de fondos en RD$
+                  </label>
+
+                  <select
+                    id="origenFondosPuestoRD"
+                    data-field="origenFondosPuestoRD"
+                  >
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="Salario/Ingresos">Salario / Ingresos</option>
+                    <option value="Ahorro">Ahorro</option>
+                    <option value="Fondos/Prestamos tomados">
+                      Fondos / Préstamos tomados
+                    </option>
+                    <option value="Regalo">Regalo</option>
+                    <option value="Pension/Asistencia social">
+                      Pensión / Asistencia social
+                    </option>
+                    <option value="Herencia">Herencia</option>
+                    <option value="Donaciones beneficas">
+                      Donaciones benéficas
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- INVERSIONES SAFI -->
+            <!-- ========================================= -->
+
+            <div id="divInversionesSafi" class="producto-card grid-1 hidden">
+              <h4>Inversiones en SAFI</h4>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="montoEstimadoInversionSafiUSD">
+                    Monto estimado inversion puesto en USD
+                  </label>
+
+                  <input
+                    type="number"
+                    id="montoEstimadoInversionSafiUSD"
+                    data-field="montoEstimadoInversionSafiUSD"
+                    placeholder="Indique el monto..."
+                  />
+                  <small class="exchange-rate">
+                    Tasa de cambio referencial: <strong>1 USD = 61 RD$</strong>
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="origenFondosSafiUSD">
+                    Origen de fondos en USD
+                  </label>
+
+                  <select
+                    id="origenFondosSafiUSD"
+                    data-field="origenFondosSafiUSD"
+                  >
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="Salario/Ingresos">Salario / Ingresos</option>
+                    <option value="Ahorro">Ahorro</option>
+                    <option value="Fondos/Prestamos tomados">
+                      Fondos / Préstamos tomados
+                    </option>
+                    <option value="Regalo">Regalo</option>
+                    <option value="Pension/Asistencia social">
+                      Pensión / Asistencia social
+                    </option>
+                    <option value="Herencia">Herencia</option>
+                    <option value="Donaciones beneficas">
+                      Donaciones benéficas
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="montoEstimadoInversionSafiRD">
+                    Monto estimado inversion puesto en RD$
+                  </label>
+
+                  <input
+                    type="number"
+                    id="montoEstimadoInversionSafiRD"
+                    data-field="montoEstimadoInversionSafiRD"
+                    placeholder="Indique el monto..."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="origenFondosSafiRD">
+                    Origen de fondos en RD$
+                  </label>
+
+                  <select
+                    id="origenFondosSafiRD"
+                    data-field="origenFondosSafiRD"
+                  >
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="Salario/Ingresos">Salario / Ingresos</option>
+                    <option value="Ahorro">Ahorro</option>
+                    <option value="Fondos/Prestamos tomados">
+                      Fondos / Préstamos tomados
+                    </option>
+                    <option value="Regalo">Regalo</option>
+                    <option value="Pension/Asistencia social">
+                      Pensión / Asistencia social
+                    </option>
+                    <option value="Herencia">Herencia</option>
+                    <option value="Donaciones beneficas">
+                      Donaciones benéficas
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- SOLICITUD BANCO -->
+            <!-- ========================================= -->
+
+            <div id="divSolicitud" class="producto-card grid-1 hidden">
+              <h4>Solicitud en banco</h4>
+              <div class="grid-3">
+                <div class="form-group hidden" id="divSolicitudBanco">
+                  <label> Cuenta en: </label>
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="cuentaBancoMoneda"
+                        value="$RD"
+                        data-field="cuentaBancoMoneda"
+                      />
+
+                      <span>RD$</span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="cuentaBancoMoneda"
+                        value="USD"
+                        data-field="cuentaBancoMoneda"
+                      />
+
+                      <span>USD</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group hidden" id="divSolicitudPrestamo">
+                  <label for="montoPrestamo"> Monto a solicitar (Préstamo)</label>
+
+                  <input
+                    type="number"
+                    id="montoPrestamo"
+                    data-field="montoPrestamo"
+                    placeholder="Indique el monto..."
+                  />
+                </div>
+                <div class="form-group hidden" id="divSolicitudCertificado">
+                  <label for="montoCertificado"> Monto estimado (Certificado)</label>
+
+                  <input
+                    type="number"
+                    id="montoCertificado"
+                    data-field="montoCertificado"
+                    placeholder="Indique el monto..."
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Aqui tenemos los campos extra si selecciona prestamos -->
 
             <div class="grid-1">
               <div id="divBeneficiarioPrestamo" class="grid-1 hidden">
