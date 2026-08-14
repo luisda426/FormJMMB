@@ -627,12 +627,76 @@ function mostrarSolicitud(solicitud) {
   // INFORMACIÓN DE INVERSIÓN
   // ========================================
 
-  // document.getElementById("detailMontoInversion").textContent = formatearMonto(
-  //   adicionales.montoInversion,
-  // );
+  document.getElementById("detailProductosSolicitados").innerHTML =
+    mostrarLista(adicionales.productosSolicitados);
 
-  // document.getElementById("detailOrigenDestinoFondos").textContent =
-  //   mostrarValor(adicionales.origenDestinoFondos);
+  //////////////////////////////////////////
+
+  // INVERSIONES PUESTO
+
+  document.getElementById("detailMontoEstimadoInversionPuestoUSD").textContent =
+    mostrarValor(adicionales.montoEstimadoInversionPuestoUSD);
+
+  document.getElementById("detailOrigenFondosPuestoUSD").textContent =
+    mostrarValor(adicionales.origenFondosPuestoUSD);
+
+  document.getElementById("detailOtroOrigenFondosPuestoUSD").textContent =
+    mostrarValor(adicionales.otroOrigenFondosPuestoUSD);
+
+  document.getElementById("detailMontoEstimadoInversionPuestoRD").textContent =
+    mostrarValor(adicionales.montoEstimadoInversionPuestoRD);
+
+  document.getElementById("detailOrigenFondosPuestoRD").textContent =
+    mostrarValor(adicionales.origenFondosPuestoRD);
+
+  document.getElementById("detailOtroOrigenFondosPuestoRD").textContent =
+    mostrarValor(adicionales.otroOrigenFondosPuestoRD);
+
+  // INVERSIONES SAFI
+
+  document.getElementById("detailMontoEstimadoInversionSafiUSD").textContent =
+    mostrarValor(adicionales.montoEstimadoInversionSafiUSD);
+
+  document.getElementById("detailOrigenFondosSafiUSD").textContent =
+    mostrarValor(adicionales.origenFondosSafiUSD);
+
+  document.getElementById("detailOtroOrigenFondosSafiUSD").textContent =
+    mostrarValor(adicionales.otroOrigenFondosSafiUSD);
+
+  document.getElementById("detailMontoEstimadoInversionSafiRD").textContent =
+    mostrarValor(adicionales.montoEstimadoInversionSafiRD);
+
+  document.getElementById("detailOrigenFondosSafiRD").textContent =
+    mostrarValor(adicionales.origenFondosSafiRD);
+
+  document.getElementById("detailOtroOrigenFondosSafiRD").textContent =
+    mostrarValor(adicionales.otroOrigenFondosSafiRD);
+
+  document.getElementById("detailNumeroClienteUCS").textContent = mostrarValor(
+    adicionales.numeroClienteUCS,
+  );
+
+  // BANCO
+
+  document.getElementById("detailCuentaBancoMoneda").textContent = mostrarValor(
+    adicionales.cuentaBancoMoneda,
+  );
+
+  document.getElementById("detailMontoPrestamo").textContent = mostrarValor(
+    adicionales.montoPrestamo,
+  );
+
+  document.getElementById("detailMontoCertificado").textContent = mostrarValor(
+    adicionales.montoCertificado,
+  );
+
+  /////////////////////////////////////////////
+
+  document.getElementById("detailBeneficiariosTransaccion").textContent =
+    mostrarSiNo(adicionales.beneficiariosTransaccion);
+
+  document.getElementById("detailIdentificacionBeneficiarioFinal").textContent =
+    mostrarValor(adicionales.identificacionBeneficiarioFinal);
 
   document.getElementById("detailCantidadOperaciones").textContent =
     mostrarValor(adicionales.cantidadOperaciones);
@@ -644,15 +708,6 @@ function mostrarSolicitud(solicitud) {
     adicionales.tipoTransferencia,
   );
 
-  document.getElementById("detailProductosSolicitados").innerHTML =
-    mostrarLista(adicionales.productosSolicitados);
-
-  document.getElementById("detailBeneficiariosTransaccion").textContent =
-    mostrarValor(adicionales.beneficiariosTransaccion);
-
-  document.getElementById("detailIdentificacionBeneficiarioFinal").textContent =
-    mostrarValor(adicionales.identificacionBeneficiarioFinal);
-
   document.getElementById("detailCuentaAhorroBasica").textContent = mostrarSiNo(
     adicionales.cuentaAhorroBasica,
   );
@@ -662,7 +717,10 @@ function mostrarSolicitud(solicitud) {
   );
 
   document.getElementById("detailPersonasRelacionadas").textContent =
-    mostrarValor(adicionales.personasRelacionadas);
+    mostrarSiNo(adicionales.personasRelacionadas);
+
+  document.getElementById("detailCualesPersonasRelacionadas").textContent =
+    mostrarSiNo(adicionales.cualesPersonasRelacionadas);
 
   document.getElementById("detailVinculadoJMMB").textContent = mostrarValor(
     adicionales.vinculadoJMMB,
