@@ -727,6 +727,7 @@ function actualizarInversiones() {
   } else {
     divInversionesPuesto.classList.add("hidden");
     limpiarCampos(divInversionesPuesto);
+    limpiarInversionesPuesto();
   }
 
   // ==========================================================
@@ -739,6 +740,7 @@ function actualizarInversiones() {
   } else {
     divInversionesSafi.classList.add("hidden");
     limpiarCampos(divInversionesSafi);
+    limpiarInversionesSafi();
   }
 
   // ==========================================================
@@ -791,6 +793,48 @@ document
   .forEach((checkbox) => {
     checkbox.addEventListener("change", actualizarInversiones);
   });
+
+//Funcion para limpiar los DIV dentro del DIV de inversiones SAFI
+function limpiarInversionesSafi() {
+  limpiarCampos(divInversionesSafi);
+
+  const divOtroOrigenFondosSafiUSD = document.getElementById(
+    "divOtroOrigenFondosSafiUSD",
+  );
+
+  const divOtroOrigenFondosSafiRD = document.getElementById(
+    "divOtroOrigenFondosSafiRD",
+  );
+
+  if (divOtroOrigenFondosSafiUSD) {
+    divOtroOrigenFondosSafiUSD.classList.add("hidden");
+  }
+
+  if (divOtroOrigenFondosSafiRD) {
+    divOtroOrigenFondosSafiRD.classList.add("hidden");
+  }
+}
+
+//Funcion para limpiar los DIV dentro del DIV de inversiones PUESTO
+function limpiarInversionesPuesto() {
+  limpiarCampos(divInversionesPuesto);
+
+  const divOtroOrigenFondosPuestoUSD = document.getElementById(
+    "divOtroOrigenFondosPuestoUSD",
+  );
+
+  const divOtroOrigenFondosPuestoRD = document.getElementById(
+    "divOtroOrigenFondosPuestoRD",
+  );
+
+  if (divOtroOrigenFondosPuestoUSD) {
+    divOtroOrigenFondosPuestoUSD.classList.add("hidden");
+  }
+
+  if (divOtroOrigenFondosPuestoRD) {
+    divOtroOrigenFondosPuestoRD.classList.add("hidden");
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 

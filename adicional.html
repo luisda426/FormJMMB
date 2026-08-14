@@ -224,6 +224,7 @@
 
             <div id="divInversionesPuesto" class="producto-card grid-1 hidden">
               <h4>Inversiones en Puesto</h4>
+              <!-- EN DOLARES -->
               <div class="grid-2">
                 <div class="form-group">
                   <label for="montoEstimadoInversionPuestoUSD">
@@ -242,9 +243,16 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="origenFondosUSD"> Origen de fondos en USD </label>
+                  <label for="origenFondosPuestoUSD">
+                    Origen de fondos en USD
+                  </label>
 
-                  <select id="origenFondosUSD" data-field="origenFondosUSD">
+                  <select
+                    id="origenFondosPuestoUSD"
+                    data-field="origenFondosPuestoUSD"
+                    data-target="divOtroOrigenFondosPuestoUSD"
+                    data-show-value="Otro"
+                  >
                     <option value="" disabled selected>Seleccione...</option>
                     <option value="Salario/Ingresos">Salario / Ingresos</option>
                     <option value="Ahorro">Ahorro</option>
@@ -259,9 +267,25 @@
                     <option value="Donaciones beneficas">
                       Donaciones benéficas
                     </option>
+                    <option value="Otro">Otro</option>
                   </select>
+                  <div
+                    id="divOtroOrigenFondosPuestoUSD"
+                    class="form-group dependent-field hidden"
+                  >
+                    <label for="otroOrigenFondosPuestoUSD">
+                      Otro origen de los fondos
+                    </label>
+
+                    <input
+                      type="text"
+                      id="otroOrigenFondosPuestoUSD"
+                      data-field="otroOrigenFondosPuestoUSD"
+                    />
+                  </div>
                 </div>
               </div>
+              <!-- EN PESOS DOMINICANOS -->
               <div class="grid-2">
                 <div class="form-group">
                   <label for="montoEstimadoInversionPuestoRD">
@@ -284,6 +308,8 @@
                   <select
                     id="origenFondosPuestoRD"
                     data-field="origenFondosPuestoRD"
+                    data-target="divOtroOrigenFondosPuestoRD"
+                    data-show-value="Otro"
                   >
                     <option value="" disabled selected>Seleccione...</option>
                     <option value="Salario/Ingresos">Salario / Ingresos</option>
@@ -299,7 +325,22 @@
                     <option value="Donaciones beneficas">
                       Donaciones benéficas
                     </option>
+                    <option value="Otro">Otro</option>
                   </select>
+                  <div
+                    id="divOtroOrigenFondosPuestoRD"
+                    class="form-group dependent-field hidden"
+                  >
+                    <label for="otroOrigenFondosPuestoRD">
+                      Otro origen de los fondos
+                    </label>
+
+                    <input
+                      type="text"
+                      id="otroOrigenFondosPuestoRD"
+                      data-field="otroOrigenFondosPuestoRD"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -311,9 +352,10 @@
             <div id="divInversionesSafi" class="producto-card grid-1 hidden">
               <h4>Inversiones en SAFI</h4>
               <div class="grid-2">
+                <!-- EN DOLARES -->
                 <div class="form-group">
                   <label for="montoEstimadoInversionSafiUSD">
-                    Monto estimado inversion puesto en USD
+                    Monto estimado inversion SAFI en USD
                   </label>
 
                   <input
@@ -329,12 +371,14 @@
 
                 <div class="form-group">
                   <label for="origenFondosSafiUSD">
-                    Origen de fondos en USD
+                    Origen de fondos para SAFI en USD
                   </label>
 
                   <select
                     id="origenFondosSafiUSD"
                     data-field="origenFondosSafiUSD"
+                    data-target="divOtroOrigenFondosSafiUSD"
+                    data-show-value="Otro"
                   >
                     <option value="" disabled selected>Seleccione...</option>
                     <option value="Salario/Ingresos">Salario / Ingresos</option>
@@ -350,13 +394,29 @@
                     <option value="Donaciones beneficas">
                       Donaciones benéficas
                     </option>
+                    <option value="Otro">Otro</option>
                   </select>
+                  <div
+                    id="divOtroOrigenFondosSafiUSD"
+                    class="form-group dependent-field hidden"
+                  >
+                    <label for="otroOrigenFondosSafiUSD">
+                      Otro origen de los fondos
+                    </label>
+
+                    <input
+                      type="text"
+                      id="otroOrigenFondosSafiUSD"
+                      data-field="otroOrigenFondosSafiUSD"
+                    />
+                  </div>
                 </div>
               </div>
+              <!-- EN PESOS DOMINICANOS -->
               <div class="grid-2">
                 <div class="form-group">
                   <label for="montoEstimadoInversionSafiRD">
-                    Monto estimado inversion puesto en RD$
+                    Monto estimado inversion SAFI en RD$
                   </label>
 
                   <input
@@ -369,12 +429,14 @@
 
                 <div class="form-group">
                   <label for="origenFondosSafiRD">
-                    Origen de fondos en RD$
+                    Origen de fondos para SAFI en RD$
                   </label>
 
                   <select
                     id="origenFondosSafiRD"
                     data-field="origenFondosSafiRD"
+                    data-target="divOtroOrigenFondosSafiRD"
+                    data-show-value="Otro"
                   >
                     <option value="" disabled selected>Seleccione...</option>
                     <option value="Salario/Ingresos">Salario / Ingresos</option>
@@ -390,7 +452,36 @@
                     <option value="Donaciones beneficas">
                       Donaciones benéficas
                     </option>
+                    <option value="Otro">Otro</option>
                   </select>
+                  <div
+                    id="divOtroOrigenFondosSafiRD"
+                    class="form-group dependent-field hidden"
+                  >
+                    <label for="otroOrigenFondosSafiRD">
+                      Otro origen de los fondos
+                    </label>
+
+                    <input
+                      type="text"
+                      id="otroOrigenFondosSafiRD"
+                      data-field="otroOrigenFondosSafiRD"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="numeroClienteUCS">
+                    Número de cliente en UCS SAFI
+                  </label>
+
+                  <input
+                    type="text"
+                    id="numeroClienteUCS"
+                    data-field="numeroClienteUCS"
+                    placeholder="Indique el número..."
+                  />
                 </div>
               </div>
             </div>
@@ -430,7 +521,9 @@
                   </div>
                 </div>
                 <div class="form-group hidden" id="divSolicitudPrestamo">
-                  <label for="montoPrestamo"> Monto a solicitar (Préstamo)</label>
+                  <label for="montoPrestamo">
+                    Monto a solicitar (Préstamo)</label
+                  >
 
                   <input
                     type="number"
@@ -440,7 +533,9 @@
                   />
                 </div>
                 <div class="form-group hidden" id="divSolicitudCertificado">
-                  <label for="montoCertificado"> Monto estimado (Certificado)</label>
+                  <label for="montoCertificado">
+                    Monto estimado (Certificado)</label
+                  >
 
                   <input
                     type="number"
