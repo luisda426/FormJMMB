@@ -1133,8 +1133,6 @@ EMPTY STATE
 
 /* ======================================== Aqui comienza pagina de detalles======================================== */
 
-
-
 /* ========================================
 DETALLES DE SOLICITUD
 ======================================== */
@@ -1273,8 +1271,15 @@ GRUPO DE INFORMACIÓN
 
   color: #bf3821;
 
-  font-size: 14px;
+  font-size: 16px;
 
+  font-weight: 650;
+}
+
+.detail-group h4 {
+  margin: 20px 0 5px;
+  color: #999999;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -1383,13 +1388,11 @@ textarea {
   outline: none;
 }
 
-
 textarea:focus {
   border-color: #c62828;
 
   box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.15);
 }
-
 
 input,
 select,
@@ -1422,7 +1425,6 @@ textarea {
 
   cursor: pointer;
 }
-
 
 .radio input,
 .radio-option input {
@@ -1581,7 +1583,6 @@ ESTILOS PARA IMPRESIÓN
 ======================================== */
 
 @media print {
-
   .admin-sidebar,
   .admin-header,
   .detail-topbar,

@@ -627,12 +627,12 @@ function mostrarSolicitud(solicitud) {
   // INFORMACIÓN DE INVERSIÓN
   // ========================================
 
-  document.getElementById("detailMontoInversion").textContent = formatearMonto(
-    adicionales.montoInversion,
-  );
+  // document.getElementById("detailMontoInversion").textContent = formatearMonto(
+  //   adicionales.montoInversion,
+  // );
 
-  document.getElementById("detailOrigenDestinoFondos").textContent =
-    mostrarValor(adicionales.origenDestinoFondos);
+  // document.getElementById("detailOrigenDestinoFondos").textContent =
+  //   mostrarValor(adicionales.origenDestinoFondos);
 
   document.getElementById("detailCantidadOperaciones").textContent =
     mostrarValor(adicionales.cantidadOperaciones);
