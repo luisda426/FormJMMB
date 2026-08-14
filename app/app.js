@@ -381,15 +381,15 @@ if (btnSiguiente) {
     const seccion = formulario.dataset.seccion;
 
     //Esto es para cuando subamos los documentos
-    // if (seccion === "datosDocumentos") {
-    //   try {
-    //     await subirDocumentos();
-    //   } catch (error) {
-    //     console.error("Error subiendo documentos:", error);
-    //     alert("No se pudieron guardar los documentos. Intente nuevamente.");
-    //     return;
-    //   }
-    // }
+    if (seccion === "datosDocumentos") {
+      try {
+        await subirDocumentos();
+      } catch (error) {
+        console.error("Error subiendo documentos:", error);
+        alert("No se pudieron guardar los documentos. Intente nuevamente.");
+        return;
+      }
+    }
     window.location.href = paginas[pasoActual + 1];
   });
 }
@@ -971,9 +971,9 @@ if (btn) {
       guardarDatos();
 
       // Luego enviamos TODO el registro al API
-      // const resultado = await enviarSolicitud();
+      const resultado = await enviarSolicitud();
 
-      // console.log("Solicitud creada correctamente:", resultado);
+      console.log("Solicitud creada correctamente:", resultado);
 
       // Solo cambiamos de página si todo salió bien
       window.location.href = "fin.html";

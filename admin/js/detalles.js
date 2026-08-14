@@ -288,6 +288,7 @@ function mostrarSolicitud(solicitud) {
   const cuestionario = solicitud.datosCuestionario || {};
   const financiera = solicitud.datosCuestionario2 || {};
   const declaracion = solicitud.datosDeclaracion || {};
+  const documentos = solicitud.datosDocumentos || [];
 
   // ========================================
   // ENCABEZADO
@@ -835,13 +836,124 @@ function mostrarSolicitud(solicitud) {
     financiera.pasivosPeriodo2,
   );
   // ========================================
-  // DOCUMENTOS Y DECLARACIÓN
+  // DECLARACIÓN
   // ========================================
 
   document.getElementById("detailDeclaracionJurada").textContent = mostrarSiNo(
     declaracion.declaracionJurada,
   );
+
+  // ========================================
+  // DOCUMENTOS
+  // ========================================
+
+  const contenedorDocumentos = document.getElementById("detalleDocumentos");
+
+  if (contenedorDocumentos) {
+    contenedorDocumentos.innerHTML = "";
+
+    if (documentos.length > 0) {
+      documentos.forEach((documento) => {
+        const tarjeta = document.createElement("div");
+
+        tarjeta.className = "documento-card";
+
+        tarjeta.innerHTML = `
+        <div class="documento-info">
+
+          <div class="documento-icono">
+            📄
+          </div>
+
+          <div class="documento-datos">
+
+            <span class="documento-nombre">
+              ${documento.nombreArchivo}
+            </span>
+
+            <span class="documento-tipo">
+              ${mostrarTipoDocumento(documento.tipoDocumento)}
+            </span>
+
+          </div>
+
+        </div>
+
+        <a
+          href="http://localhost:3000${documento.ruta}"
+          target="_blank"
+          class="documento-btn"
+        >
+          Ver documento
+        </a>
+      `;
+
+        contenedorDocumentos.appendChild(tarjeta);
+      });
+    } else {
+      contenedorDocumentos.innerHTML = `
+      <div class="documentos-vacio">
+        No hay documentos adjuntos
+      </div>
+    `;
+    }
+  }
 }
+
+// const contenedorDocumentos = document.getElementById("detalleDocumentos");
+
+// if (contenedorDocumentos) {
+//   contenedorDocumentos.innerHTML = "";
+
+//   if (
+//     Array.isArray(datos.datosDocumentos) &&
+//     datos.datosDocumentos.length > 0
+//   ) {
+//     datos.datosDocumentos.forEach((documento) => {
+//       const tarjeta = document.createElement("div");
+
+//       tarjeta.className = "documento-card";
+
+//       tarjeta.innerHTML = `
+//         <div class="documento-info">
+
+//           <div class="documento-icono">
+//             📄
+//           </div>
+
+//           <div class="documento-datos">
+
+//             <span class="documento-nombre">
+//               ${documento.nombreArchivo}
+//             </span>
+
+//             <span class="documento-tipo">
+//               ${documento.tipoDocumento}
+//             </span>
+
+//           </div>
+
+//         </div>
+
+//         <a
+//           href="http://localhost:3000${documento.ruta}"
+//           target="_blank"
+//           class="documento-btn"
+//         >
+//           Ver documento
+//         </a>
+//       `;
+
+//       contenedorDocumentos.appendChild(tarjeta);
+//     });
+//   } else {
+//     contenedorDocumentos.innerHTML = `
+//       <div class="documentos-vacio">
+//         No hay documentos adjuntos
+//       </div>
+//     `;
+//   }
+// }
 
 // ========================================
 // SI ES NULL, PONE -

@@ -1464,6 +1464,113 @@ textarea {
 }
 
 /* ========================================
+DOCUMENTOS
+======================================== */
+
+.documentos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.documento-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 16px 18px;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+
+  background: #fff;
+}
+
+.documento-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 0;
+}
+
+.documento-icono {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #f3f3f3;
+
+  font-size: 20px;
+
+  flex-shrink: 0;
+}
+
+.documento-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.documento-nombre {
+  font-size: 14px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.documento-tipo {
+  font-size: 13px;
+  color: #777;
+}
+
+.documento-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 14px;
+
+  border-radius: 6px;
+
+  background: #ed1c29;
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.documento-btn:hover {
+  opacity: 0.9;
+}
+
+.documentos-vacio {
+  padding: 20px;
+
+  text-align: center;
+
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+
+  color: #777;
+  font-size: 14px;
+}
+
+/* ========================================
 SOLICITUD NO ENCONTRADA
 ======================================== */
 

@@ -72,6 +72,8 @@
           <button type="button" class="back-button" onclick="history.back()">
             ← Volver
           </button>
+          <a href="#documentos"><button>Ver documentos</button></a>
+
           <button id="printButton" class="print-button" type="button">
             <span class="print-icon"> ⎙ </span>
 
@@ -1361,14 +1363,20 @@
 
             <div class="detail-grid detail-grid-2">
               <div class="detail-field">
-                <span class="detail-field-label">¿ Tiene personas relacionadas en JMMB ?</span>
+                <span class="detail-field-label"
+                  >¿ Tiene personas relacionadas en JMMB ?</span
+                >
                 <span id="detailPersonasRelacionadas" class="detail-field-value"
                   >-</span
                 >
               </div>
               <div class="detail-field">
-                <span class="detail-field-label">Indique las personas relacionadas en JMMB</span>
-                <span id="detailCualesPersonasRelacionadas" class="detail-field-value"
+                <span class="detail-field-label"
+                  >Indique las personas relacionadas en JMMB</span
+                >
+                <span
+                  id="detailCualesPersonasRelacionadas"
+                  class="detail-field-value"
                   >-</span
                 >
               </div>
@@ -1612,7 +1620,7 @@
           <div class="detail-divider"></div>
 
           <div class="detail-group">
-            <h3>Declaración y documentos</h3>
+            <h3>Declaración</h3>
 
             <div class="detail-grid detail-grid-1">
               <div class="detail-field">
@@ -1621,6 +1629,14 @@
                   >-</span
                 >
               </div>
+            </div>
+          </div>
+
+          <div class="detail-group">
+            <h3 id="documentos">Documentos</h3>
+
+            <div id="detalleDocumentos" class="documentos-container">
+              <div class="documentos-vacio">No hay documentos adjuntos</div>
             </div>
           </div>
         </section>
