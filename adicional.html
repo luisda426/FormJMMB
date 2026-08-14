@@ -549,38 +549,55 @@
 
             <!-- Aqui tenemos los campos extra si selecciona prestamos -->
 
-            <div class="grid-1">
-              <div id="divBeneficiarioPrestamo" class="grid-1 hidden">
-                <div class="form-group">
-                  <label for="beneficiariosTransaccion">
-                    Beneficiarios Directos e Indirectos de la Transacción
-                    diferentes a usted
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="beneficiariosTransaccion">
+                  Beneficiarios Directos e Indirectos de la Transacción
+                  diferentes a usted
+                </label>
+
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="beneficiariosTransaccion"
+                      value="Si"
+                      data-field="beneficiariosTransaccion"
+                      data-target="divIdentificacionBeneficiarioFinal"
+                      data-show-value="Si"
+                    />
+                    <span>Sí</span>
                   </label>
 
-                  <input
-                    type="text"
-                    id="beneficiariosTransaccion"
-                    data-field="beneficiariosTransaccion"
-                    placeholder="Indique los beneficiarios del préstamo"
-                  />
-                </div>
-                <!-- ========================================= -->
-                <!-- BENEFICIARIO FINAL -->
-                <!-- ========================================= -->
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="beneficiariosTransaccion"
+                      value="No"
+                      data-field="beneficiariosTransaccion"
+                      data-target="divIdentificacionBeneficiarioFinal"
+                      data-show-value="Si"
+                    />
 
-                <div class="form-group">
-                  <label for="identificacionBeneficiarioFinal">
-                    Identificación de beneficiario final de la operación (si
-                    aplica)
+                    <span>No</span>
                   </label>
-
-                  <input
-                    type="text"
-                    id="identificacionBeneficiarioFinal"
-                    data-field="identificacionBeneficiarioFinal"
-                    placeholder="Indique la identificación"
-                  />
                 </div>
+              </div>
+              <!-- ========================================= -->
+              <!-- BENEFICIARIO FINAL -->
+              <!-- ========================================= -->
+
+              <div id="divIdentificacionBeneficiarioFinal" class="form-group hidden">
+                <label for="identificacionBeneficiarioFinal">
+                  Identificación de beneficiario final de la operación
+                </label>
+
+                <input
+                  type="text"
+                  id="identificacionBeneficiarioFinal"
+                  data-field="identificacionBeneficiarioFinal"
+                  placeholder="Indique la identificación"
+                />
               </div>
             </div>
 
@@ -621,7 +638,7 @@
               <!-- ========================================= -->
 
               <div class="form-group">
-                <label> ¿Fue verificado que solo mantiene esta cuenta? </label>
+                <label> ¿Es tu única cuenta con nosotros? </label>
 
                 <div class="radio-group">
                   <label class="radio">
@@ -812,17 +829,50 @@
             <!-- PERSONAS RELACIONADAS -->
             <!-- ========================================= -->
 
-            <div class="form-group">
-              <label for="personasRelacionadas">
-                Declaración de Personas Relacionadas
-              </label>
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="personasRelacionadas">
+                  ¿ Tienes personas relacionadas en JMMB ?
+                </label>
 
-              <input
-                type="text"
-                id="personasRelacionadas"
-                data-field="personasRelacionadas"
-                placeholder="Indique las personas relacionadas"
-              />
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="personasRelacionadas"
+                      value="Si"
+                      data-field="personasRelacionadas"
+                      data-target="divPersonasRelacionadas"
+                      data-show-value="Si"
+                    />
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="personasRelacionadas"
+                      value="No"
+                      data-field="personasRelacionadas"
+                      data-target="divPersonasRelacionadas"
+                      data-show-value="Si"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+              <div id="divPersonasRelacionadas" class="form-group hidden">
+                <label for="cualesPersonasRelacionadas">
+                  Indique las personas relacionadas en JMMB
+                </label>
+                <input
+                  type="text"
+                  id="cualesPersonasRelacionadas"
+                  data-field="cualesPersonasRelacionadas"
+                  placeholder="Indique las personas relacionadas"
+                />
+              </div>
             </div>
 
             <!-- ========================================= -->
@@ -832,12 +882,14 @@
             <div class="form-group">
               <label for="vinculadoJMMB"> ¿Es Vinculado a JMMB? </label>
 
-              <input
-                type="text"
-                id="vinculadoJMMB"
-                data-field="vinculadoJMMB"
-                placeholder="Indique la empresa"
-              />
+              <select id="vinculadoJMMB" data-field="vinculadoJMMB">
+                <option value="" disabled selected>Seleccione...</option>
+                <option value="Banco">Banco</option>
+                <option value="SAFI">SAFI</option>
+                <option value="Puesto">Puesto</option>
+                <option value="AFP">AFP</option>
+                <option value="Grupo">Grupo</option>
+              </select>
             </div>
 
             <!-- ========================================= -->

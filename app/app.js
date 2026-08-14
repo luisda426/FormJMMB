@@ -642,18 +642,13 @@ function actualizarInversiones() {
     "divSolicitudCertificado",
   );
 
-  const divBeneficiarioPrestamo = document.getElementById(
-    "divBeneficiarioPrestamo",
-  );
-
   if (
     !divInversionesPuesto ||
     !divInversionesSafi ||
     !divSolicitud ||
     !divSolicitudBanco ||
     !divSolicitudPrestamo ||
-    !divSolicitudCertificado ||
-    !divBeneficiarioPrestamo
+    !divSolicitudCertificado
   ) {
     return;
   }
@@ -760,11 +755,8 @@ function actualizarInversiones() {
 
   if (seleccionadoPrestamo) {
     divSolicitudPrestamo.classList.remove("hidden");
-    divBeneficiarioPrestamo.classList.remove("hidden");
   } else {
     divSolicitudPrestamo.classList.add("hidden");
-    divBeneficiarioPrestamo.classList.add("hidden");
-    limpiarCampos(divBeneficiarioPrestamo);
     limpiarCampos(divSolicitudPrestamo);
   }
 
