@@ -12,6 +12,9 @@ DATOS DE EJEMPLO
 let solicitudes = [];
 let solicitudActual = null;
 
+//  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
+const USAR_API = false;
+
 /* ========================================
 ELEMENTOS
 ======================================== */
@@ -91,27 +94,73 @@ async function cargarSolicitud() {
   }
 
   try {
-    const respuesta = await fetch("././datos.json");
+    if (USAR_API) {
+      // ==========================================
+      // MODO API
+      // ==========================================
 
-    if (!respuesta.ok) {
-      throw new Error("No se pudo cargar datos.json");
+      const respuesta = await fetch(
+        `http://localhost:3000/api/solicitudes/${encodeURIComponent(id)}`
+      );
+
+      if (respuesta.status === 404) {
+        mostrarNoEncontrado();
+        return;
+      }
+
+      if (!respuesta.ok) {
+        throw new Error(
+          "No se pudo cargar la solicitud desde la API."
+        );
+      }
+
+      solicitudActual = await respuesta.json();
+
+    } else {
+      // ==========================================
+      // MODO JSON LOCAL
+      // ==========================================
+
+      const respuesta = await fetch("././datos.json");
+
+      if (!respuesta.ok) {
+        throw new Error(
+          "No se pudo cargar datos.json"
+        );
+      }
+
+      const solicitudes = await respuesta.json();
+
+      solicitudActual = solicitudes.find(
+        (item) =>
+          String(item.idSolicitud) === String(id)
+      );
+
+      if (!solicitudActual) {
+        mostrarNoEncontrado();
+        return;
+      }
     }
 
-    solicitudes = await respuesta.json();
-
-    solicitudActual = solicitudes.find(
-      (item) => String(item.idSolicitud) === String(id),
+    console.log(
+      USAR_API
+        ? "Solicitud cargada desde API:"
+        : "Solicitud cargada desde JSON:",
+      solicitudActual
     );
 
-    if (!solicitudActual) {
-      mostrarNoEncontrado();
-      return;
-    }
-
     mostrarSolicitud(solicitudActual);
-    cargarVinculacionCliente(solicitudActual);
+
+    cargarVinculacionCliente(
+      solicitudActual
+    );
+
   } catch (error) {
-    console.error("Error cargando la solicitud:", error);
+    console.error(
+      "Error cargando la solicitud:",
+      error
+    );
+
     mostrarNoEncontrado();
   }
 }
@@ -311,7 +360,7 @@ function mostrarSolicitud(solicitud) {
   document.getElementById("detailOficinaPreferencia").textContent =
     mostrarValor(preferencias.oficinaPreferencia);
 
-  document.getElementById("detailPrimeraVez").textContent = mostrarValor(
+  document.getElementById("detailPrimeraVez").textContent = mostrarSiNo(
     preferencias.primeraVez,
   );
 
@@ -415,19 +464,19 @@ function mostrarSolicitud(solicitud) {
     cliente.otraProfesion,
   );
 
-  document.getElementById("detailFuentesIngresos").textContent = mostrarValor(
+  document.getElementById("detailFuentesIngresos").textContent = mostrarSiNo(
     cliente.ingresosFormales,
   );
 
   document.getElementById("detailOtrasFuentesIngresos").textContent =
     mostrarValor(cliente.otrosIngresosFormales);
 
-  document.getElementById("detailResidenteRD").textContent = mostrarValor(
+  document.getElementById("detailResidenteRD").textContent = mostrarSiNo(
     cliente.residenteRD,
   );
 
   document.getElementById("detailActLaboralFinanciera").textContent =
-    mostrarValor(cliente.actLaboralFinanciera);
+    mostrarSiNo(cliente.actLaboralFinanciera);
 
   document.getElementById("detailExplicacionActLaboralFinanciera").textContent =
     mostrarValor(cliente.explicacionActLaboralFinanciera);
@@ -488,8 +537,8 @@ function mostrarSolicitud(solicitud) {
     laboral.cargo,
   );
 
-  document.getElementById("detailIngreso").textContent = mostrarValor(
-    laboral.ingreso,
+  document.getElementById("detailIngreso").textContent = formatearFecha(
+    laboral.fechaIngreso,
   );
 
   document.getElementById("detailTelefonoEmpresa").textContent = mostrarValor(
@@ -702,6 +751,9 @@ function mostrarSolicitud(solicitud) {
   document.getElementById("detailCantidadOperaciones").textContent =
     mostrarValor(adicionales.cantidadOperaciones);
 
+  document.getElementById("detailOtraCantidadOperaciones").textContent =
+    mostrarValor(adicionales.otraCantidadOperaciones);
+
   document.getElementById("detailFormaTransacciones").textContent =
     mostrarValor(adicionales.formaTransacciones);
 
@@ -721,7 +773,7 @@ function mostrarSolicitud(solicitud) {
     mostrarSiNo(adicionales.personasRelacionadas);
 
   document.getElementById("detailCualesPersonasRelacionadas").textContent =
-    mostrarSiNo(adicionales.cualesPersonasRelacionadas);
+    mostrarValor(adicionales.cualesPersonasRelacionadas);
 
   document.getElementById("detailVinculadoJMMB").textContent = mostrarValor(
     adicionales.vinculadoJMMB,
@@ -900,6 +952,15 @@ function mostrarSolicitud(solicitud) {
   }
 }
 
+function mostrarTipoDocumento(tipo) {
+  const tipos = {
+    cedula: "Documento de identidad",
+    certificacion: "Certificación de ingresos",
+  };
+
+  return tipos[tipo?.toLowerCase()] || tipo || "-";
+}
+
 // const contenedorDocumentos = document.getElementById("detalleDocumentos");
 
 // if (contenedorDocumentos) {
@@ -987,9 +1048,13 @@ function formatearFecha(fecha) {
     return "-";
   }
 
-  const [anio, mes, dia] = fecha.split("-");
+  const fechaObjeto = new Date(fecha);
 
-  return `${dia}/${mes}/${anio}`;
+  return new Intl.DateTimeFormat("es-DO", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(fechaObjeto);
 }
 
 // ========================================

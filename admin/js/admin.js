@@ -9,25 +9,38 @@ import {
 DATOS DE EJEMPLO
 ======================================== */
 
+//  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
+const USAR_API = false;
+
 let solicitudes = [];
 
 async function cargarSolicitudes() {
   try {
-    const respuesta = await fetch("././datos.json");
+    const url = USAR_API
+      ? "http://localhost:3000/api/solicitudes"
+      : "././datos.json";
+
+    const respuesta = await fetch(url);
 
     if (!respuesta.ok) {
-      throw new Error("No se pudo cargar datos.json");
+      throw new Error("No se pudieron cargar las solicitudes.");
     }
 
     solicitudes = await respuesta.json();
 
+    console.log(
+      USAR_API
+        ? "Solicitudes cargadas desde API:"
+        : "Solicitudes cargadas desde JSON:",
+      solicitudes,
+    );
+
+    actualizarEstadisticas?.();
     renderSolicitudes();
   } catch (error) {
     console.error("Error cargando solicitudes:", error);
   }
 }
-
-cargarSolicitudes();
 
 /* ========================================
 ELEMENTOS
@@ -72,9 +85,7 @@ onAuthStateChanged(auth, (user) => {
     sidebarAvatar.textContent = inicial;
   }
 
-  actualizarEstadisticas();
-
-  renderSolicitudes();
+  cargarSolicitudes();
 });
 
 /* ========================================
@@ -234,13 +245,15 @@ function renderSolicitudes() {
 }
 
 function formatearFecha(fecha) {
-  if (!fecha) {
-    return "-";
-  }
+  if (!fecha) return "-";
 
-  const [anio, mes, dia] = fecha.split("-");
+  const fechaObjeto = new Date(fecha);
 
-  return `${dia}/${mes}/${anio}`;
+  return new Intl.DateTimeFormat("es-DO", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(fechaObjeto);
 }
 
 /* ========================================
