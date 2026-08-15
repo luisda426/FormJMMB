@@ -230,108 +230,79 @@ function cargarSectores() {
 }
 
 // Funcion para que la cedula o el pasaporte se vean en el mismo formato
-const identificacion = document.getElementById("identificacion");
+function aplicarMascaraCedula(input) {
+  let valor = input.value.replace(/\D/g, "");
 
-const radiosTipoDocumento = document.querySelectorAll('input[name="tipo"]');
+  valor = valor.substring(0, 11);
 
-function actualizarMascaraIdentificacion(resetValue = true) {
-  const seleccionado = document.querySelector('input[name="tipo"]:checked');
-
-  if (!identificacion) return;
-
-  if (!seleccionado) {
-    identificacion.disabled = true;
-    identificacion.value = "";
-    identificacion.placeholder = "Seleccione el tipo de identificación";
-    identificacion.removeAttribute("maxLength");
-    delete identificacion.dataset.tipo;
-    return;
+  if (valor.length > 10) {
+    valor = valor.replace(/^(\d{3})(\d{7})(\d)/, "$1-$2-$3");
+  } else if (valor.length > 3) {
+    valor = valor.replace(/^(\d{3})(\d+)/, "$1-$2");
   }
 
-  identificacion.disabled = false;
-
-  if (resetValue) {
-    identificacion.value = "";
-  }
-
-  if (seleccionado.value === "Cédula") {
-    identificacion.placeholder = "000-0000000-0";
-    identificacion.maxLength = 13;
-    identificacion.dataset.tipo = "cedula";
-  } else if (seleccionado.value === "Pasaporte") {
-    identificacion.placeholder = "Número de pasaporte";
-    identificacion.removeAttribute("maxLength");
-    identificacion.dataset.tipo = "pasaporte";
-  }
+  input.value = valor;
 }
 
-radiosTipoDocumento.forEach((radio) => {
-  radio.addEventListener("change", actualizarMascaraIdentificacion);
-});
+function inicializarTipoDocumento(inputId, radioName) {
+  const input = document.getElementById(inputId);
+  const radios = document.querySelectorAll(`input[name="${radioName}"]`);
 
-// Funcion para que la cedula o el pasaporte se vean en el mismo formato CONYUGE
-const identificacionConyuge = document.getElementById("identificacionConyuge");
+  if (!input) return;
 
-const radiosTipoDocumentoConyuge = document.querySelectorAll(
-  'input[name="tipoDocumentoConyuge"]',
-);
+  function actualizarMascara(resetValue = true) {
+    const seleccionado = document.querySelector(
+      `input[name="${radioName}"]:checked`,
+    );
 
-function actualizarMascaraIdentificacionConyuge(resetValue = true) {
-  const seleccionado = document.querySelector(
-    'input[name="tipoDocumentoConyuge"]:checked',
-  );
-
-  if (!identificacionConyuge) return;
-
-  if (!seleccionado) {
-    identificacionConyuge.disabled = true;
-    identificacionConyuge.value = "";
-    identificacionConyuge.placeholder = "Seleccione el tipo de identificación";
-    identificacionConyuge.removeAttribute("maxLength");
-    delete identificacionConyuge.dataset.tipo;
-    return;
-  }
-
-  identificacionConyuge.disabled = false;
-
-  if (resetValue) {
-    identificacionConyuge.value = "";
-  }
-
-  if (seleccionado.value === "Cédula") {
-    identificacionConyuge.placeholder = "000-0000000-0";
-    identificacionConyuge.maxLength = 13;
-    identificacionConyuge.dataset.tipo = "cedula";
-  } else if (seleccionado.value === "Pasaporte") {
-    identificacionConyuge.placeholder = "Número de pasaporte";
-    identificacionConyuge.removeAttribute("maxLength");
-    identificacionConyuge.dataset.tipo = "pasaporte";
-  }
-}
-
-radiosTipoDocumentoConyuge.forEach((radio) => {
-  radio.addEventListener("change", actualizarMascaraIdentificacionConyuge);
-});
-
-if (identificacion) {
-  identificacion.addEventListener("input", () => {
-    if (identificacion.dataset.tipo !== "cedula") {
+    if (!seleccionado) {
+      input.disabled = true;
+      input.value = "";
+      input.placeholder = "Seleccione el tipo de identificación";
+      input.removeAttribute("maxLength");
+      delete input.dataset.tipo;
       return;
     }
 
-    let valor = identificacion.value.replace(/\D/g, "");
+    input.disabled = false;
 
-    valor = valor.substring(0, 11);
-
-    if (valor.length > 10) {
-      valor = valor.replace(/^(\d{3})(\d{7})(\d)/, "$1-$2-$3");
-    } else if (valor.length > 3) {
-      valor = valor.replace(/^(\d{3})(\d+)/, "$1-$2");
+    if (resetValue) {
+      input.value = "";
     }
 
-    identificacion.value = valor;
+    if (seleccionado.value === "Cédula") {
+      input.placeholder = "000-0000000-0";
+      input.maxLength = 13;
+      input.dataset.tipo = "cedula";
+    } else if (seleccionado.value === "Pasaporte") {
+      input.placeholder = "Número de pasaporte";
+      input.removeAttribute("maxLength");
+      input.dataset.tipo = "pasaporte";
+    }
+  }
+
+  radios.forEach((radio) => {
+    radio.addEventListener("change", () => actualizarMascara());
   });
+
+  input.addEventListener("input", () => {
+    if (input.dataset.tipo === "cedula") {
+      aplicarMascaraCedula(input);
+    }
+  });
+
+  return actualizarMascara;
 }
+
+const actualizarMascaraIdentificacion = inicializarTipoDocumento(
+  "identificacion",
+  "tipo",
+);
+
+const actualizarMascaraIdentificacionConyuge = inicializarTipoDocumento(
+  "identificacionConyuge",
+  "tipoDocumentoConyuge",
+);
 
 // Funcion para que los telefonos se vean en el mismo formato.
 function aplicarMascaraTelefono(input) {
@@ -354,6 +325,7 @@ function aplicarMascaraTelefono(input) {
 
 document.querySelectorAll(".telefonoMascara").forEach(aplicarMascaraTelefono);
 
+// Esta es la funcion para los nombres y apellidos para comenzar con mayuscula
 function capitalizarNombres(input) {
   input.addEventListener("input", () => {
     let valor = input.value;
@@ -366,27 +338,53 @@ function capitalizarNombres(input) {
   });
 }
 
+// Aqui agarramos los inputs que comiencen con nombres y apellidos
 document
-  .querySelectorAll("[data-field='nombres'], [data-field='apellidos']")
+  .querySelectorAll("[data-field^='nombres'], [data-field^='apellidos']")
   .forEach(capitalizarNombres);
+
 //=================Botones de los formularios==================//
 // Boton siguente
 const btnSiguiente = document.getElementById("btnSiguiente");
 
 if (btnSiguiente) {
   btnSiguiente.addEventListener("click", async () => {
-    guardarDatos();
     const formulario = document.getElementById("formRegistro");
+
     if (!formulario) return;
+
     const seccion = formulario.dataset.seccion;
+
+    // Evitar doble clic
+    if (btnSiguiente.disabled) {
+      return;
+    }
+
+    guardarDatos();
 
     //Esto es para cuando subamos los documentos
     if (seccion === "datosDocumentos") {
+      const contenidoOriginal = btnSiguiente.innerHTML;
+
       try {
+        // Deshabilitar botón
+        btnSiguiente.disabled = true;
+
+        // Mostrar estado de carga
+        btnSiguiente.innerHTML = `
+        <span class="btn-spinner"></span>
+        Subiendo documentos...
+      `;
+
         await subirDocumentos();
       } catch (error) {
         console.error("Error subiendo documentos:", error);
         alert("No se pudieron guardar los documentos. Intente nuevamente.");
+        // Restaurar botón
+        btnSiguiente.disabled = false;
+
+        btnSiguiente.innerHTML = contenidoOriginal;
+
         return;
       }
     }
@@ -438,6 +436,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Funcion que cuando cargue cualquier pagina, carga lo datos correspondientes a dicha pagina
 window.addEventListener("DOMContentLoaded", () => {
+  const formulario = document.getElementById("formRegistro");
+
   cargarPaises();
 
   cargarPaisesVacio();
@@ -449,14 +449,17 @@ window.addEventListener("DOMContentLoaded", () => {
   cargarDatosFormulario();
   actualizarInversiones();
 
+  if (formulario?.dataset.seccion === "datosDocumentos") {
+    cargarDocumentosGuardados();
+  }
+
   actualizarInstitucionesVinculacion();
   actualizarAlertaAFP();
 
   inicializarCamposCondicionales();
 
-  actualizarMascaraIdentificacion(false);
-
-  actualizarMascaraIdentificacionConyuge(false);
+  actualizarMascaraIdentificacion?.(false);
+  actualizarMascaraIdentificacionConyuge?.(false);
 
   // inicializarFirma();
 });
@@ -542,9 +545,11 @@ function guardarDatos() {
     });
   }
 
-  registroCliente[seccion] = datos;
+  if (seccion !== "datosDocumentos") {
+    registroCliente[seccion] = datos;
 
-  localStorage.setItem("registroCliente", JSON.stringify(registroCliente));
+    localStorage.setItem("registroCliente", JSON.stringify(registroCliente));
+  }
 
   console.log(registroCliente);
 }
@@ -1108,26 +1113,46 @@ async function subirDocumentos() {
     throw new Error("No se encontró la identificación del cliente.");
   }
 
+  // Documentos que YA fueron subidos anteriormente
+  const documentosExistentes = Array.isArray(registroCliente.datosDocumentos)
+    ? registroCliente.datosDocumentos
+    : [];
+
+  // Archivos nuevos seleccionados en esta visita
+  const archivosNuevos = Object.entries(archivosRegistro).filter(
+    ([_, archivo]) => archivo,
+  );
+
+  // ==========================================
+  // NO HAY NUEVOS, PERO YA EXISTEN DOCUMENTOS
+  // ==========================================
+
+  if (archivosNuevos.length === 0 && documentosExistentes.length > 0) {
+    console.log("Los documentos ya fueron subidos anteriormente.");
+
+    return documentosExistentes;
+  }
+
+  // ==========================================
+  // NO HAY NADA
+  // ==========================================
+
+  if (archivosNuevos.length === 0 && documentosExistentes.length === 0) {
+    throw new Error("Debe seleccionar al menos un documento.");
+  }
+
+  // ==========================================
+  // HAY ARCHIVOS NUEVOS
+  // ==========================================
+
   const formData = new FormData();
 
-  // Identificación del cliente
   formData.append("identificacion", identificacion);
 
-  // Agregar archivos seleccionados
-  for (const [tipoDocumento, archivo] of Object.entries(archivosRegistro)) {
-    if (!archivo) continue;
-
+  for (const [tipoDocumento, archivo] of archivosNuevos) {
     formData.append("documentos", archivo, archivo.name);
 
     formData.append("tiposDocumento", tipoDocumento);
-  }
-
-  // Si no hay documentos seleccionados,
-  // no hacemos ninguna petición
-  if (Object.keys(archivosRegistro).length === 0) {
-    console.log("No hay documentos para subir.");
-
-    return;
   }
 
   const respuesta = await fetch("http://localhost:3000/api/documentos", {
@@ -1137,23 +1162,67 @@ async function subirDocumentos() {
 
   if (!respuesta.ok) {
     const error = await respuesta.text();
-
     throw new Error(error);
   }
 
   const resultado = await respuesta.json();
 
-  console.log("Documentos subidos:", resultado);
+  const documentosNuevos = resultado.documentos;
 
-  // Guardamos las rutas devueltas por el API
-  registroCliente.datosDocumentos = resultado.documentos;
+  // ==========================================
+  // REEMPLAZAR DOCUMENTOS DEL MISMO TIPO
+  // ==========================================
+
+  const tiposNuevos = new Set(
+    documentosNuevos.map((documento) => documento.tipoDocumento),
+  );
+
+  const documentosAnteriores = documentosExistentes.filter(
+    (documento) => !tiposNuevos.has(documento.tipoDocumento),
+  );
+
+  const documentosFinales = [...documentosAnteriores, ...documentosNuevos];
+
+  registroCliente.datosDocumentos = documentosFinales;
 
   localStorage.setItem("registroCliente", JSON.stringify(registroCliente));
 
-  console.log("Registro actualizado:", registroCliente);
+  console.log("Documentos actualizados:", documentosFinales);
+
+  return documentosFinales;
 }
 
 /////////////////////////////////////////////////////////////
+
+function cargarDocumentosGuardados() {
+  const registroCliente = obtenerRegistroCliente();
+
+  const documentos = Array.isArray(registroCliente?.datosDocumentos)
+    ? registroCliente.datosDocumentos
+    : [];
+
+  documentos.forEach((documento) => {
+    const tipo = documento.tipoDocumento?.toLowerCase();
+
+    let textoArchivo;
+
+    if (tipo === "cedula") {
+      textoArchivo = document.getElementById("textoCedula");
+    }
+
+    if (tipo === "certificacion") {
+      textoArchivo = document.getElementById("textoCertificacion");
+    }
+
+    if (!textoArchivo) return;
+
+    textoArchivo.textContent = `✓ ${documento.nombreOriginal || documento.nombreArchivo}`;
+
+    textoArchivo.classList.add("archivo-cargado");
+  });
+}
+
+///////////////////////////////////////////////////////////////
 
 // Funcion que manda el dato local al API
 

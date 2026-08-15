@@ -685,6 +685,23 @@ select:focus {
   transform: scale(0.98);
 }
 
+/* BOTON SPINNER EN DOCUMENTOS */
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  animation: girarSpinner 0.8s linear infinite;
+}
+
+@keyframes girarSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /*============================================
         BOTÓN DESHABILITADO
 =============================================*/
@@ -1741,6 +1758,18 @@ textarea:focus {
   opacity: 0;
 
   pointer-events: none;
+}
+
+.archivo-guardado {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #777;
+}
+
+.archivo-guardado.archivo-cargado {
+  color: #198754;
+  font-weight: 500;
 }
 
 /* =========================================
