@@ -13,7 +13,7 @@ let solicitudes = [];
 let solicitudActual = null;
 
 //  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
-const USAR_API = false;
+const USAR_API = true;
 
 /* ========================================
 ELEMENTOS
@@ -100,7 +100,7 @@ async function cargarSolicitud() {
       // ==========================================
 
       const respuesta = await fetch(
-        `http://localhost:3000/api/solicitudes/${encodeURIComponent(id)}`
+        `http://localhost:3000/api/solicitudes/${encodeURIComponent(id)}`,
       );
 
       if (respuesta.status === 404) {
@@ -109,13 +109,10 @@ async function cargarSolicitud() {
       }
 
       if (!respuesta.ok) {
-        throw new Error(
-          "No se pudo cargar la solicitud desde la API."
-        );
+        throw new Error("No se pudo cargar la solicitud desde la API.");
       }
 
       solicitudActual = await respuesta.json();
-
     } else {
       // ==========================================
       // MODO JSON LOCAL
@@ -124,16 +121,13 @@ async function cargarSolicitud() {
       const respuesta = await fetch("././datos.json");
 
       if (!respuesta.ok) {
-        throw new Error(
-          "No se pudo cargar datos.json"
-        );
+        throw new Error("No se pudo cargar datos.json");
       }
 
       const solicitudes = await respuesta.json();
 
       solicitudActual = solicitudes.find(
-        (item) =>
-          String(item.idSolicitud) === String(id)
+        (item) => String(item.idSolicitud) === String(id),
       );
 
       if (!solicitudActual) {
@@ -146,20 +140,14 @@ async function cargarSolicitud() {
       USAR_API
         ? "Solicitud cargada desde API:"
         : "Solicitud cargada desde JSON:",
-      solicitudActual
+      solicitudActual,
     );
 
     mostrarSolicitud(solicitudActual);
 
-    cargarVinculacionCliente(
-      solicitudActual
-    );
-
+    cargarVinculacionCliente(solicitudActual);
   } catch (error) {
-    console.error(
-      "Error cargando la solicitud:",
-      error
-    );
+    console.error("Error cargando la solicitud:", error);
 
     mostrarNoEncontrado();
   }
@@ -184,7 +172,7 @@ async function cargarSolicitudes() {
 }
 
 function cargarVinculacionCliente(solicitud) {
-  const datosVinculacion = solicitud.vinculacionClientePersonal;
+  const datosVinculacion = solicitud.datosVinculacion;
 
   if (datosVinculacion) {
     mostrarVinculacionComoDetalle(datosVinculacion);
@@ -199,24 +187,41 @@ function obtenerDatosVinculacion() {
   const idSolicitud = Number(obtenerIdSolicitud());
   return {
     idSolicitud: idSolicitud,
-    vinculacionClientePersonal: {
+    datosVinculacion: {
       tipoCliente: document.getElementById("tipoCliente").value,
-      vinculacionMancomunada:
-        document.querySelector('input[name="vinculacionMancomunada"]')?.value ||
-        "",
+      vinculacionMancomunada: convertirSiNoABoolean(
+        document.querySelector('input[name="vinculacionMancomunada"]:checked')
+          ?.value,
+      ),
       duracionRelacion: document.getElementById("duracionRelacion").value,
-      relacionCaraCara: "Si",
+      relacionCaraCara: convertirSiNoABoolean(
+        document.querySelector('input[name="relacionCaraCara"]:checked')?.value,
+      ),
       resumenCliente: document.getElementById("resumenCliente").value.trim(),
-      productoAjustado: "Si",
-      activosLiquidos25M:
+      productoAjustado: convertirSiNoABoolean(
+        document.querySelector('input[name="productoAjustado"]:checked')?.value,
+      ),
+      activosLiquidos25M: convertirSiNoABoolean(
         document.querySelector('input[name="activosLiquidos25M"]:checked')
-          ?.value || "",
-      tipoClienteProspecto: "No profesional",
+          ?.value,
+      ),
+      tipoClienteProspecto: document.getElementById("tipoClienteProspecto")
+        .value,
+      tolerancia: document.getElementById("tolerancia").value,
       bancarizacion:
         document.querySelector('input[name="bancarizacion"]:checked')?.value ||
         "",
     },
   };
+}
+
+//Funcion para converitr los SI y NO  en TRUE O FALSE
+
+function convertirSiNoABoolean(valor) {
+  if (valor === "Si") return true;
+  if (valor === "No") return false;
+
+  return null;
 }
 
 function mostrarVinculacionComoFormulario() {
@@ -232,6 +237,7 @@ function mostrarVinculacionComoFormulario() {
   detalle.style.display = "none";
 }
 
+// Funcion para preseleccionar el radio de 25M
 function preseleccionarActivosLiquidos(solicitud) {
   const financiera = solicitud.datosCuestionario2 || {};
   const valor = financiera.totalActivosLiquidos;
@@ -268,57 +274,111 @@ function mostrarVinculacionComoDetalle(datos) {
     datos.tipoCliente || "-";
 
   document.getElementById("detalleVinculacionMancomunada").textContent =
-    datos.vinculacionMancomunada || "-";
+    mostrarSiNo(datos.vinculacionMancomunada);
 
   document.getElementById("detalleDuracionRelacion").textContent =
     datos.duracionRelacion || "-";
 
-  document.getElementById("detalleRelacionCaraCara").textContent =
-    datos.relacionCaraCara || "-";
+  document.getElementById("detalleRelacionCaraCara").textContent = mostrarSiNo(
+    datos.relacionCaraCara,
+  );
 
   document.getElementById("detalleResumenCliente").textContent =
     datos.resumenCliente || "-";
 
-  document.getElementById("detalleProductoAjustado").textContent =
-    datos.productoAjustado || "-";
+  document.getElementById("detalleProductoAjustado").textContent = mostrarSiNo(
+    datos.productoAjustado,
+  );
 
   document.getElementById("detalleActivosLiquidos25M").textContent =
-    datos.activosLiquidos25M || "-";
+    mostrarSiNo(datos.activosLiquidos25M);
 
   document.getElementById("detalleTipoClienteProspecto").textContent =
     datos.tipoClienteProspecto || "-";
 
   document.getElementById("detalleBancarizacion").textContent =
     datos.bancarizacion || "-";
+
+  document.getElementById("detalleTolerancia").textContent =
+    datos.tolerancia || "-";
 }
 
+// Boton para guardar vinculacion del ASESOR
 const guardarVinculacionButton = document.getElementById(
   "guardarVinculacionButton",
 );
 
+// if (guardarVinculacionButton) {
+//   guardarVinculacionButton.addEventListener("click", () => {
+//     const datosVinculacion = obtenerDatosVinculacion();
+
+//     console.log("Datos de vinculación:", datosVinculacion);
+
+//     // =========================================================
+//     // SIMULACIÓN DE RESPUESTA DEL API
+//     // Este true será reemplazado posteriormente por la respuesta
+//     // real del API cuando hagamos el fetch().
+//     // =========================================================
+
+//     const respuestaAPI = true;
+
+//     if (!respuestaAPI) {
+//       console.error("No se pudo guardar la información.");
+//       return;
+//     }
+
+//     // mostrarVinculacionComoDetalle(datosVinculacion);
+//   });
+// }
+
 if (guardarVinculacionButton) {
-  guardarVinculacionButton.addEventListener("click", () => {
-    const datosVinculacion = obtenerDatosVinculacion();
+  guardarVinculacionButton.addEventListener("click", async () => {
+    try {
+      const datosVinculacion = obtenerDatosVinculacion();
 
-    console.log("Datos de vinculación:", datosVinculacion);
+      const idSolicitud = datosVinculacion.idSolicitud;
 
-    // =========================================================
-    // SIMULACIÓN DE RESPUESTA DEL API
-    // Este true será reemplazado posteriormente por la respuesta
-    // real del API cuando hagamos el fetch().
-    // =========================================================
+      console.log("Datos enviados:", datosVinculacion.datosVinculacion);
 
-    const respuestaAPI = true;
+      // ==========================================
+      // GUARDAR EN LA BASE DE DATOS
+      // ==========================================
 
-    if (!respuestaAPI) {
-      console.error("No se pudo guardar la información.");
-      return;
+      const respuesta = await fetch(
+        `http://localhost:3000/api/solicitudes/${idSolicitud}/vinculacion`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(datosVinculacion.datosVinculacion),
+        },
+      );
+
+      const resultado = await respuesta.json();
+
+      if (!respuesta.ok) {
+        throw new Error(
+          resultado.error || "No se pudo guardar la información.",
+        );
+      }
+
+      console.log("Vinculación guardada:", resultado);
+
+      // ==========================================
+      // VOLVER A CONSULTAR LA SOLICITUD
+      // ==========================================
+
+      await cargarSolicitud();
+    } catch (error) {
+      console.error("Error guardando vinculación:", error);
+
+      alert("No se pudo guardar la información de vinculación.");
     }
-
-    // mostrarVinculacionComoDetalle(datosVinculacion);
   });
 }
-
 /* ========================================
 MOSTRAR SOLICITUD
 ======================================== */
@@ -1202,18 +1262,15 @@ const MAPEO_TEXTO = {
   apellidos: (s) => s.datosCliente?.apellidos || "",
   nombres: (s) => s.datosCliente?.nombres || "",
   "identificacion-cedula": (s) =>
-    s.datosCliente?.tipoDocumento === "cedula"
+    s.datosCliente?.tipoDocumento === "Cedula"
       ? s.datosCliente?.identificacion || ""
       : "",
   pasaporte: (s) =>
-    s.datosCliente?.tipoDocumento === "pasaporte"
+    s.datosCliente?.tipoDocumento === "Pasaporte"
       ? s.datosCliente?.identificacion || ""
       : "",
-  "id-estranjero": (s) =>
-    s.datosCliente?.tipoDocumento === "id-estranjero"
-      ? s.datosCliente?.identificacion || ""
-      : "",
-  "fecha-nacimiento": (s) => s.datosCliente?.fechaNacimiento || "",
+  "id-estranjero": (s) => s.datosCliente?.idExtranjero || "",
+  "fecha-nacimiento": (s) => formatearFecha(s.datosCliente?.fechaNacimiento) || "",
   "telefono-casa": (s) => s.datosCliente?.telefonoCasa || "",
   celular: (s) => s.datosCliente?.celular || "",
   "lugar-nacimiento": (s) => s.datosCliente?.lugarNacimiento || "",
@@ -1231,6 +1288,7 @@ const MAPEO_TEXTO = {
   "empresa-sector": (s) => s.datosLaborales?.sector || "",
   "empresa-direccion": (s) => s.datosLaborales?.direccionEmpresa || "",
   "empresa-cargo": (s) => s.datosLaborales?.cargo || "",
+  "empresa-fecha-ingreso": (s) => formatearFecha(s.datosLaborales?.fechaIngreso) || "",
   "empresa-telefono": (s) => s.datosLaborales?.telefono || "",
   "empresa-email": (s) => s.datosLaborales?.email || "",
   "empresa-comentarios": (s) => s.datosLaborales?.comentarios || "",
@@ -1242,15 +1300,15 @@ const MAPEO_TEXTO = {
 
   "pep-cargo": (s) => s.datosPep?.cargoPEP || "",
   "pep-pais": (s) => s.datosPep?.paisPEP || "",
-  "pep-fecha-designacion": (s) => s.datosPep?.fechaDesignacionPEP || "",
-  "pep-fecha-remocion": (s) => s.datosPep?.fechaRemocionPEP || "",
+  "pep-fecha-designacion": (s) => formatearFecha(s.datosPep?.fechaDesignacionPEP) || "",
+  "pep-fecha-remocion": (s) => formatearFecha(s.datosPep?.fechaRemocionPEP) || "",
   "pep-relacion-nombre": (s) => s.datosPep?.nombrePEP || "",
   "pep-relacion-parentesco": (s) => s.datosPep?.parentescoPEP || "",
   "pep-relacion-cargo": (s) => s.datosPep?.cargoPEPRelacionado || "",
   "pep-relacion-fecha-designacion": (s) =>
-    s.datosPep?.fechaDesignacionPEPRelacionado || "",
+    formatearFecha(s.datosPep?.fechaDesignacionPEPRelacionado) || "",
   "pep-relacion-fecha-remocion": (s) =>
-    s.datosPep?.fechaRemocionPEPRelacionado || "",
+    formatearFecha(s.datosPep?.fechaRemocionPEPRelacionado) || "",
 
   "adicional-origen": (s) => s.datosAdicionales?.origenDestinoFondos || "",
   "adicional-beneficiario": (s) =>
@@ -1277,8 +1335,6 @@ const MAPEO_TEXTO = {
     s.vinculacionClientePersonal?.relacionCaraCara || "",
   "perfil-resumen": (s) => s.vinculacionClientePersonal?.resumenCliente || "",
   cliente: (s) => s.idSolicitud || "",
-
-  "empresa-fecha-ingreso": (s) => s.datosLaborales?.ingreso || "",
 
   "fatca-mas-residencias-1": (s) => s.datosFatca?.ciudadania1 || "",
   "fatca-mas-residencias-2": (s) => s.datosFatca?.ciudadania2 || "",
@@ -1385,6 +1441,15 @@ async function rellenarPDF(solicitud) {
     try {
       const grupo = form.getRadioGroup(nombreGrupo);
       const valor = obtenerValor(solicitud);
+
+      //   console.log(
+      //   `RADIO "${nombreGrupo}"`,
+      //   "valor recibido:",
+      //   valor,
+      //   "opciones PDF:",
+      //   grupo.getOptions(),
+      // );
+
       if (valor) grupo.select(valor);
     } catch (err) {
       console.warn(

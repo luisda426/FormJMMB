@@ -72,13 +72,18 @@
           <button type="button" class="back-button" onclick="history.back()">
             ← Volver
           </button>
-          <a href="#documentos"><button>Ver documentos</button></a>
 
-          <button id="printButton" class="print-button" type="button">
-            <span class="print-icon"> ⎙ </span>
+          <div class="detail-actions">
+            <a href="#documentos" class="documents-button">
+              📄 Ver documentos
+            </a>
 
-            Imprimir
-          </button>
+            <button id="printButton" class="print-button" type="button">
+              <span class="print-icon">⎙</span>
+
+              Imprimir
+            </button>
+          </div>
         </div>
 
         <section id="detailContent" class="detail-section">
@@ -290,7 +295,7 @@
                 </div>
               </div>
 
-              <div class="detail-grid detail-grid-2">
+              <div class="detail-grid detail-grid-3">
                 <!-- Tipo de cliente/prospecto -->
                 <div class="detail-field detail-field-full">
                   <span class="detail-field-label">
@@ -307,9 +312,21 @@
                     <option value="No profesional" selected>
                       No profesional
                     </option>
-                    <option value="Cliente desea considerado No Profesional">
-                      Cliente desea considerado No Profesional
+                    <option
+                      value="Cliente desea ser considerado No Profesional"
+                    >
+                      Cliente desea ser considerado No Profesional
                     </option>
+                  </select>
+                </div>
+                <div class="detail-field">
+                  <span class="detail-field-label"> Tolerancia </span>
+
+                  <select id="tolerancia" class="detail-input">
+                    <option value="" disabled selected>Selecciona...</option>
+                    <option value="Conservador">Conservador</option>
+                    <option value="Moderado">Moderado</option>
+                    <option value="Arriesgado">Arriesgado</option>
                   </select>
                 </div>
                 <div class="detail-field detail-field-full">
@@ -425,8 +442,8 @@
                 </span>
               </div>
             </div>
-            <div class="detail-grid detail-grid-2">
-              <div class="detail-field detail-field-full">
+            <div class="detail-grid detail-grid-3">
+              <div class="detail-field">
                 <span class="detail-field-label">
                   El cliente/prospecto es
                 </span>
@@ -436,7 +453,13 @@
                 >
                 </span>
               </div>
-              <div class="detail-field detail-field-full">
+
+              <div class="detail-field">
+                <span class="detail-field-label"> Tolerancia </span>
+                <span id="detalleTolerancia" class="detail-field-value"> </span>
+              </div>
+
+              <div class="detail-field">
                 <span class="detail-field-label">
                   El cliente/prospecto es
                 </span>
@@ -446,6 +469,7 @@
             </div>
           </div>
 
+          <!-- PREFERECIAS -->
           <div class="detail-divider"></div>
 
           <div class="detail-group">

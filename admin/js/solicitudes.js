@@ -10,7 +10,7 @@ DATOS DE EJEMPLO
 ======================================== */
 
 //  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
-const USAR_API = false;
+const USAR_API = true;
 
 let solicitudes = [];
 
