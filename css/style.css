@@ -949,6 +949,75 @@ textarea:focus {
     border-color 0.2s ease;
 }
 
+.risk-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.risk-option > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.risk-radio {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  border: 2px solid #cfcfcf;
+  border-radius: 50%;
+
+  background: #fff;
+
+  position: relative;
+
+  transition: 0.2s ease;
+}
+
+.risk-option:hover .risk-radio {
+  border-color: #b5121b;
+}
+
+.risk-option:has(input:checked) {
+  border-color: #b5121b;
+
+  background: rgba(181, 18, 27, 0.04);
+
+  box-shadow: 0 6px 20px rgba(181, 18, 27, 0.1);
+}
+
+.risk-option:has(input:checked) .risk-radio {
+  border-color: #b5121b;
+}
+
+.risk-option:has(input:checked) .risk-radio::after {
+  content: "";
+
+  width: 10px;
+  height: 10px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: #b5121b;
+}
+
+.risk-option:has(input:checked) h4 {
+  color: #b5121b;
+}
+
+.risk-option:has(input:checked) .risk-number {
+  background: #b5121b;
+  color: #fff;
+}
+
 .risk-card:hover {
   transform: translateY(-2px);
 

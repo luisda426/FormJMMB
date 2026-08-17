@@ -796,6 +796,10 @@ function mostrarSolicitud(solicitud) {
     adicionales.montoPrestamo,
   );
 
+  document.getElementById("detailMonedaCertificado").textContent = mostrarValor(
+    adicionales.monedaCertificado,
+  );
+
   document.getElementById("detailMontoCertificado").textContent = mostrarValor(
     adicionales.montoCertificado,
   );
@@ -808,12 +812,6 @@ function mostrarSolicitud(solicitud) {
   document.getElementById("detailIdentificacionBeneficiarioFinal").textContent =
     mostrarValor(adicionales.identificacionBeneficiarioFinal);
 
-  document.getElementById("detailCantidadOperaciones").textContent =
-    mostrarValor(adicionales.cantidadOperaciones);
-
-  document.getElementById("detailOtraCantidadOperaciones").textContent =
-    mostrarValor(adicionales.otraCantidadOperaciones);
-
   document.getElementById("detailFormaTransacciones").textContent =
     mostrarValor(adicionales.formaTransacciones);
 
@@ -821,19 +819,14 @@ function mostrarSolicitud(solicitud) {
     adicionales.tipoTransferencia,
   );
 
-  document.getElementById("detailCuentaAhorroBasica").textContent = mostrarSiNo(
-    adicionales.cuentaAhorroBasica,
-  );
-
-  document.getElementById("detailUnicaCuenta").textContent = mostrarSiNo(
-    adicionales.unicaCuenta,
-  );
-
   document.getElementById("detailPersonasRelacionadas").textContent =
     mostrarSiNo(adicionales.personasRelacionadas);
 
   document.getElementById("detailCualesPersonasRelacionadas").textContent =
     mostrarValor(adicionales.cualesPersonasRelacionadas);
+
+  document.getElementById("detailSelectVinculadoJMMB").textContent =
+    mostrarSiNo(adicionales.selectVinculadoJMMB);
 
   document.getElementById("detailVinculadoJMMB").textContent = mostrarValor(
     adicionales.vinculadoJMMB,
@@ -1270,7 +1263,8 @@ const MAPEO_TEXTO = {
       ? s.datosCliente?.identificacion || ""
       : "",
   "id-estranjero": (s) => s.datosCliente?.idExtranjero || "",
-  "fecha-nacimiento": (s) => formatearFecha(s.datosCliente?.fechaNacimiento) || "",
+  "fecha-nacimiento": (s) =>
+    formatearFecha(s.datosCliente?.fechaNacimiento) || "",
   "telefono-casa": (s) => s.datosCliente?.telefonoCasa || "",
   celular: (s) => s.datosCliente?.celular || "",
   "lugar-nacimiento": (s) => s.datosCliente?.lugarNacimiento || "",
@@ -1288,7 +1282,8 @@ const MAPEO_TEXTO = {
   "empresa-sector": (s) => s.datosLaborales?.sector || "",
   "empresa-direccion": (s) => s.datosLaborales?.direccionEmpresa || "",
   "empresa-cargo": (s) => s.datosLaborales?.cargo || "",
-  "empresa-fecha-ingreso": (s) => formatearFecha(s.datosLaborales?.fechaIngreso) || "",
+  "empresa-fecha-ingreso": (s) =>
+    formatearFecha(s.datosLaborales?.fechaIngreso) || "",
   "empresa-telefono": (s) => s.datosLaborales?.telefono || "",
   "empresa-email": (s) => s.datosLaborales?.email || "",
   "empresa-comentarios": (s) => s.datosLaborales?.comentarios || "",
@@ -1300,8 +1295,10 @@ const MAPEO_TEXTO = {
 
   "pep-cargo": (s) => s.datosPep?.cargoPEP || "",
   "pep-pais": (s) => s.datosPep?.paisPEP || "",
-  "pep-fecha-designacion": (s) => formatearFecha(s.datosPep?.fechaDesignacionPEP) || "",
-  "pep-fecha-remocion": (s) => formatearFecha(s.datosPep?.fechaRemocionPEP) || "",
+  "pep-fecha-designacion": (s) =>
+    formatearFecha(s.datosPep?.fechaDesignacionPEP) || "",
+  "pep-fecha-remocion": (s) =>
+    formatearFecha(s.datosPep?.fechaRemocionPEP) || "",
   "pep-relacion-nombre": (s) => s.datosPep?.nombrePEP || "",
   "pep-relacion-parentesco": (s) => s.datosPep?.parentescoPEP || "",
   "pep-relacion-cargo": (s) => s.datosPep?.cargoPEPRelacionado || "",
@@ -1312,11 +1309,11 @@ const MAPEO_TEXTO = {
 
   "adicional-origen": (s) => s.datosAdicionales?.origenDestinoFondos || "",
   "adicional-beneficiario": (s) =>
-    s.datosAdicionales?.beneficiariosTransaccion || "",
+    mostrarSiNo(s.datosAdicionales?.beneficiariosTransaccion ? 1 : 0),
   "adicional-id-beneficiario": (s) =>
     s.datosAdicionales?.identificacionBeneficiarioFinal || "",
   "adicional-declaracion-relacionadas": (s) =>
-    s.datosAdicionales?.personasRelacionadas || "",
+    mostrarSiNo(s.datosAdicionales?.personasRelacionadas ? 1 : 0),
   "adicional-vinculado-jmmb": (s) => s.datosAdicionales?.vinculadoJMMB || "",
 
   "adicional-capacidad-ahorro": (s) =>
@@ -1331,8 +1328,6 @@ const MAPEO_TEXTO = {
     s.datosCuestionario2?.telefonoBanco1 || "",
   "adicional-oficial-banco-1": (s) => s.datosCuestionario2?.oficialBanco1 || "",
 
-  "perfil-canal-cara": (s) =>
-    s.vinculacionClientePersonal?.relacionCaraCara || "",
   "perfil-resumen": (s) => s.vinculacionClientePersonal?.resumenCliente || "",
   cliente: (s) => s.idSolicitud || "",
 
@@ -1400,9 +1395,9 @@ const MAPEO_RADIO = {
   "adicional-transferencias": (s) =>
     s.datosAdicionales?.tipoTransferencia || "",
 
-  "perfil-cara": (s) => convertirSiNo(s.vinculacionClientePersonal ? 1 : 0), // TODO revisar
+  "perfil-cara": (s) => convertirSiNo(s.datosVinculacion.relacionCaraCara ? 1 : 0), // TODO revisar
   "perfil-producto-ajustado": (s) =>
-    s.vinculacionClientePersonal?.productoAjustado || "",
+    convertirSiNo(s.datosVinculacion?.productoAjustado ? 1 : 0),
   "adicional-cuenta-verificada": (s) =>
     convertirSiNo(s.datosAdicionales?.unicaCuenta),
   "adicional-ingresos": (s) =>

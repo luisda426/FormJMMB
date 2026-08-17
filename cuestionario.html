@@ -52,7 +52,7 @@
             <div class="section-description">
               <p>
                 Esta información nos ayuda a entender mejor tu perfil y
-                ofrecerte soluciones acordes a tus necesidades.
+                ofrecerte soluciones acorde a tus necesidades.
               </p>
             </div>
 
@@ -162,107 +162,97 @@
                 Nivel de riesgo con el que te sientes cómodo al invertir
               </label>
 
-              <div class="radio-group">
-                <label class="radio">
-                  <input
-                    type="radio"
-                    name="criterioRiesgo"
-                    value="Conservador"
-                    data-field="criterioRiesgo"
-                  />
-
-                  <span> Conservador (Bajo Riesgo) </span>
-                </label>
-
-                <label class="radio">
-                  <input
-                    type="radio"
-                    name="criterioRiesgo"
-                    value="Moderado"
-                    data-field="criterioRiesgo"
-                  />
-
-                  <span> Moderado (Riesgo Medio) </span>
-                </label>
-
-                <label class="radio">
-                  <input
-                    type="radio"
-                    name="criterioRiesgo"
-                    value="Agresivo"
-                    data-field="criterioRiesgo"
-                  />
-
-                  <span> Agresivo (Alto Riesgo) </span>
-                </label>
-              </div>
-            </div>
-
-            <!-- ========================================= -->
-            <!-- EXPLICACIÓN DE RIESGO -->
-            <!-- ========================================= -->
-
-            <div class="risk-info">
-              <div class="risk-info-header">
-                <span class="risk-info-label"> PERFIL DE RIESGO </span>
-
-                <p>
-                  Estas referencias le ayudarán a identificar el nivel de riesgo
-                  asociado a cada perfil de inversión.
-                </p>
-              </div>
-
-              <div class="risk-cards">
-                <div class="risk-card">
-                  <div class="risk-card-header">
-                    <span class="risk-number"> 01 </span>
-
-                    <div>
-                      <h4>Conservador</h4>
-
-                      <span class="risk-level"> Bajo riesgo </span>
-                    </div>
-                  </div>
+              <div class="risk-info">
+                <div class="risk-info-header">
 
                   <p>
-                    Conservar su capital con la menor volatilidad y riesgo
-                    posible, buscando preservar el capital.
+                    Selecciona el perfil que mejor represente tu tolerancia al
+                    riesgo.
                   </p>
                 </div>
 
-                <div class="risk-card">
-                  <div class="risk-card-header">
-                    <span class="risk-number"> 02 </span>
+                <div class="risk-cards">
+                  <!-- CONSERVADOR -->
+                  <label class="risk-card risk-option">
+                    <input
+                      type="radio"
+                      name="criterioRiesgo"
+                      value="Conservador"
+                      data-field="criterioRiesgo"
+                    />
 
-                    <div>
-                      <h4>Moderado</h4>
+                    <div class="risk-card-header">
+                      <span class="risk-radio"></span>
 
-                      <span class="risk-level"> Riesgo medio </span>
+                      <span class="risk-number">01</span>
+
+                      <div>
+                        <h4>Conservador</h4>
+
+                        <span class="risk-level"> Bajo riesgo </span>
+                      </div>
                     </div>
-                  </div>
 
-                  <p>
-                    Crecimiento sostenido de su patrimonio, aceptando un nivel
-                    de riesgo moderado con el fin de obtener un mayor
-                    rendimiento.
-                  </p>
-                </div>
+                    <p>
+                      Conservar su capital con la menor volatilidad y riesgo
+                      posible, buscando preservar el capital.
+                    </p>
+                  </label>
 
-                <div class="risk-card">
-                  <div class="risk-card-header">
-                    <span class="risk-number"> 03 </span>
+                  <!-- MODERADO -->
+                  <label class="risk-card risk-option">
+                    <input
+                      type="radio"
+                      name="criterioRiesgo"
+                      value="Moderado"
+                      data-field="criterioRiesgo"
+                    />
 
-                    <div>
-                      <h4>Agresivo</h4>
+                    <div class="risk-card-header">
+                      <span class="risk-radio"></span>
 
-                      <span class="risk-level"> Alto riesgo </span>
+                      <span class="risk-number">02</span>
+
+                      <div>
+                        <h4>Moderado</h4>
+
+                        <span class="risk-level"> Riesgo medio </span>
+                      </div>
                     </div>
-                  </div>
 
-                  <p>
-                    Busca rendimiento a largo plazo mediante una combinación de
-                    instrumentos, aceptando un mayor nivel de riesgo.
-                  </p>
+                    <p>
+                      Crecimiento sostenido de su patrimonio, aceptando un nivel
+                      de riesgo moderado con el fin de obtener un mayor
+                      rendimiento.
+                    </p>
+                  </label>
+
+                  <!-- AGRESIVO -->
+                  <label class="risk-card risk-option">
+                    <input
+                      type="radio"
+                      name="criterioRiesgo"
+                      value="Agresivo"
+                      data-field="criterioRiesgo"
+                    />
+
+                    <div class="risk-card-header">
+                      <span class="risk-radio"></span>
+
+                      <span class="risk-number">03</span>
+
+                      <div>
+                        <h4>Agresivo</h4>
+
+                        <span class="risk-level"> Alto riesgo </span>
+                      </div>
+                    </div>
+
+                    <p>
+                      Busca rendimiento a largo plazo mediante una combinación
+                      de instrumentos, aceptando un mayor nivel de riesgo.
+                    </p>
+                  </label>
                 </div>
               </div>
             </div>

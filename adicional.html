@@ -120,17 +120,6 @@
                     <span class="checkbox-custom"></span>
                     <span class="checkbox-title"> Préstamo nómina </span>
                   </label>
-                  <label class="checkbox-option">
-                    <input
-                      type="checkbox"
-                      value="Préstamo consolidación de deudas"
-                      data-field="productosSolicitados"
-                    />
-                    <span class="checkbox-custom"></span>
-                    <span class="checkbox-title">
-                      Préstamo consolidación de deudas
-                    </span>
-                  </label>
                 </div>
               </div>
             </div>
@@ -492,7 +481,7 @@
 
             <div id="divSolicitud" class="producto-card grid-1 hidden">
               <h4>Solicitud en banco</h4>
-              <div class="grid-3">
+              <div class="grid-2">
                 <div class="form-group hidden" id="divSolicitudBanco">
                   <label> Cuenta en: </label>
 
@@ -529,8 +518,37 @@
                     type="number"
                     id="montoPrestamo"
                     data-field="montoPrestamo"
-                    placeholder="Indique el monto..."
+                    placeholder="RD$"
                   />
+                </div>
+                <div class="form-group">
+                  <label for="montoCertificado">
+                    Moneda para el certificado</label
+                  >
+
+                  <div class="radio-group">
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="monedaPrestamo"
+                        value="$RD"
+                        data-field="monedaPrestamo"
+                      />
+
+                      <span>RD$</span>
+                    </label>
+
+                    <label class="radio">
+                      <input
+                        type="radio"
+                        name="monedaPrestamo"
+                        value="USD"
+                        data-field="monedaPrestamo"
+                      />
+
+                      <span>USD</span>
+                    </label>
+                  </div>
                 </div>
                 <div class="form-group hidden" id="divSolicitudCertificado">
                   <label for="montoCertificado">
@@ -554,8 +572,7 @@
             <div class="grid-2">
               <div class="form-group">
                 <label for="beneficiariosTransaccion">
-                  Beneficiarios Directos e Indirectos de la Transacción
-                  diferentes a usted
+                  ¿Es usted el beneficiario final del producto?
                 </label>
 
                 <div class="radio-group">
@@ -604,149 +621,9 @@
             </div>
 
             <!-- ========================================= -->
-            <!-- CUENTA DE AHORRO BÁSICA -->
-            <!-- ========================================= -->
-            <div class="grid-2">
-              <div class="form-group">
-                <label> ¿Es una cuenta de Ahorro Básica? </label>
-
-                <div class="radio-group">
-                  <label class="radio">
-                    <input
-                      type="radio"
-                      name="cuentaAhorroBasica"
-                      value="Si"
-                      data-field="cuentaAhorroBasica"
-                    />
-
-                    <span>Sí</span>
-                  </label>
-
-                  <label class="radio">
-                    <input
-                      type="radio"
-                      name="cuentaAhorroBasica"
-                      value="No"
-                      data-field="cuentaAhorroBasica"
-                    />
-
-                    <span>No</span>
-                  </label>
-                </div>
-              </div>
-
-              <!-- ========================================= -->
-              <!-- UNICA CUENTA ? -->
-              <!-- ========================================= -->
-
-              <div class="form-group">
-                <label> ¿Es tu única cuenta con nosotros? </label>
-
-                <div class="radio-group">
-                  <label class="radio">
-                    <input
-                      type="radio"
-                      name="unicaCuenta"
-                      value="Si"
-                      data-field="unicaCuenta"
-                    />
-
-                    <span>Sí</span>
-                  </label>
-
-                  <label class="radio">
-                    <input
-                      type="radio"
-                      name="unicaCuenta"
-                      value="No"
-                      data-field="unicaCuenta"
-                    />
-
-                    <span>No</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <!-- ========================================= -->
-            <!-- CANTIDAD DE OPERACIONES -->
-            <!-- ========================================= -->
-
-            <div class="form-group">
-              <label> ¿Cuántas transacciones estimas realizar al mes? </label>
-
-              <div class="radio-group">
-                <label class="radio">
-                  <input
-                    type="radio"
-                    name="cantidadOperaciones"
-                    value="De 0 a 5"
-                    data-field="cantidadOperaciones"
-                    data-target="divOtraCantidadOperaciones"
-                    data-show-value="Otra"
-                  />
-
-                  <span> De 0 a 5 </span>
-                </label>
-
-                <label class="radio">
-                  <input
-                    type="radio"
-                    name="cantidadOperaciones"
-                    value="De 5 a 10"
-                    data-field="cantidadOperaciones"
-                    data-target="divOtraCantidadOperaciones"
-                    data-show-value="Otra"
-                  />
-
-                  <span> De 5 a 10 </span>
-                </label>
-
-                <label class="radio">
-                  <input
-                    type="radio"
-                    name="cantidadOperaciones"
-                    value="Más de 10"
-                    data-field="cantidadOperaciones"
-                    data-target="divOtraCantidadOperaciones"
-                    data-show-value="Otra"
-                  />
-
-                  <span> Más de 10 </span>
-                </label>
-
-                <label class="radio">
-                  <input
-                    type="radio"
-                    name="cantidadOperaciones"
-                    value="Otra"
-                    data-field="cantidadOperaciones"
-                    data-target="divOtraCantidadOperaciones"
-                    data-show-value="Otra"
-                  />
-
-                  <span> Otra </span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Otro -->
-            <div class="form-group">
-              <div id="divOtraCantidadOperaciones" class="hidden">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    id="otraCantidadOperaciones"
-                    data-field="otraCantidadOperaciones"
-                    placeholder="Indique la cantidad"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- ========================================= -->
             <!-- FORMA DE LAS TRANSACCIONES -->
             <!-- ========================================= -->
+             
             <div class="grid-2">
               <div class="form-group">
                 <label> Forma de las transacciones </label>
@@ -881,17 +758,51 @@
             <!-- VINCULADO A JMMB -->
             <!-- ========================================= -->
 
-            <div class="form-group">
-              <label for="vinculadoJMMB"> ¿Es Vinculado a JMMB? </label>
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="personasRelacionadas">
+                  ¿Eres accionista, miembro del consejo o miembro de equipo de
+                  JMMB?
+                </label>
 
-              <select id="vinculadoJMMB" data-field="vinculadoJMMB">
-                <option value="" disabled selected>Seleccione...</option>
-                <option value="Banco">Banco</option>
-                <option value="SAFI">SAFI</option>
-                <option value="Puesto">Puesto</option>
-                <option value="AFP">AFP</option>
-                <option value="Grupo">Grupo</option>
-              </select>
+                <div class="radio-group">
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="selectVinculadoJMMB"
+                      value="Si"
+                      data-field="selectVinculadoJMMB"
+                      data-target="divVinculadoJMMB"
+                      data-show-value="Si"
+                    />
+                    <span>Sí</span>
+                  </label>
+
+                  <label class="radio">
+                    <input
+                      type="radio"
+                      name="selectVinculadoJMMB"
+                      value="No"
+                      data-field="selectVinculadoJMMB"
+                      data-target="divVinculadoJMMB"
+                      data-show-value="Si"
+                    />
+
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group hidden" id="divVinculadoJMMB">
+
+                <select id="vinculadoJMMB" data-field="vinculadoJMMB">
+                  <option value="" disabled selected>Seleccione...</option>
+                  <option value="Banco">Banco</option>
+                  <option value="SAFI">SAFI</option>
+                  <option value="Puesto">Puesto</option>
+                  <option value="AFP">AFP</option>
+                  <option value="Grupo">Grupo</option>
+                </select>
+              </div>
             </div>
 
             <!-- ========================================= -->

@@ -1279,7 +1279,7 @@
             <!-- BANCO -->
             <h4>Solicitud Banco</h4>
 
-            <div class="detail-grid detail-grid-3">
+            <div class="detail-grid detail-grid-2">
               <div class="detail-field">
                 <span class="detail-field-label">Cuenta en:</span>
                 <span id="detailCuentaBancoMoneda" class="detail-field-value"
@@ -1292,6 +1292,16 @@
                   Monto a solicitar (Préstamo)</span
                 >
                 <span id="detailMontoPrestamo" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+            </div>
+            <div class="detail-grid detail-grid-2">
+              <div class="detail-field">
+                <span class="detail-field-label">
+                  Moneda para el certificado</span
+                >
+                <span id="detailMonedaCertificado" class="detail-field-value"
                   >-</span
                 >
               </div>
@@ -1313,7 +1323,7 @@
             <div class="detail-grid detail-grid-2">
               <div class="detail-field">
                 <span class="detail-field-label"
-                  >Beneficiarios de la transacción</span
+                  > ¿Es usted el beneficiario final del producto?</span
                 >
                 <span
                   id="detailBeneficiariosTransaccion"
@@ -1328,41 +1338,6 @@
                 >
                 <span
                   id="detailIdentificacionBeneficiarioFinal"
-                  class="detail-field-value"
-                  >-</span
-                >
-              </div>
-            </div>
-
-            <div class="detail-grid detail-grid-2">
-              <div class="detail-field">
-                <span class="detail-field-label">Cuenta de ahorro básica</span>
-                <span id="detailCuentaAhorroBasica" class="detail-field-value"
-                  >-</span
-                >
-              </div>
-
-              <div class="detail-field">
-                <span class="detail-field-label"
-                  >Verificación de Única cuenta</span
-                >
-                <span id="detailUnicaCuenta" class="detail-field-value">-</span>
-              </div>
-            </div>
-
-            <div class="detail-grid detail-grid-2">
-              <div class="detail-field">
-                <span class="detail-field-label">Cantidad de operaciones</span>
-                <span id="detailCantidadOperaciones" class="detail-field-value"
-                  >-</span
-                >
-              </div>
-              <div class="detail-field">
-                <span class="detail-field-label"
-                  >Otra cantidad de operaciones</span
-                >
-                <span
-                  id="detailOtraCantidadOperaciones"
                   class="detail-field-value"
                   >-</span
                 >
@@ -1406,9 +1381,20 @@
               </div>
             </div>
 
-            <div class="detail-grid detail-grid-1">
+            <div class="detail-grid detail-grid-2">
               <div class="detail-field">
-                <span class="detail-field-label">Vinculado a JMMB</span>
+                <span class="detail-field-label"
+                  >¿Eres accionista, miembro del consejo o miembro de equipo de
+                  JMMB?</span
+                >
+                <span id="detailSelectVinculadoJMMB" class="detail-field-value"
+                  >-</span
+                >
+              </div>
+              <div class="detail-field">
+                <span class="detail-field-label"
+                  >Pertence a JMMB en</span
+                >
                 <span id="detailVinculadoJMMB" class="detail-field-value"
                   >-</span
                 >

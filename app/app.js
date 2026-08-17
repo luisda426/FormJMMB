@@ -675,7 +675,6 @@ function actualizarInversiones() {
   ];
 
   const productosBanco = [
-    "Cuenta de ahorros Bonus Saver",
     "Cuenta corriente EzAccess",
     "Cuenta Nómina",
   ];
