@@ -1030,8 +1030,7 @@ function mostrarTipoDocumento(tipo) {
   return tipos[tipo?.toLowerCase()] || tipo || "-";
 }
 
-
-// Funcion que al abrir un documento que sera image, te manda esa mini pagina. 
+// Funcion que al abrir un documento que sera image, te manda esa mini pagina.
 
 function abrirDocumento(documento) {
   const urlDocumento = `http://localhost:3000${documento.ruta}`;
@@ -1360,7 +1359,7 @@ const MAPEO_TEXTO = {
   "pep-relacion-fecha-remocion": (s) =>
     formatearFecha(s.datosPep?.fechaRemocionPEPRelacionado) || "",
 
-  "adicional-origen": (s) => s.datosAdicionales?.origenDestinoFondos || "",
+  // "adicional-origen": (s) => s.datosAdicionales?.origenDestinoFondos || "",
   "adicional-beneficiario": (s) =>
     mostrarSiNo(s.datosAdicionales?.beneficiariosTransaccion ? 1 : 0),
   "adicional-id-beneficiario": (s) =>
@@ -1380,6 +1379,12 @@ const MAPEO_TEXTO = {
   "adicional-telefono-banco-1": (s) =>
     s.datosCuestionario2?.telefonoBanco1 || "",
   "adicional-oficial-banco-1": (s) => s.datosCuestionario2?.oficialBanco1 || "",
+
+  "adicional-cuenta-ahorro": (s) =>
+    s.datosAdicionales?.montoEstimadoInversionPuestoUSD || "",
+  "adicional-certificado-financiero": (s) =>
+    s.datosAdicionales?.montoCertificado || "",
+  "adicional-prestamo-linea": (s) => s.datosAdicionales?.montoPrestamo || "",
 
   "perfil-resumen": (s) => s.vinculacionClientePersonal?.resumenCliente || "",
   cliente: (s) => s.idSolicitud || "",
