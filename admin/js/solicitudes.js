@@ -231,7 +231,7 @@ function obtenerClaseEstado(estado) {
     case "Revisión":
       return "status-review";
 
-    case "Completo":
+    case "Completado":
       return "status-completed";
 
     default:

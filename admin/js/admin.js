@@ -104,7 +104,7 @@ function actualizarEstadisticas() {
   ).length;
 
   const completadas = solicitudes.filter(
-    (solicitud) => solicitud.solicitud.estadoSolicitud === "Completo",
+    (solicitud) => solicitud.solicitud.estadoSolicitud === "Completado",
   ).length;
 
   const totalSolicitudes = document.getElementById("totalSolicitudes");
@@ -268,7 +268,7 @@ function obtenerClaseEstado(estado) {
     case "Revisión":
       return "status-review";
 
-    case "Completo":
+    case "Completado":
       return "status-completed";
 
     default:

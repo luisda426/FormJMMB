@@ -1538,19 +1538,15 @@ DOCUMENTOS
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   padding: 8px 14px;
-
   border-radius: 6px;
-
+  border: none;
+  outline: none;
   background: #ed1c29;
   color: white;
-
   text-decoration: none;
-
   font-size: 13px;
   font-weight: 600;
-
   white-space: nowrap;
 }
 
@@ -1560,12 +1556,9 @@ DOCUMENTOS
 
 .documentos-vacio {
   padding: 20px;
-
   text-align: center;
-
   border: 1px dashed #ccc;
   border-radius: 8px;
-
   color: #777;
   font-size: 14px;
 }

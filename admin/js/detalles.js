@@ -984,14 +984,30 @@ function mostrarSolicitud(solicitud) {
 
         </div>
 
-        <a
-          href="http://localhost:3000${documento.ruta}"
-          target="_blank"
-          class="documento-btn"
+        <button
+          type="button"
+          class="btn-ver-documento documento-btn"
         >
           Ver documento
-        </a>
+        </button>
+
+        <!--  
+         <a
+           href="http://localhost:3000${documento.ruta}"
+           target="_blank"
+           class="documento-btn"
+         >
+           Ver documento
+         </a>-->
       `;
+
+        const botonVer = tarjeta.querySelector(".btn-ver-documento");
+
+        botonVer.addEventListener("click", () => {
+          abrirDocumento(documento);
+        });
+
+        contenedorDocumentos.appendChild(tarjeta);
 
         contenedorDocumentos.appendChild(tarjeta);
       });
@@ -1014,60 +1030,102 @@ function mostrarTipoDocumento(tipo) {
   return tipos[tipo?.toLowerCase()] || tipo || "-";
 }
 
-// const contenedorDocumentos = document.getElementById("detalleDocumentos");
 
-// if (contenedorDocumentos) {
-//   contenedorDocumentos.innerHTML = "";
+// Funcion que al abrir un documento que sera image, te manda esa mini pagina. 
 
-//   if (
-//     Array.isArray(datos.datosDocumentos) &&
-//     datos.datosDocumentos.length > 0
-//   ) {
-//     datos.datosDocumentos.forEach((documento) => {
-//       const tarjeta = document.createElement("div");
+function abrirDocumento(documento) {
+  const urlDocumento = `http://localhost:3000${documento.ruta}`;
 
-//       tarjeta.className = "documento-card";
+  const esImagen = documento.tipoArchivo?.startsWith("image/");
 
-//       tarjeta.innerHTML = `
-//         <div class="documento-info">
+  if (esImagen) {
+    const ventana = window.open("", "_blank");
 
-//           <div class="documento-icono">
-//             📄
-//           </div>
+    ventana.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>${documento.nombreArchivo}</title>
 
-//           <div class="documento-datos">
+          <style>
+            body {
+              margin: 0;
+              padding: 20px;
+              text-align: center;
+              font-family: Arial, sans-serif;
+              background: #f5f5f5;
+            }
 
-//             <span class="documento-nombre">
-//               ${documento.nombreArchivo}
-//             </span>
+            .acciones {
+              margin-bottom: 20px;
+            }
 
-//             <span class="documento-tipo">
-//               ${documento.tipoDocumento}
-//             </span>
+            button {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              padding: 8px 14px;
+              border-radius: 6px;
+              border: none;
+              outline: none;
+              background: #ed1c29;
+              color: white;
+              text-decoration: none;
+              font-size: 13px;
+              font-weight: 600;
+              white-space: nowrap;
+            }
 
-//           </div>
+            img {
+              display: block;
+              max-width: 100%;
+              max-height: 90vh;
+              margin: auto;
+              background: white;
+            }
 
-//         </div>
+            @media print {
+              .acciones {
+                display: none;
+              }
 
-//         <a
-//           href="http://localhost:3000${documento.ruta}"
-//           target="_blank"
-//           class="documento-btn"
-//         >
-//           Ver documento
-//         </a>
-//       `;
+              body {
+                padding: 0;
+                background: white;
+              }
 
-//       contenedorDocumentos.appendChild(tarjeta);
-//     });
-//   } else {
-//     contenedorDocumentos.innerHTML = `
-//       <div class="documentos-vacio">
-//         No hay documentos adjuntos
-//       </div>
-//     `;
-//   }
-// }
+              img {
+                max-width: 100%;
+                max-height: 100vh;
+              }
+            }
+          </style>
+        </head>
+
+        <body>
+
+          <div class="acciones">
+            <button onclick="window.print()">
+              Imprimir
+            </button>
+          </div>
+
+          <img
+            src="${urlDocumento}"
+            alt="${documento.nombreArchivo}"
+          />
+
+        </body>
+      </html>
+    `);
+
+    ventana.document.close();
+
+    return;
+  }
+
+  window.open(urlDocumento, "_blank");
+}
 
 // ========================================
 // SI ES NULL, PONE -
@@ -1166,7 +1224,7 @@ function obtenerClaseEstado(estado) {
     case "Revisión":
       return "status-review";
 
-    case "Completo":
+    case "Completado":
       return "status-completed";
 
     default:
@@ -1191,12 +1249,7 @@ if (printButton) {
       return;
     }
 
-    const pdfBytes = await rellenarPDF(solicitudActual);
-    const blob = new Blob([pdfBytes], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-
-    const ventana = window.open(url);
-    ventana.onload = () => ventana.print();
+    await imprimirTodosLosPDF(solicitudActual);
   });
 }
 
@@ -1395,7 +1448,8 @@ const MAPEO_RADIO = {
   "adicional-transferencias": (s) =>
     s.datosAdicionales?.tipoTransferencia || "",
 
-  "perfil-cara": (s) => convertirSiNo(s.datosVinculacion.relacionCaraCara ? 1 : 0), // TODO revisar
+  "perfil-cara": (s) =>
+    convertirSiNo(s.datosVinculacion.relacionCaraCara ? 1 : 0), // TODO revisar
   "perfil-producto-ajustado": (s) =>
     convertirSiNo(s.datosVinculacion?.productoAjustado ? 1 : 0),
   "adicional-cuenta-verificada": (s) =>
@@ -1407,6 +1461,10 @@ const MAPEO_RADIO = {
   "adicional-patrimonio": (s) =>
     mapearPatrimonioTotal(s.datosCuestionario2?.patrimonioTotal),
 };
+
+/* ========================================
+RELLENER PDF 1 
+======================================== */
 
 async function rellenarPDF(solicitud) {
   const { PDFDocument, PDFTextField, PDFRadioGroup } = PDFLib;
@@ -1453,7 +1511,165 @@ async function rellenarPDF(solicitud) {
     }
   });
 
-  return await pdfDoc.save();
+  form.flatten();
+
+  return pdfDoc;
+}
+
+/* ========================================
+RELLENER PDF 2
+======================================== */
+
+async function rellenarPDF2(solicitud) {
+  const pdfBytes = await fetch(
+    "/admin/pdf/formulario-moneyline-banco.pdf",
+  ).then((res) => res.arrayBuffer());
+
+  const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+
+  const form = pdfDoc.getForm();
+
+  const cliente = solicitud.datosCliente || {};
+
+  const MAPEO_TEXTO_PDF2 = {
+    nombres: cliente.nombres,
+    apellidos: cliente.apellidos,
+    identificacion: cliente.identificacion,
+    "fecha-nacimiento": formatearFecha(cliente.fechaNacimiento),
+    celular: cliente.celular,
+    email: cliente.email,
+
+    "fecha-firma": formatearFecha(new Date()),
+  };
+
+  Object.entries(MAPEO_TEXTO_PDF2).forEach(([campo, valor]) => {
+    try {
+      form
+        .getTextField(campo)
+        .setText(valor !== null && valor !== undefined ? String(valor) : "");
+    } catch (error) {
+      console.warn(`No se pudo rellenar "${campo}"`, error);
+    }
+  });
+
+  try {
+    const grupoSexo = form.getRadioGroup("sexo");
+
+    const valorSexo = solicitud.datosCliente?.sexo;
+
+    if (valorSexo) {
+      grupoSexo.select(valorSexo);
+    }
+  } catch (error) {
+    console.warn(
+      `No se pudo seleccionar "sexo" con valor "${solicitud.datosCliente?.sexo}"`,
+      error,
+    );
+  }
+
+  // MUY IMPORTANTE
+  form.flatten();
+
+  return pdfDoc;
+}
+
+/* ========================================
+RELLENER PDF 3
+======================================== */
+
+async function rellenarPDF3(solicitud) {
+  const pdfBytes = await fetch("/admin/pdf/contrato-marco-banco.pdf").then(
+    (res) => res.arrayBuffer(),
+  );
+
+  const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+
+  const form = pdfDoc.getForm();
+
+  const cliente = solicitud.datosCliente || {};
+
+  const MAPEO_TEXTO_PDF3 = {
+    nombres: cliente.nombres,
+    apellidos: cliente.apellidos,
+    identificacion: cliente.identificacion,
+    nacionalidad: cliente.nacionalidad,
+    direccion: cliente.direccion,
+    sector: cliente.sector,
+    ciudad: cliente.ciudad,
+
+    provincia: cliente.provincia,
+  };
+
+  Object.entries(MAPEO_TEXTO_PDF3).forEach(([campo, valor]) => {
+    try {
+      form
+        .getTextField(campo)
+        .setText(valor !== null && valor !== undefined ? String(valor) : "");
+    } catch (error) {
+      console.warn(`No se pudo rellenar "${campo}"`, error);
+    }
+  });
+
+  form.flatten();
+
+  return pdfDoc;
+}
+
+async function unirPDFs(documentosPDF) {
+  const pdfFinal = await PDFLib.PDFDocument.create();
+
+  for (const pdfDoc of documentosPDF) {
+    const cantidadPaginas = pdfDoc.getPageCount();
+
+    const indices = Array.from({ length: cantidadPaginas }, (_, i) => i);
+
+    const paginas = await pdfFinal.copyPages(pdfDoc, indices);
+
+    paginas.forEach((pagina) => {
+      pdfFinal.addPage(pagina);
+    });
+  }
+
+  return pdfFinal;
+}
+
+async function imprimirTodosLosPDF(solicitud) {
+  try {
+    // PDF que ya tienes
+    const pdf1 = await rellenarPDF(solicitud);
+
+    // Nuevo PDF
+    const pdf2 = await rellenarPDF2(solicitud);
+
+    // Nuevo PDF
+    const pdf3 = await rellenarPDF3(solicitud);
+
+    // Unirlos
+    const pdfFinal = await unirPDFs([pdf1, pdf2, pdf3]);
+
+    // Generar PDF final
+    const pdfBytes = await pdfFinal.save();
+
+    const blob = new Blob([pdfBytes], {
+      type: "application/pdf",
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const ventana = window.open(url);
+
+    if (!ventana) {
+      console.warn("El navegador bloqueó la ventana del PDF.");
+
+      return;
+    }
+
+    ventana.onload = () => {
+      ventana.print();
+    };
+  } catch (error) {
+    console.error("Error generando los PDFs:", error);
+  }
 }
 
 //////////////////////////////////////////
