@@ -377,9 +377,20 @@ if (btnSiguiente) {
       `;
 
         await subirDocumentos();
+
+        mostrarToast(
+          "Carga completada",
+          "Los documentos fueron cargados correctamente.",
+          "exito",
+        );
       } catch (error) {
         console.error("Error subiendo documentos:", error);
-        alert("No se pudieron guardar los documentos. Intente nuevamente.");
+        mostrarToast(
+          "No se pudo continuar",
+          error.message,
+          "error",
+        );
+        // alert("No se pudieron guardar los documentos. Intente nuevamente.");
         // Restaurar botón
         btnSiguiente.disabled = false;
 
@@ -674,10 +685,7 @@ function actualizarInversiones() {
     "Fondo de inversión cerrado inmobiliario II",
   ];
 
-  const productosBanco = [
-    "Cuenta corriente EzAccess",
-    "Cuenta Nómina",
-  ];
+  const productosBanco = ["Cuenta corriente EzAccess", "Cuenta Nómina"];
 
   const productosPrestamo = [
     "Préstamo personal",
@@ -1005,6 +1013,22 @@ if (btnVolverInicio) {
 
 // Funciones para la validacion de documentos
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
+function validarTamanoArchivo(archivo) {
+  if (archivo.size > MAX_FILE_SIZE) {
+    mostrarToast(
+      "Archivo demasiado pesado",
+      "El archivo seleccionado supera el límite máximo permitido de 10 MB.",
+      "error",
+    );
+
+    return false;
+  }
+
+  return true;
+}
+
 const inputCedula = document.getElementById("cedula");
 
 const botonCedula = document.getElementById("btnCedula");
@@ -1033,6 +1057,21 @@ if (inputCedula) {
   inputCedula.addEventListener("change", () => {
     if (!inputCedula.files.length) return;
 
+    const archivo = inputCedula.files[0];
+
+    // ==========================================
+    // VALIDAR TAMAÑO
+    // ==========================================
+
+    if (!validarTamanoArchivo(archivo)) {
+      inputCedula.value = "";
+      return;
+    }
+
+    // ==========================================
+    // CONTINUAR NORMAL
+    // ==========================================
+
     loadingCedula.classList.remove("hidden");
 
     textoCedula.classList.add("hidden");
@@ -1044,7 +1083,7 @@ if (inputCedula) {
     setTimeout(() => {
       loadingCedula.classList.add("hidden");
 
-      archivoCedula.textContent = "📄 " + inputCedula.files[0].name;
+      archivoCedula.textContent = "📄 " + archivo.name;
 
       archivoCedula.classList.remove("hidden");
     }, 1000);
@@ -1079,6 +1118,21 @@ if (inputCertificacion) {
   inputCertificacion.addEventListener("change", () => {
     if (!inputCertificacion.files.length) return;
 
+    const archivo = inputCertificacion.files[0];
+
+    // ==========================================
+    // VALIDAR TAMAÑO
+    // ==========================================
+
+    if (!validarTamanoArchivo(archivo)) {
+      inputCertificacion.value = "";
+      return;
+    }
+
+    // ==========================================
+    // CONTINUAR NORMAL
+    // ==========================================
+
     loadingCertificacion.classList.remove("hidden");
 
     textoCertificacion.classList.add("hidden");
@@ -1090,8 +1144,7 @@ if (inputCertificacion) {
     setTimeout(() => {
       loadingCertificacion.classList.add("hidden");
 
-      archivoCertificacion.textContent =
-        "📄 " + inputCertificacion.files[0].name;
+      archivoCertificacion.textContent = "📄 " + archivo.name;
 
       archivoCertificacion.classList.remove("hidden");
     }, 1000);
@@ -1121,6 +1174,31 @@ async function subirDocumentos() {
   const archivosNuevos = Object.entries(archivosRegistro).filter(
     ([_, archivo]) => archivo,
   );
+
+  // ==========================================
+  // VALIDAR DOCUMENTOS OBLIGATORIOS
+  // ==========================================
+
+  const tiposExistentes = documentosExistentes.map((documento) =>
+    documento.tipoDocumento?.toLowerCase(),
+  );
+
+  const tiposNuevos = archivosNuevos.map(([tipoDocumento]) =>
+    tipoDocumento.toLowerCase(),
+  );
+
+  const tieneCedula =
+    tiposExistentes.includes("cedula") || tiposNuevos.includes("cedula");
+
+  const tieneCertificacion =
+    tiposExistentes.includes("certificacion") ||
+    tiposNuevos.includes("certificacion");
+
+  if (!tieneCedula || !tieneCertificacion) {
+    throw new Error(
+      "Debe cargar el documento de identidad y la certificación de ingresos para continuar.",
+    );
+  }
 
   // ==========================================
   // NO HAY NUEVOS, PERO YA EXISTEN DOCUMENTOS
@@ -1172,12 +1250,12 @@ async function subirDocumentos() {
   // REEMPLAZAR DOCUMENTOS DEL MISMO TIPO
   // ==========================================
 
-  const tiposNuevos = new Set(
+  const nuevoTipoDocumento = new Set(
     documentosNuevos.map((documento) => documento.tipoDocumento),
   );
 
   const documentosAnteriores = documentosExistentes.filter(
-    (documento) => !tiposNuevos.has(documento.tipoDocumento),
+    (documento) => !nuevoTipoDocumento.has(documento.tipoDocumento),
   );
 
   const documentosFinales = [...documentosAnteriores, ...documentosNuevos];
@@ -1305,6 +1383,55 @@ document
   .forEach((checkbox) => {
     checkbox.addEventListener("change", actualizarAlertaAFP);
   });
+
+let timeoutToast;
+
+function mostrarToast(titulo, mensaje, tipo = "exito") {
+  const toast = document.getElementById("toastPremium");
+
+  const tituloElemento = document.getElementById("toastTitulo");
+
+  const mensajeElemento = document.getElementById("toastMensaje");
+
+  const icono = document.getElementById("toastIcon");
+
+  if (!toast) return;
+
+  tituloElemento.textContent = titulo;
+  mensajeElemento.textContent = mensaje;
+
+  toast.classList.remove("exito", "error", "advertencia");
+
+  toast.classList.add(tipo);
+
+  if (tipo === "exito") {
+    icono.textContent = "✓";
+  }
+
+  if (tipo === "error") {
+    icono.textContent = "!";
+  }
+
+  if (tipo === "advertencia") {
+    icono.textContent = "!";
+  }
+
+  toast.classList.add("mostrar");
+
+  clearTimeout(timeoutToast);
+
+  timeoutToast = setTimeout(() => {
+    cerrarToast();
+  }, 5000);
+}
+
+function cerrarToast() {
+  const toast = document.getElementById("toastPremium");
+
+  if (!toast) return;
+
+  toast.classList.remove("mostrar");
+}
 
 // window.addEventListener("load", () => {
 //   const loading = document.getElementById("loadingOverlay");
