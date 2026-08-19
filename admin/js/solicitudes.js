@@ -10,7 +10,8 @@ DATOS DE EJEMPLO
 ======================================== */
 
 //  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
-const USAR_API = true;
+// true para usar APi, y false para usar json de ejemplo
+const USAR_API = false;
 
 let solicitudes = [];
 
@@ -35,7 +36,6 @@ async function cargarSolicitudes() {
       solicitudes,
     );
 
-    
     renderSolicitudes();
   } catch (error) {
     console.error("Error cargando solicitudes:", error);

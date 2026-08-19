@@ -1,127 +1,53 @@
-{
-    "datosCliente": {
-        "nombres": "Luis Daniel",
-        "apellidos": "Marquina Nougues",
-        "tipoDocumento": "pasaporte",
-        "identificacion": "139001200",
-        "fechaNacimiento": "1998-10-19",
-        "telefonoCasa": "809-325-8534",
-        "celular": "829-894-2468",
-        "lugarNacimiento": "Venezuela",
-        "nacionalidad": "Venezuela",
-        "direccion": "Calle Francisco Prats Ramirez, #214",
-        "ciudad": "Villa Riva",
-        "sector": "pruebasector",
-        "pais": "República Dominicana",
-        "email": "luisdanielmarq07@gmail.com",
-        "ley155": "Si",
-        "civil": "Soltero",
-        "sexo": "Masculino",
-        "profesion": "pruebaprofesion1",
-        "ocupacion": "empleado"
-    },
-    "datosLaborales": {
-        "empresa": "Grupo Snap",
-        "direccionEmpresa": "Calle Francisco Prats Ramirez, local 208A",
-        "ciudad": "Altamira",
-        "sector": "pruebasector",
-        "pais": "República Dominicana",
-        "cargo": "Gerente de produccion",
-        "ingreso": "2026-08-05",
-        "telefono": "809-555-2205",
-        "email": "luisda@gruposnap.com",
-        "comentarios": "Esto es un comentario de prueba"
-    },
-    "datosFatca": {
-        "otrasCiudadanias": "Si",
-        "ciudadania1": "Barbados",
-        "ciudadania2": "",
-        "residenciaFisicaUSA": "No",
-        "tin": "",
-        "masResidenciaFiscal": "No",
-        "paisesResidenciaFiscal": "",
-        "comentarios": "Esto es un comentario",
-        "condicionUSA": "Residencia Permanente",
-        "detalleResidenciaUSA": "Esto es un residencia fisica permanente ",
-        "greenCard": "Si",
-        "direccionEnvioUSA": "Si",
-        "direccionEnvio": "miami",
-        "direccionResidenciaUSA": "No",
-        "direccionResidencia": "",
-        "telefonoExtranjero": "No",
-        "telefonoExtranjeroNumero": ""
-    },
-    "datosPep": {
-        "esPEP": "Si",
-        "cargoPEP": "CARGO 1",
-        "paisPEP": "Belgica",
-        "fechaDesignacionPEP": "2026-08-06",
-        "fechaRemocionPEP": "2026-08-07",
-        "relacionPEP": "No",
-        "nombrePEP": "",
-        "paisPEPRelacionado": "",
-        "parentescoPEP": "",
-        "cargoPEPRelacionado": "",
-        "fechaDesignacionPEPRelacionado": "",
-        "fechaRemocionPEPRelacionado": ""
-    },
-    "datosAdicionales": {
-        "montoInversion": "10000",
-        "origenDestinoFondos": "Salario/Ingresos",
-        "productosSolicitados": [
-            "Cuenta de ahorros Bonus Saver",
-            "Certificado de depósito",
-            "Préstamo consolidación de deudas",
-            "Fondo de inversión cerrado inmobiliario II",
-            "Fondo de inversión cerrado de desarrollo"
-        ],
-        "beneficiariosTransaccion": "",
-        "identificacionBeneficiarioFinal": "",
-        "cuentaAhorroBasica": "Si",
-        "unicaCuenta": "No",
-        "cantidadOperaciones": "Mas de 10",
-        "otraCantidadOperaciones": "",
-        "formaTransacciones": "Transferencias",
-        "tipoTransferencia": "Nacional",
-        "personasRelacionadas": "Pepe el grillo",
-        "vinculadoJMMB": "SI, por la novia"
-    },
-    "datosCuestionario": {
-        "edadInversionista": "De 35 a 55 años",
-        "objetivoCapital": "Apreciacion de capital",
-        "criterioRiesgo": "Moderado",
-        "nivelAcademico": "Primaria",
-        "operacionesFinancieras": [
-            "Inversión en Certificados Financieros",
-            "Bonos Corporativos"
-        ],
-        "otrosDerivados": "",
-        "plazoObjetivos": "Entre 1 año y 3 años",
-        "plazoNecesidadInversion": "Entre 1 año y 3 años",
-        "capacidadPerdidas": "Mayor a 15%"
-    },
-    "datosCuestionario2": {
-        "ingresosAnuales": "Menos de RD$2 Millones",
-        "capacidadAhorro": "2",
-        "totalActivosLiquidos": "Menos de RD$2 Millones",
-        "cuentaAhorroCorriente": "2",
-        "patrimonioTotal": "Menos de RD$2 Millones",
-        "obligacionesDeudas": "2",
-        "banco1": "PEPE 1",
-        "tipoCuenta1": "Corriente",
-        "telefonoBanco1": "123-412-3412",
-        "oficialBanco1": "PEPE 1",
-        "banco2": "PEPE 2",
-        "tipoCuenta2": "PEPE 2",
-        "telefonoBanco2": "111-111-1111",
-        "oficialBanco2": "PEPE 2",
-        "patrimonioPeriodo1": "11111111",
-        "patrimonioPeriodo2": "22222222222",
-        "pasivosPeriodo1": "3333333333",
-        "pasivosPeriodo2": "44444444"
-    },
-    "datosDocumentos": {},
-    "datosDeclaracion": {
-        "declaracionJurada": true
-    }
-}
+# Formulario de Vinculación de Clientes
+
+Sistema web desarrollado para gestionar el proceso de solicitud y vinculación de clientes de una entidad financiera.
+
+La aplicación permite que los clientes completen de manera digital toda la información necesaria para su proceso de vinculación, incluyendo datos personales, laborales, financieros, información FATCA, PEP, productos solicitados, declaraciones y carga de documentos.
+
+El sistema cuenta además con un panel administrativo desde el cual los asesores pueden consultar las solicitudes recibidas, visualizar la información del cliente, completar datos internos del proceso, actualizar el estado de cada solicitud y generar la documentación correspondiente en formato PDF.
+
+La solución está diseñada bajo una arquitectura separada entre frontend, API y base de datos, evitando que el cliente acceda directamente a la información almacenada en el servidor.
+
+## Funcionalidades principales
+
+- Formulario de vinculación dividido en múltiples etapas.
+- Validación de datos antes del envío.
+- Registro de información personal y de contacto.
+- Información laboral y profesional.
+- Declaraciones FATCA.
+- Información relacionada con PEP.
+- Información financiera y patrimonial.
+- Selección de productos financieros.
+- Declaración jurada.
+- Carga y validación de documentos de identidad.
+- Almacenamiento de solicitudes mediante una API.
+- Panel administrativo para consulta y gestión de solicitudes.
+- Visualización detallada de la información de cada cliente.
+- Registro de información adicional por parte del asesor.
+- Gestión del estado de las solicitudes.
+- Generación automática de formularios PDF utilizando los datos registrados.
+- Autenticación del panel administrativo.
+- Arquitectura preparada para integración con servicios de autenticación, almacenamiento y despliegue en producción.
+
+## Arquitectura general
+
+El proyecto está compuesto principalmente por:
+
+- **Frontend:** HTML, CSS y JavaScript.
+- **Panel administrativo:** interfaz web para gestión de solicitudes.
+- **Backend / API:** Node.js con Express.
+- **Base de datos:** Microsoft SQL Server.
+- **Autenticación:** Firebase Authentication.
+- **Generación de documentos:** PDF-Lib.
+- **Hosting del frontend:** compatible con Firebase Hosting.
+
+El frontend se comunica únicamente con la API, mientras que la API se encarga de validar, procesar y almacenar la información en la base de datos.
+
+## Estructura del codigo 
+La interfaz web de cada página, la tenemos en la carpeta raiz en cada HTML. 
+
+En la carpeta /app encontraremos la lógica de la interfaz web en un único archivo JavaScript.
+En la carpeta /assets encontraremos todas las imagenes e iconos necesarios para el diseño de la web.
+En la carpeta /css encontraremos el diseño en un único archivo CSS de la página web.
+En la carpeta /fonts encontraremos los fonts de la empresa.
+En la carpeta /admin encontraremos los HTML, CSS y Javascript del panel administrativo.

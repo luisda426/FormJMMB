@@ -13,7 +13,8 @@ let solicitudes = [];
 let solicitudActual = null;
 
 //  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
-const USAR_API = true;
+// true para usar APi, y false para usar json de ejemplo
+const USAR_API = false;
 
 /* ========================================
 ELEMENTOS

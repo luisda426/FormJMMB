@@ -376,7 +376,8 @@ if (btnSiguiente) {
         Subiendo documentos...
       `;
 
-        await subirDocumentos();
+        // descomentar para subir Documentos
+        // await subirDocumentos();
 
         mostrarToast(
           "Carga completada",
@@ -385,11 +386,7 @@ if (btnSiguiente) {
         );
       } catch (error) {
         console.error("Error subiendo documentos:", error);
-        mostrarToast(
-          "No se pudo continuar",
-          error.message,
-          "error",
-        );
+        mostrarToast("No se pudo continuar", error.message, "error");
         // alert("No se pudieron guardar los documentos. Intente nuevamente.");
         // Restaurar botón
         btnSiguiente.disabled = false;
@@ -983,18 +980,16 @@ if (btn) {
       guardarDatos();
 
       // Luego enviamos TODO el registro al API
-      const resultado = await enviarSolicitud();
+      // const resultado = await enviarSolicitud();
 
-      console.log("Solicitud creada correctamente:", resultado);
+      // console.log("Solicitud creada correctamente:", resultado);
 
       // Solo cambiamos de página si todo salió bien
       window.location.href = "fin.html";
     } catch (error) {
       console.error("Error enviando la solicitud:", error);
 
-      alert(
-        "Ocurrió un error al enviar la solicitud. Por favor, inténtelo nuevamente.",
-      );
+      mostrarToast("No se pudo enviar", "Intentelo más tarde y no se procupe, los datos estan guardados", "error");
     }
   });
 }
