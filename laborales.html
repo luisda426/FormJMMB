@@ -71,7 +71,11 @@
               <div class="form-group">
                 <label>Sector</label>
 
-                <select id="sector" data-field="sector" data-sectores></select>
+                <select
+                  id="sector"
+                  data-field="sector"
+                  data-sectores
+                ></select>
               </div>
 
               <div class="form-group">
@@ -153,11 +157,36 @@
         </form>
       </div>
     </div>
-    <!-- <div id="loadingOverlay">
-      <img src="assets/loading.gif" />
 
-      <p id="loadingText">Preparando formulario...</p>
-    </div> -->
+    <!--=====================================
+    MODAL CAMPOS VACIOS
+    ======================================-->
+
+    <div id="toastPremium" class="toast-premium">
+      <div class="toast-icon" id="toastIcon">✓</div>
+
+      <div class="toast-content">
+        <strong id="toastTitulo">Listo</strong>
+        <span id="toastMensaje">Operación completada.</span>
+      </div>
+
+      <button type="button" class="toast-close" onclick="cerrarToast()">
+        ×
+      </button>
+    </div>
+    
+    <!--=====================================
+    VIDEO DE ESPERA
+    ======================================-->
+
+    <div id="loadingOverlay">
+      <video id="loadingVideo" autoplay muted playsinline loop>
+        <source src="assets/loading.webm" type="video/webm" />
+      </video>
+
+      <p id="loadingText">Cargando...</p>
+    </div>
+    
   </body>
 
   <script src="app/paises.js"></script>

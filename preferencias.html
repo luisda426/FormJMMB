@@ -42,13 +42,53 @@
             <h2>Preferencias de vinculación</h2>
 
             <!-- ========================================= -->
+            <!-- BURO DE CREDITO -->
+            <!-- ========================================= -->
+
+            <div class="form-group">
+              <label class="field-description">
+                ¿Autoriza usted a JMMB Bank S.A. a revisar su buró de crédito?
+              </label>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="buroCredito"
+                    value="Si"
+                    data-field="buroCredito"
+                    required
+                  />
+
+                  <span>Sí</span>
+                </label>
+
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="buroCredito"
+                    value="No"
+                    data-field="buroCredito"
+                    required
+                  />
+
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
             <!-- OFICINA DE PREFERENCIA -->
             <!-- ========================================= -->
 
             <div class="form-group">
               <label for="oficinaPreferencia"> Oficina de preferencia </label>
 
-              <select id="oficinaPreferencia" data-field="oficinaPreferencia">
+              <select
+                id="oficinaPreferencia"
+                data-field="oficinaPreferencia"
+                required
+              >
                 <option value="" disabled selected>
                   Selecciona la oficina de tu preferencia
                 </option>
@@ -71,7 +111,7 @@
 
             <div class="form-group">
               <label class="field-description">
-                "¿Eres cliente de nosotros?
+                ¿Eres cliente de nosotros?
               </label>
 
               <div class="radio-group">
@@ -83,6 +123,7 @@
                     data-field="primeraVez"
                     data-target="divEntidadesCliente"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>Sí</span>
@@ -96,6 +137,7 @@
                     data-field="primeraVez"
                     data-target="divEntidadesCliente"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>No</span>
@@ -111,7 +153,10 @@
               <div class="form-group">
                 <label> Entidades de las que eres cliente </label>
 
-                <div class="checkbox-options">
+                <div
+                  class="checkbox-options"
+                  data-required-group="productosSolicitados"
+                >
                   <label class="checkbox-option">
                     <input
                       type="checkbox"
@@ -172,7 +217,10 @@
                 ¿Dónde quieres vincularte?
               </label>
 
-              <div class="checkbox-options">
+              <div
+                class="checkbox-options"
+                data-required-group="productosSolicitados"
+              >
                 <!-- BANCO -->
 
                 <label class="checkbox-option">
@@ -264,6 +312,7 @@
         </form>
       </div>
     </div>
+
     <!--=====================================
     MODAL SALIR
     ======================================-->
@@ -288,11 +337,35 @@
         </div>
       </div>
     </div>
-    <!-- <div id="loadingOverlay">
-      <img src="assets/loading.gif" />
+
+    <!--=====================================
+    MODAL CAMPOS VACIOS
+    ======================================-->
+
+    <div id="toastPremium" class="toast-premium">
+      <div class="toast-icon" id="toastIcon">✓</div>
+
+      <div class="toast-content">
+        <strong id="toastTitulo">Listo</strong>
+        <span id="toastMensaje">Operación completada.</span>
+      </div>
+
+      <button type="button" class="toast-close" onclick="cerrarToast()">
+        ×
+      </button>
+    </div>
+
+    <!--=====================================
+    VIDEO DE ESPERA
+    ======================================-->
+
+    <div id="loadingOverlay">
+      <video id="loadingVideo" autoplay muted playsinline loop>
+        <source src="assets/loading.webm" type="video/webm" />
+      </video>
 
       <p id="loadingText">Preparando formulario...</p>
-    </div> -->
+    </div>
 
     <script src="app/app.js"></script>
   </body>

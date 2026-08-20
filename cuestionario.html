@@ -70,6 +70,7 @@
                     name="edadInversionista"
                     value="Mayor de 55 años"
                     data-field="edadInversionista"
+                    required
                   />
 
                   <span> Mayor de 55 años </span>
@@ -81,6 +82,7 @@
                     name="edadInversionista"
                     value="De 35 a 55 años"
                     data-field="edadInversionista"
+                    required
                   />
 
                   <span> De 35 a 55 años </span>
@@ -92,6 +94,7 @@
                     name="edadInversionista"
                     value="De 25 a 34 años"
                     data-field="edadInversionista"
+                    required
                   />
 
                   <span> De 25 a 34 años </span>
@@ -103,6 +106,7 @@
                     name="edadInversionista"
                     value="Menor de 25 años"
                     data-field="edadInversionista"
+                    required
                   />
 
                   <span> Menor de 25 años </span>
@@ -124,6 +128,7 @@
                     name="objetivoCapital"
                     value="Rentabilidad"
                     data-field="objetivoCapital"
+                    required
                   />
 
                   <span> Rentabilidad </span>
@@ -135,6 +140,7 @@
                     name="objetivoCapital"
                     value="Seguridad"
                     data-field="objetivoCapital"
+                    required
                   />
 
                   <span> Seguridad </span>
@@ -146,6 +152,7 @@
                     name="objetivoCapital"
                     value="Apreciacion de capital"
                     data-field="objetivoCapital"
+                    required
                   />
 
                   <span> Apreciación de capital </span>
@@ -164,7 +171,6 @@
 
               <div class="risk-info">
                 <div class="risk-info-header">
-
                   <p>
                     Selecciona el perfil que mejor represente tu tolerancia al
                     riesgo.
@@ -179,6 +185,7 @@
                       name="criterioRiesgo"
                       value="Conservador"
                       data-field="criterioRiesgo"
+                      required
                     />
 
                     <div class="risk-card-header">
@@ -206,6 +213,7 @@
                       name="criterioRiesgo"
                       value="Moderado"
                       data-field="criterioRiesgo"
+                      required
                     />
 
                     <div class="risk-card-header">
@@ -234,6 +242,7 @@
                       name="criterioRiesgo"
                       value="Agresivo"
                       data-field="criterioRiesgo"
+                      required
                     />
 
                     <div class="risk-card-header">
@@ -264,8 +273,8 @@
             <div class="form-group">
               <label>Nivel Académico</label>
 
-              <select id="civil" data-field="nivelAcademico">
-                <option disabled selected>Seleccione...</option>
+              <select id="civil" data-field="nivelAcademico" required>
+                <option disabled selected value="">Seleccione...</option>
                 <option>Primaria</option>
                 <option>Bachillerato</option>
                 <option>Carrera Técnica</option>
@@ -464,6 +473,7 @@
                   id="otrosDerivados"
                   data-field="otrosDerivados"
                   placeholder="Indique los derivados"
+                  required
                 />
               </div>
             </div>
@@ -602,6 +612,7 @@
                     name="plazoObjetivos"
                     value="Menos de 1 año"
                     data-field="plazoObjetivos"
+                    required
                   />
 
                   <span> Menos de 1 año </span>
@@ -613,6 +624,7 @@
                     name="plazoObjetivos"
                     value="Entre 1 año y 3 años"
                     data-field="plazoObjetivos"
+                    required
                   />
 
                   <span> Entre 1 año y 3 años </span>
@@ -624,6 +636,7 @@
                     name="plazoObjetivos"
                     value="Más de 3 años"
                     data-field="plazoObjetivos"
+                    required
                   />
 
                   <span> Más de 3 años </span>
@@ -648,6 +661,7 @@
                     name="plazoNecesidadInversion"
                     value="Menos de 1 año"
                     data-field="plazoNecesidadInversion"
+                    required
                   />
 
                   <span> Menos de 1 año </span>
@@ -659,6 +673,7 @@
                     name="plazoNecesidadInversion"
                     value="Entre 1 año y 3 años"
                     data-field="plazoNecesidadInversion"
+                    required
                   />
 
                   <span> Entre 1 año y 3 años </span>
@@ -670,6 +685,7 @@
                     name="plazoNecesidadInversion"
                     value="Más de 3 años"
                     data-field="plazoNecesidadInversion"
+                    required
                   />
 
                   <span> Más de 3 años </span>
@@ -691,6 +707,7 @@
                     name="capacidadPerdidas"
                     value="0%"
                     data-field="capacidadPerdidas"
+                    required
                   />
 
                   <span> 0% </span>
@@ -702,6 +719,7 @@
                     name="capacidadPerdidas"
                     value="1% a 15%"
                     data-field="capacidadPerdidas"
+                    required
                   />
 
                   <span> De 1% a 15% </span>
@@ -713,6 +731,7 @@
                     name="capacidadPerdidas"
                     value="Mayor a 15%"
                     data-field="capacidadPerdidas"
+                    required
                   />
 
                   <span> Mayor a 15% </span>
@@ -736,6 +755,35 @@
           </section>
         </form>
       </div>
+    </div>
+
+    <!--=====================================
+    MODAL CAMPOS VACIOS
+    ======================================-->
+
+    <div id="toastPremium" class="toast-premium">
+      <div class="toast-icon" id="toastIcon">✓</div>
+
+      <div class="toast-content">
+        <strong id="toastTitulo">Listo</strong>
+        <span id="toastMensaje">Operación completada.</span>
+      </div>
+
+      <button type="button" class="toast-close" onclick="cerrarToast()">
+        ×
+      </button>
+    </div>
+
+    <!--=====================================
+    VIDEO DE ESPERA
+    ======================================-->
+
+    <div id="loadingOverlay">
+      <video id="loadingVideo" autoplay muted playsinline loop>
+        <source src="assets/loading.webm" type="video/webm" />
+      </video>
+
+      <p id="loadingText">Cargando...</p>
     </div>
 
     <script src="app/paises.js"></script>

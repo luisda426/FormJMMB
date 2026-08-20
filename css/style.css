@@ -702,7 +702,6 @@ select:focus {
   }
 }
 
-
 /* Modal Toast Documentos */
 .toast-premium {
   position: fixed;
@@ -961,6 +960,52 @@ textarea:focus {
   line-height: 1.6;
   font-size: 14px;
   opacity: 0.7;
+}
+
+/* =========================================
+   CAMPOS VACIOS AVISO
+   ========================================= */
+
+.field-error {
+  border-color: #ed1c29 !important;
+}
+
+input.field-error,
+select.field-error,
+textarea.field-error {
+  border-color: #ed1c29 !important;
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.08);
+}
+
+.form-group.field-error {
+  padding: 12px;
+  border: 1px solid rgba(198, 40, 40, 0.35);
+  background: rgba(198, 40, 40, 0.03);
+  border-radius: 10px;
+}
+
+.checkbox-options.field-error {
+  padding: 12px;
+  border: 1px solid rgba(198, 40, 40, 0.4);
+  border-radius: 12px;
+  background: rgba(198, 40, 40, 0.03);
+}
+
+[data-required-group].field-error {
+  border: 1px solid #c62828;
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(198, 40, 40, 0.025);
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.06);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.input-suffix:has(input.field-error) {
+  border-color: #c62828 !important;
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.08);
 }
 
 /* =========================================
@@ -1933,18 +1978,23 @@ textarea:focus {
 #loadingOverlay {
   position: fixed;
   inset: 0;
-  background: white;
-  z-index: 99999;
-
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
 }
 
-.fade-out {
+#loadingOverlay.fade-out {
   opacity: 0;
-
   pointer-events: none;
+}
+
+#loadingVideo {
+  width: 300px;
+  height: auto;
 }
 
 .archivo-guardado {

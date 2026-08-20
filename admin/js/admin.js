@@ -11,7 +11,7 @@ DATOS DE EJEMPLO
 
 //  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
 // true para usar APi, y false para usar json de ejemplo
-const USAR_API = false;
+const USAR_API = true;
 
 let solicitudes = [];
 

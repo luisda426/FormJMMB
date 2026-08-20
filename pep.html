@@ -88,6 +88,7 @@
                     data-field="esPEP"
                     data-target="divDatosPEP"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>Sí</span>
@@ -101,6 +102,7 @@
                     data-field="esPEP"
                     data-target="divDatosPEP"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>No</span>
@@ -117,7 +119,12 @@
                 <div class="form-group">
                   <label for="cargoPEP"> Cargo </label>
 
-                  <input type="text" id="cargoPEP" data-field="cargoPEP" />
+                  <input
+                    type="text"
+                    id="cargoPEP"
+                    data-field="cargoPEP"
+                    required
+                  />
                 </div>
 
                 <div class="form-group">
@@ -127,6 +134,7 @@
                     id="paisPEP"
                     data-field="paisPEP"
                     data-paises
+                    required
                   ></select>
                 </div>
 
@@ -139,6 +147,7 @@
                     type="date"
                     id="fechaDesignacionPEP"
                     data-field="fechaDesignacionPEP"
+                    required
                   />
                 </div>
 
@@ -149,6 +158,7 @@
                     type="date"
                     id="fechaRemocionPEP"
                     data-field="fechaRemocionPEP"
+                    required
                   />
                 </div>
               </div>
@@ -175,6 +185,7 @@
                     data-field="relacionPEP"
                     data-target="divRelacionPEP"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>Sí</span>
@@ -188,6 +199,7 @@
                     data-field="relacionPEP"
                     data-target="divRelacionPEP"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>No</span>
@@ -204,7 +216,12 @@
                 <div class="form-group">
                   <label for="nombrePEP"> Nombre del PEP </label>
 
-                  <input type="text" id="nombrePEP" data-field="nombrePEP" />
+                  <input
+                    type="text"
+                    id="nombrePEP"
+                    data-field="nombrePEP"
+                    required
+                  />
                 </div>
 
                 <div class="form-group">
@@ -214,6 +231,7 @@
                     id="paisPEPRelacionado"
                     data-field="paisPEPRelacionado"
                     data-paises
+                    required
                   ></select>
                 </div>
 
@@ -224,6 +242,7 @@
                     type="text"
                     id="parentescoPEP"
                     data-field="parentescoPEP"
+                    required
                   />
                 </div>
 
@@ -234,6 +253,7 @@
                     type="text"
                     id="cargoPEPRelacionado"
                     data-field="cargoPEPRelacionado"
+                    required
                   />
                 </div>
 
@@ -246,6 +266,7 @@
                     type="date"
                     id="fechaDesignacionPEPRelacionado"
                     data-field="fechaDesignacionPEPRelacionado"
+                    required
                   />
                 </div>
 
@@ -258,6 +279,7 @@
                     type="date"
                     id="fechaRemocionPEPRelacionado"
                     data-field="fechaRemocionPEPRelacionado"
+                    required
                   />
                 </div>
               </div>
@@ -279,6 +301,35 @@
           </section>
         </form>
       </div>
+    </div>
+
+    <!--=====================================
+    MODAL CAMPOS VACIOS
+    ======================================-->
+
+    <div id="toastPremium" class="toast-premium">
+      <div class="toast-icon" id="toastIcon">✓</div>
+
+      <div class="toast-content">
+        <strong id="toastTitulo">Listo</strong>
+        <span id="toastMensaje">Operación completada.</span>
+      </div>
+
+      <button type="button" class="toast-close" onclick="cerrarToast()">
+        ×
+      </button>
+    </div>
+
+    <!--=====================================
+    VIDEO DE ESPERA
+    ======================================-->
+
+    <div id="loadingOverlay">
+      <video id="loadingVideo" autoplay muted playsinline loop>
+        <source src="assets/loading.webm" type="video/webm" />
+      </video>
+
+      <p id="loadingText">Cargando...</p>
     </div>
 
     <script src="app/paises.js"></script>

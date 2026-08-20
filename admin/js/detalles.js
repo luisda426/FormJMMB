@@ -14,7 +14,7 @@ let solicitudActual = null;
 
 //  VARIABLE PARA PROBAR API O USAR JSON DE EJEMPLO
 // true para usar APi, y false para usar json de ejemplo
-const USAR_API = false;
+const USAR_API = true;
 
 /* ========================================
 ELEMENTOS
@@ -417,6 +417,10 @@ function mostrarSolicitud(solicitud) {
   // ========================================
   // PREFERENCIAS DE VINCULACIÓN
   // ========================================
+
+  document.getElementById("detailBuroCredito").textContent = mostrarSiNo(
+    preferencias.buroCredito,
+  );
 
   document.getElementById("detailOficinaPreferencia").textContent =
     mostrarValor(preferencias.oficinaPreferencia);

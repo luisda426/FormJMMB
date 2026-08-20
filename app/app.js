@@ -360,6 +360,11 @@ if (btnSiguiente) {
       return;
     }
 
+    // Validar que los campos tenga los datos.
+    if (!validarFormulario()) {
+      return;
+    }
+
     guardarDatos();
 
     //Esto es para cuando subamos los documentos
@@ -398,6 +403,182 @@ if (btnSiguiente) {
     }
     window.location.href = paginas[pasoActual + 1];
   });
+}
+
+// Funcion para validar los campos REQUIRED
+
+function validarFormulario() {
+  const formulario = document.getElementById("formRegistro");
+
+  if (!formulario) {
+    console.log("No existe #formRegistro");
+    return true;
+  }
+
+  let formularioValido = true;
+  let primerCampoError = null;
+
+  // ==========================================
+  // LIMPIAR ERRORES ANTERIORES
+  // ==========================================
+
+  formulario.querySelectorAll(".field-error").forEach((elemento) => {
+    elemento.classList.remove("field-error");
+  });
+
+  // ==========================================
+  // CAMPOS REQUIRED
+  // ==========================================
+
+  const campos = formulario.querySelectorAll(
+    "input[required], select[required], textarea[required]",
+  );
+
+  const radiosValidados = new Set();
+
+  campos.forEach((campo) => {
+    // Ignorar campos deshabilitados
+    if (campo.disabled) return;
+
+    // Ignorar campos dentro de secciones ocultas
+    if (campo.closest(".hidden")) return;
+
+    // ==========================================
+    // RADIO
+    // ==========================================
+
+    if (campo.type === "radio") {
+      const nombreGrupo = campo.name;
+
+      if (radiosValidados.has(nombreGrupo)) {
+        return;
+      }
+
+      radiosValidados.add(nombreGrupo);
+
+      const radios = formulario.querySelectorAll(
+        `input[type="radio"][name="${nombreGrupo}"]`,
+      );
+
+      const algunoSeleccionado = [...radios].some(
+        (radio) =>
+          radio.checked && !radio.disabled && !radio.closest(".hidden"),
+      );
+
+      if (!algunoSeleccionado) {
+        formularioValido = false;
+
+        const contenedor =
+          campo.closest(".form-group") || campo.closest(".radio-group");
+
+        if (contenedor) {
+          contenedor.classList.add("field-error");
+        }
+
+        if (!primerCampoError) {
+          primerCampoError = campo;
+        }
+      }
+
+      return;
+    }
+
+    // ==========================================
+    // CHECKBOX INDIVIDUAL REQUIRED
+    // ==========================================
+
+    if (campo.type === "checkbox") {
+      // Si pertenece a un grupo, se validará después
+      if (campo.closest("[data-required-group]")) {
+        return;
+      }
+
+      if (!campo.checked) {
+        formularioValido = false;
+
+        const contenedor =
+          campo.closest(".checkbox-option") || campo.closest(".form-group");
+
+        if (contenedor) {
+          contenedor.classList.add("field-error");
+        }
+
+        if (!primerCampoError) {
+          primerCampoError = campo;
+        }
+      }
+
+      return;
+    }
+
+    // ==========================================
+    // INPUT / SELECT / TEXTAREA
+    // ==========================================
+
+    if (!campo.value || !campo.value.trim()) {
+      formularioValido = false;
+
+      campo.classList.add("field-error");
+
+      if (!primerCampoError) {
+        primerCampoError = campo;
+      }
+    }
+  });
+
+  // ==========================================================
+  // OJO: ESTE BLOQUE ESTÁ FUERA DEL campos.forEach()
+  // ==========================================================
+
+  const gruposCheckbox = formulario.querySelectorAll("[data-required-group]");
+
+  gruposCheckbox.forEach((grupo) => {
+    // Si todo el grupo está oculto, no lo validamos
+    if (grupo.closest(".hidden")) {
+      return;
+    }
+
+    const checkboxes = grupo.querySelectorAll(
+      'input[type="checkbox"]:not(:disabled)',
+    );
+
+    const algunoSeleccionado = [...checkboxes].some(
+      (checkbox) => checkbox.checked,
+    );
+
+    if (!algunoSeleccionado) {
+      formularioValido = false;
+
+      grupo.classList.add("field-error");
+
+      if (!primerCampoError) {
+        primerCampoError = grupo;
+      }
+    }
+  });
+
+  // ==========================================
+  // RESULTADO FINAL
+  // ==========================================
+
+  if (!formularioValido) {
+    mostrarToast(
+      "Información incompleta",
+      " Antes de continuar, completa los campos obligatorios que se encuentran pendientes.",
+      "error",
+    );
+
+    if (primerCampoError) {
+      primerCampoError.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+
+    return false;
+  }
+
+  return true;
 }
 
 //Boton atras
@@ -655,13 +836,16 @@ function actualizarInversiones() {
     "divSolicitudCertificado",
   );
 
+  const divMonedaCertificado = document.getElementById("divMonedaCertificado");
+
   if (
     !divInversionesPuesto ||
     !divInversionesSafi ||
     !divSolicitud ||
     !divSolicitudBanco ||
     !divSolicitudPrestamo ||
-    !divSolicitudCertificado
+    !divSolicitudCertificado ||
+    !divMonedaCertificado
   ) {
     return;
   }
@@ -775,9 +959,12 @@ function actualizarInversiones() {
 
   if (seleccionadoCertificado) {
     divSolicitudCertificado.classList.remove("hidden");
+    divMonedaCertificado.classList.remove("hidden");
   } else {
     divSolicitudCertificado.classList.add("hidden");
+    divMonedaCertificado.classList.add("hidden");
     limpiarCampos(divSolicitudCertificado);
+    limpiarCampos(divMonedaCertificado);
   }
   // ==========================================================
   // CONTENEDOR GENERAL DE SOLICITUD
@@ -989,7 +1176,11 @@ if (btn) {
     } catch (error) {
       console.error("Error enviando la solicitud:", error);
 
-      mostrarToast("No se pudo enviar", "Intentelo más tarde y no se procupe, los datos estan guardados", "error");
+      mostrarToast(
+        "No se pudo enviar",
+        "Intentelo más tarde y no se procupe, los datos estan guardados",
+        "error",
+      );
     }
   });
 }
@@ -1428,18 +1619,24 @@ function cerrarToast() {
   toast.classList.remove("mostrar");
 }
 
-// window.addEventListener("load", () => {
-//   const loading = document.getElementById("loadingOverlay");
+// Funcion para la pagina de carga
 
-//   if (!loading) return;
+const loading = document.getElementById("loadingOverlay");
 
-//   // Espera 1.5 segundos antes de comenzar a ocultarlo
-//   setTimeout(() => {
-//     loading.classList.add("fade-out");
+const tiempoInicio = performance.now();
+const tiempoMinimo = 500;
 
-//     // Espera a que termine la animación
-//     setTimeout(() => {
-//       loading.remove();
-//     }, 300);
-//   }, 1500);
-// });
+window.addEventListener("load", () => {
+  if (!loading) return;
+
+  const tiempoTranscurrido = performance.now() - tiempoInicio;
+  const tiempoRestante = Math.max(0, tiempoMinimo - tiempoTranscurrido);
+
+  setTimeout(() => {
+    loading.classList.add("fade-out");
+
+    setTimeout(() => {
+      loading.remove();
+    }, 300);
+  }, tiempoRestante);
+});

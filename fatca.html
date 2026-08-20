@@ -58,6 +58,7 @@
                     data-field="otrasCiudadanias"
                     data-target="divCiudadanias"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>Sí</span>
@@ -71,6 +72,7 @@
                     data-field="otrasCiudadanias"
                     data-target="divCiudadanias"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>No</span>
@@ -87,6 +89,7 @@
                     id="ciudadania1"
                     data-field="ciudadania1"
                     data-paises-vacio
+                    required
                   >
                     <option value="">Seleccione...</option>
                   </select>
@@ -119,6 +122,7 @@
                     data-field="residenciaFisicaUSA"
                     data-target="divTIN"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>Sí</span>
@@ -132,6 +136,7 @@
                     data-field="residenciaFisicaUSA"
                     data-target="divTIN"
                     data-show-value="Si"
+                    required
                   />
                   <span>No</span>
                 </label>
@@ -142,7 +147,7 @@
               <div class="form-group">
                 <label>Número de Identificación Fiscal (TIN)</label>
 
-                <input type="text" data-field="tin" />
+                <input type="text" data-field="tin" required />
               </div>
             </div>
 
@@ -160,6 +165,7 @@
                     data-field="masResidenciaFiscal"
                     data-target="divResidenciaFiscal"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>Sí</span>
@@ -173,6 +179,7 @@
                     data-field="masResidenciaFiscal"
                     data-target="divResidenciaFiscal"
                     data-show-value="Si"
+                    required
                   />
 
                   <span>No</span>
@@ -187,6 +194,7 @@
                 <textarea
                   rows="3"
                   data-field="paisesResidenciaFiscal"
+                  required
                 ></textarea>
               </div>
             </div>
@@ -219,6 +227,7 @@
                     data-field="condicionUSA"
                     data-target="divResidenciaUSA"
                     data-show-value="Residencia Permanente"
+                    required
                   />
 
                   <span>Ciudadanía</span>
@@ -232,6 +241,7 @@
                     data-field="condicionUSA"
                     data-target="divResidenciaUSA"
                     data-show-value="Residencia Permanente"
+                    required
                   />
 
                   <span>Residencia Permanente</span>
@@ -245,6 +255,7 @@
                     data-field="condicionUSA"
                     data-target="divResidenciaUSA"
                     data-show-value="Residencia Permanente"
+                    required
                   />
 
                   <span>Residencia Fiscal</span>
@@ -258,6 +269,7 @@
                     data-field="condicionUSA"
                     data-target="divResidenciaUSA"
                     data-show-value="Residencia Permanente"
+                    required
                   />
 
                   <span>Ninguna</span>
@@ -269,7 +281,7 @@
               <div class="form-group">
                 <label>Indique la residencia permanente</label>
 
-                <input type="text" data-field="detalleResidenciaUSA" />
+                <input type="text" data-field="detalleResidenciaUSA" required />
               </div>
             </div>
 
@@ -286,6 +298,7 @@
                       type="radio"
                       name="greenCard"
                       data-field="greenCard"
+                      required
                     />
 
                     <span>Sí</span>
@@ -297,6 +310,7 @@
                       type="radio"
                       name="greenCard"
                       data-field="greenCard"
+                      required
                     />
 
                     <span>No</span>
@@ -316,6 +330,7 @@
                       data-field="direccionEnvioUSA"
                       data-target="divDireccionEnvio"
                       data-show-value="Si"
+                      required
                     />
 
                     <span>Sí</span>
@@ -329,6 +344,7 @@
                       data-field="direccionEnvioUSA"
                       data-target="divDireccionEnvio"
                       data-show-value="Si"
+                      required
                     />
 
                     <span>No</span>
@@ -339,7 +355,7 @@
                   <div class="form-group">
                     <label>Dirección de envío</label>
 
-                    <input type="text" data-field="direccionEnvio" />
+                    <input type="text" data-field="direccionEnvio" required />
                   </div>
                 </div>
               </div>
@@ -364,6 +380,7 @@
                       data-field="direccionResidenciaUSA"
                       data-target="divDireccionResidencia"
                       data-show-value="Si"
+                      required
                     />
                     <span>Sí</span>
                   </label>
@@ -376,6 +393,7 @@
                       data-field="direccionResidenciaUSA"
                       data-target="divDireccionResidencia"
                       data-show-value="Si"
+                      required
                     />
                     <span>No</span>
                   </label>
@@ -387,7 +405,11 @@
                   <div class="form-group">
                     <label>Dirección de residencia</label>
 
-                    <input type="text" data-field="direccionResidencia" />
+                    <input
+                      type="text"
+                      data-field="direccionResidencia"
+                      required
+                    />
                   </div>
                 </div>
               </div>
@@ -408,6 +430,7 @@
                       data-field="telefonoExtranjero"
                       data-target="divTelefonoExtranjero"
                       data-show-value="Si"
+                      required
                     />
                     <span>Sí</span>
                   </label>
@@ -420,6 +443,7 @@
                       data-field="telefonoExtranjero"
                       data-target="divTelefonoExtranjero"
                       data-show-value="Si"
+                      required
                     />
                     <span>No</span>
                   </label>
@@ -435,6 +459,7 @@
                       type="text"
                       data-field="telefonoExtranjeroNumero"
                       class="telefonoMascara"
+                      required
                     />
                   </div>
                 </div>
@@ -455,6 +480,35 @@
           </section>
         </form>
       </div>
+    </div>
+
+    <!--=====================================
+    MODAL CAMPOS VACIOS
+    ======================================-->
+
+    <div id="toastPremium" class="toast-premium">
+      <div class="toast-icon" id="toastIcon">✓</div>
+
+      <div class="toast-content">
+        <strong id="toastTitulo">Listo</strong>
+        <span id="toastMensaje">Operación completada.</span>
+      </div>
+
+      <button type="button" class="toast-close" onclick="cerrarToast()">
+        ×
+      </button>
+    </div>
+
+    <!--=====================================
+    VIDEO DE ESPERA
+    ======================================-->
+
+    <div id="loadingOverlay">
+      <video id="loadingVideo" autoplay muted playsinline loop>
+        <source src="assets/loading.webm" type="video/webm" />
+      </video>
+
+      <p id="loadingText">Cargando...</p>
     </div>
   </body>
 
