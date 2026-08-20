@@ -1376,13 +1376,13 @@ async function subirDocumentos() {
   const tieneCedula =
     tiposExistentes.includes("cedula") || tiposNuevos.includes("cedula");
 
-  const tieneCertificacion =
-    tiposExistentes.includes("certificacion") ||
-    tiposNuevos.includes("certificacion");
+  // const tieneCertificacion =
+  //   tiposExistentes.includes("certificacion") ||
+  //   tiposNuevos.includes("certificacion");
 
-  if (!tieneCedula || !tieneCertificacion) {
+  if (!tieneCedula) {
     throw new Error(
-      "Debe cargar el documento de identidad y la certificación de ingresos para continuar.",
+      "Debe cargar el documento de identidad para continuar.",
     );
   }
 
